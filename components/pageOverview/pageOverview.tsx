@@ -6,7 +6,7 @@ import realEstate from '../../public/images/realEstate.jpg'
 export const PageBgOverview = ({HomeLink, CurrentPage, BgImgLink, page} : {HomeLink: string, CurrentPage: string, BgImgLink: string, page :string}) => {
     return (
         <div
-            className=" h-[70vh] after:absolute md:px-[50px] pt-[100px] pb-[50px] items-center flex px-[30px] justify-center relative after:top-0 after:w-full after:left-0 after:bottom-0 after:bg-tpo"
+            className=" h-[30vh] md:h-[40vh] lg:h-[70vh] after:absolute md:px-[50px] pt-[100px] pb-[50px] items-center flex px-[30px] justify-center relative after:top-0 after:w-full after:left-0 after:bottom-0 after:bg-tpo"
             style={{
                 background: `url(${realEstate.src})`,
                 backgroundSize: "cover",

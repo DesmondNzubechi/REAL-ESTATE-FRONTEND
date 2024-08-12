@@ -93,7 +93,7 @@ export const MobileNav = () => {
                 <hr /> </>}  */}
                 <div className="flex items-center justify-between ">
                 <Link href='/' className="flex  gap-1 items-center">
-                       <Image src={logo} className="w-[250px]" alt="home  features logo"/>
+                       <Image src={logo} className=" w-[150px] md:w-[250px]" alt="home  features logo"/>
                     </Link>
 
                     <div className="flex bg-primaryBg p-2  hover:bg-slate-200">
@@ -111,18 +111,18 @@ export const MobileNav = () => {
                 <div className="flex bg-primaryBg flex-col overflow-y-auto gap-[30px] absolute top-0 bottom-0 w-[70%] left-0 px-[30px] py-[30px]">
                     <div className="flex justify-between items-center">
                     <Link href='' className="flex items-center">
-                        <SiHomeassistantcommunitystore className="text-[30px]" /> 
-                        <h1 className="font-bold uppercase text-[30px]">Home features</h1>
+                        <SiHomeassistantcommunitystore className="text-[20px] md:text-[30px] text-btn-primary" /> 
+                        <h1 className="font-bold uppercase text-[20px] md:text-[30px]">Home features</h1>
                         </Link>
-                        <button onClick={() => setNavState('left-[-2000px]')}>
+                        {/* <button onClick={() => setNavState('left-[-2000px]')}>
                         <HiXMark className="bg-black-bg text-[40px]  hover:bg-slate-700 p-1 text-light"/>
-                        </button>
+                        </button> */}
                     </div>
                     <hr />
                     <ul className="bg-primaryBg flex flex-col gap-2">
                         {navItems.map((nav: navType, index: number) => (
                             <li key={index}>
-                                <Link className="text-[25px] text-textColor capitalize" href={nav.url}>
+                                <Link className="text-[15px] text-textColor capitalize" href={nav.url}>
                                     {nav.name}
                                 </Link>
                             </li>
@@ -130,14 +130,14 @@ export const MobileNav = () => {
                     </ul>
                     <hr />
                     <div className="flex my-[20px] flex-col gap-2">
-                        <Link href='' className="flex text-[25px] items-center">
+                        <Link href='' className="flex text-[15px] items-center">
                             <TbHomeSearch className="text-[20px]" />
                             <span>Search</span>
                         </Link>
-                        <Link href='' className="bg-btn-primary text-primary text-light text-[25px] w-[150px] py-[5px] px-[20px]">
+                        <Link href='' className="bg-btn-primary text-primary text-light text-[15px] w-[150px] py-[5px] px-[20px]">
                             Register
                         </Link>
-                        <Link href='' className="text-[25px] text-center border py-[5px] w-[150px] px-[20px]">
+                        <Link href='' className="text-[15px] text-center border py-[5px] w-[150px] px-[20px]">
                             Login
                         </Link>
                     </div>
@@ -146,16 +146,16 @@ export const MobileNav = () => {
                         <h1 className="font-bold">Follow Us On Social</h1>
                         <div className="flex item-center gap-5">
                             <Link className="bg-bg-secondary p-2 rounded" href=''>
-                                <FaXTwitter className="text-[25px]" />
+                                <FaXTwitter className="text-[15px]" />
                             </Link>
                             <Link className="bg-bg-secondary p-2 rounded" href=''>
-                                <FaLinkedinIn className="text-[25px]" />
+                                <FaLinkedinIn className="text-[15px]" />
                             </Link>
                             <Link className="bg-bg-secondary p-2 rounded" href=''>
-                                <FaFacebookF className="text-[25px]" />
+                                <FaFacebookF className="text-[15px]" />
                             </Link>
                             <Link className="bg-bg-secondary p-2 rounded" href=''>
-                                <FaInstagram className="text-[25px]" />
+                                <FaInstagram className="text-[15px]" />
                             </Link>
                         </div>
                     </div>

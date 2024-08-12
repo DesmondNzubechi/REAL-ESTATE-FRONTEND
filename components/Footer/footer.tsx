@@ -1,5 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
+import logo from '../../public/images/logo2.png'
 import { SiHomeassistantcommunitystore } from "react-icons/si";
 
 import { FaLinkedin } from "react-icons/fa6";
@@ -7,8 +8,8 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaFacebookSquare } from "react-icons/fa";
 export const Footer = () => {
-    return <div className="bg-primaryBg relative pt-[230px]">
-        <div className="px-[30px] absolute left-0 right-0 top-0">
+    return <div className="bg-primaryBg relative pt-[300px]">
+        <div className="px-[30px] absolute   left-0 right-0 top-0 lg:top-[50px]">
         <div className="bg-btn-primary flex flex-col justify-around gap-[30px] lg:flex-row  py-[100px] px-[30px] ">
                 <div className="flex flex-col gap-4  justify-between items-center lg:items-start ">
                     <h1 className="font-bold text-light text-[25px] md:text-[30px] capitalize lg:text-[35px]">Looking for a dream Property</h1>
@@ -20,9 +21,8 @@ export const Footer = () => {
         <div className="text-slate-50 flex flex-col gap-5 pt-[150px] bg-footerBg px-[20px] py-[50px] ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-[40px]">
             <div className="flex flex-col lg:col-span-2 gap-1">
-            <Link href='' className="flex  gap-1 items-center">
-                        <SiHomeassistantcommunitystore className="text-[30px] text-blue-500" /> 
-                        <h1 className="font-bold uppercase text-light text-[30px]">Home features</h1>
+                    <Link href='' className="flex  gap-1 items-center">
+                        <Image src={logo} alt="logo"/>
                     </Link>
                 {/* <h1 className="font-bold text-[25px] uppercase mb-[5px] ">b2r-tech</h1> */}
                 <p>we bring your ideas to life with technology. Our expert team turns concepts into impactful digital solutions, ensuring excellence every step of the way. Partner with us to drive your success.</p>
