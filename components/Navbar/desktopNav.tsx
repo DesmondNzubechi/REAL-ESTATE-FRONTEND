@@ -1,0 +1,131 @@
+import Link from "next/link";
+import { navType } from "../types/types"
+import { SiHomeassistantcommunitystore } from "react-icons/si";
+import { TbHomeSearch } from "react-icons/tb";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaLinkedinIn } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { HiXMark } from "react-icons/hi2";
+import { FaBarsStaggered } from "react-icons/fa6";
+import { IoMdCall } from "react-icons/io";
+import { CiLocationOn } from "react-icons/ci";
+import { Poppins } from "next/font/google";
+import { FaLocationDot } from "react-icons/fa6";
+import { useState } from "react";
+import { useEffect } from "react";
+import logo from '../../public/images/logo2.png';
+import Image from "next/image";
+
+export const poppins = Poppins({
+    subsets: ['latin'],
+    weight: ['400', '500', '600', '700'], 
+    style: ['normal', 'italic'],
+});
+  
+export const DesktopNav = () => {
+
+    const navItems: navType[] = [
+        {
+            name: "home",
+            url : "/"
+        },
+        {
+            name: "property",
+            url : "/properties"
+        },
+        {
+            name: "land",
+            url : "/land"
+        },
+        {
+            name: "blog",
+            url : "/blog"
+        },
+        {
+            name: "about",
+            url : "/about"
+        },
+        {
+            name: "contact",
+            url : "/contact-us"
+        },
+    ]
+
+    const [navState, setNavState] = useState<string>("left-[-2000px]")
+
+    const [isScrolled, setIsScrolled] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollThreshold = 40;
+      const currentScrollY = window.scrollY || document.documentElement.scrollTop;
+  
+      if (currentScrollY > scrollThreshold) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+  
+    window.addEventListener('scroll', handleScroll);
+  
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+  
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior : "smooth"})
+  }
+
+    return (
+        <nav className={`${poppins.className} hidden lg:flex  relative z-[1000]`}>
+            <div
+                 style={{
+                    transition: "ease-in .7s",
+                    scrollBehavior : "smooth"
+                  }}
+                className={`py-[10px]  px-[30px] flex flex-col gap-y-[10px] fixed left-0 right-0 top-0 w-full ${isScrolled? "bg-textTitle" : "bg-transparent"} `}>
+               {/* {!isScrolled && <> <div className="flex justify-around ">
+                    <div className="flex items-center"><IoMdCall className="text-btn-primary text-[20px] "/> <p className="text-light font-bold text-large">+2347084183611</p></div>
+                    <div className="flex items-center"><FaLocationDot className="text-btn-primary text-[20px] "/> <p className="text-light font-bold text-large">1A Denten Street, Ogui, Enugu.</p></div>
+                </div>
+                    <hr /> </>} */}
+                <div className="flex justify-between px-[50px] ">
+                <div className="flex items-center justify-between ">
+                <Link href='/' className="flex  gap-1 items-center">
+                       <Image src={logo} className="w-[250px]" alt="home  features logo"/>
+                    </Link>
+
+                    </div>
+                 
+                    <ul className=" flex flex-row items-center gap-5">
+                        {navItems.map((nav: navType, index: number) => (
+                            <li key={index}>
+                                <Link className="text-[15px] text-light capitalize" href={nav.url}>
+                                    {nav.name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                   
+                    <div className="flex my-[20px] flex-row items-center gap-2">
+                        {/* <Link href='' className="flex text-[25px] items-center">
+                            <TbHomeSearch className="text-[20px]" />
+                        </Link> */}
+                        <Link href='/register' className="bg-btn-primary text-primary text-light text-[25px] w-[150px] py-[5px] px-[20px]">
+                            Register
+                        </Link>
+                        <Link href='/signin' className="text-[25px] bg-primaryBg text-center border py-[5px] w-[150px] px-[20px]">
+                            Login
+                        </Link>
+                    </div>
+             
+
+                </div>
+            </div>
+
+        </nav>
+    )
+}

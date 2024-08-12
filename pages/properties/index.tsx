@@ -1,0 +1,137 @@
+import { DesktopNav } from "@/components/Navbar/desktopNav";
+import { MobileNav } from "@/components/Navbar/mobileNav";
+import { PageBgOverview } from "@/components/pageOverview/pageOverview";
+import { FaThList } from "react-icons/fa";
+import { BsFillGrid3X3GapFill } from "react-icons/bs";
+import { IoCameraSharp } from "react-icons/io5";
+import { RiFolderVideoFill } from "react-icons/ri";
+import { MdBedroomParent } from "react-icons/md";
+import { MdBathtub } from "react-icons/md";
+import { GiHomeGarage } from "react-icons/gi";
+import { FaLocationDot } from "react-icons/fa6";
+import { BsFilterSquareFill } from "react-icons/bs";
+import { IoIosSearch } from "react-icons/io";
+import house1 from '../../public/images/house8.avif';
+import house2 from '../../public/images/house3.avif';
+import house3 from '../../public/images/house5.avif';
+import { propertyOverview } from "@/components/types/types";
+import Image from "next/image";
+import Link from "next/link";
+
+
+export default function Properties() {
+    
+
+    const featuredProps: propertyOverview[] = [
+        {
+            name: "New House here",
+            price: '9000',
+            location: "Enugu, Nigeria",
+            bedroom: "3",
+            bathroom: "2",
+            car: "2",
+            status: "for sale",
+            imageNo: "2",
+            video: "1",
+            images : house1
+        },
+        {
+            name: "New House here",
+            price: '9000',
+            location: "Enugu, Nigeria",
+            bedroom: "3",
+            bathroom: "2",
+            car: "2",
+            status: "for sale",
+            imageNo: "2",
+            video: "1",
+            images : house2
+        },
+        {
+            name: "New House here",
+            price: '9000',
+            location: "Enugu, Nigeria",
+            bedroom: "3",
+            bathroom: "2",
+            car: "2",
+            status: "for sale",
+            imageNo: "2",
+            video: "1",
+            images : house3
+        },
+       
+    ]
+
+    return <>
+        <MobileNav/>
+        <DesktopNav/>
+        <PageBgOverview HomeLink='Home' page="Property Listing" CurrentPage="Property" BgImgLink="https://img.freepik.com/free-photo/elevated-view-headphone-paper-keyboard-blue-background_23-2147889936.jpg?t=st=1717449452~exp=1717453052~hmac=3ccf1d5383cc9a67a5f965c1eeaf10ff0fc6ab6c41542d80877f4eb76e41bd4f&w=740" />
+        <div className="py-[50px] px-[30px] flex flex-col gap-[50px]">
+            
+
+            <div className="bg-primaryBg border w-full  py-[20px] px-[40px] ">
+                <h1 className="font-bold text-textTitle uppercase text-center text-[20px]">Filter Property</h1>
+                <div className="flex flex-col lg:flex-row items-start lg:items-center gap-5 justify-between">
+                <div className="  w-full grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3   p-[20px] ">
+                <select name="" id="" className=" px-[15px] outline-0 text-center shadow font-[400] text-[25px] py-[10px] ">
+                    <option>Filter By Location</option>
+                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
+                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
+                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
+                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
+                </select>
+                <select name="" id="" className=" px-[15px] outline-0 text-center shadow font-[400] text-[25px] py-[10px] ">
+                    <option>Filter By Price</option>
+                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
+                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
+                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
+                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
+                </select>
+                <select name="" id="" className=" px-[15px] outline-0 text-center shadow font-[400] text-[25px] py-[10px] ">
+                    <option className="bg-btn-primary text-light text-[15px]">Filter BY Type</option>
+                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
+                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
+                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
+                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
+                </select>
+</div>
+                <button className="bg-btn-primary ml-[20px] text-[20px] text-light hover:text-[#FFFFFF] hover:bg-textTitle px-[25px] text-center flex items-center gap-2 font-bold w-fit  w  py-[10px] "><BsFilterSquareFill />Filter</button>
+                </div>
+            </div>
+            
+            <div className="bg-secondaryBg w-full border py-[10px] items-center px-[20px] flex justify-between">
+                <input type="text" name="" className="text-textColor outline-0 w-full bg-transparent py-[10px] px-[20px] " placeholder="Search for a property" id="" />
+                <IoIosSearch  className="text-btn-primary font-bold text-[30px]"/>
+            </div>
+            <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
+            {
+                featuredProps.map((property: propertyOverview, index: number) => {
+                    return <Link href={`/properties/:id`} key={index} className="border">
+                        <div className="relative">
+                            <Image src={property.images} alt={`${property.name} image`} className="h-[350px]" />
+                            <h1 className="bg-btn-primary text-light font-medium px-[20px] py-[5px] absolute top-[30px] right-[30px] uppercase ">{property.status}</h1>
+                            <div className=" absolute bottom-0  flex justify-between w-full py-[10px] px-[20px] ">
+                                <p className="flex items-center bg-whiteTp px-[20px] gap-5 rounded text-secondaryText "><FaLocationDot /> {property.location}</p>
+                                <div className="flex items-center gap-[10px] ">
+                                    <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 rounded-full "><IoCameraSharp  /> {property.imageNo}</p>
+                                      <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 px-[10px] rounded-full "><RiFolderVideoFill /> {property.video}</p>
+                                </div>
+                            </div>
+</div>
+                        <div className="flex flex-col gap-[20px] px-[20px] py-[20px] ">
+                            <h1 className="text-btn-primary font-medium text-[20px] ">N {property.price}</h1>
+                            <h1 className="font-bold text-textTitle text-[30px] ">{property.name}</h1>
+                            <div className="flex items-center gap-5 justify-between">
+                                <div className="flex items-center text-textColor gap-1"><h1 className="font-bold text-[20px] ">{property.bedroom}</h1>< MdBedroomParent className="text-[20px] "/> <p>Bedroom</p></div>
+                                <div className="flex items-center text-textColor gap-1"><h1 className="font-bold text-[20px] ">{property.bathroom}</h1>< MdBathtub className="text-[20px] "/> <p>Bathroom</p></div>
+                                <div className="flex items-center text-textColor justify-center gap-1 "><h1 className="font-bold text-[20px] ">{property.car}</h1>< GiHomeGarage className="text-[20px] "/> <p>Carpark</p></div>
+                            </div>
+                        </div>
+                    </Link>
+                })
+}
+        </div>
+            
+       </div>
+    </>
+} 
