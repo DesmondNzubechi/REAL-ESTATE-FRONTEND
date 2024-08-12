@@ -26,7 +26,7 @@ export const BlogPost = () => {
                         <span className="flex items-center gap-1"><FaTags  className="text-btn-primary text-[10px] md:text-[20px] lg:text-[25px]"/> <p className="font-medium uppercase text-[12px] md:text-[15px] text-textColor">business</p></span>
 </div>
                 
-                <h1 className="font-bold text-textTitle text-[25px] md:text-[30px] lg:text-[35px] ">The latest new is here</h1>
+                <h1 className="font-bold text-textTitle text-[25px] md:text-[30px] lg:text-[35px] ">The latest new is here</h1> 
                 <hr />
                 <div className="flex justify-between ">
 <span className="flex items-center gap-2"><FaCalendarAlt className="text-btn-primary text-[10px] md:text-[20px] lg:text-[25px]"/><p className="font-medium capitalize text-textColor text-[12px] md:text-[15px]">August 10, 2024</p></span>
