@@ -70,16 +70,16 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur expedita v
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-5 p-4 bg-secondaryBg">
+                <div className="flex flex-col gap-5 w-full p-4 bg-secondaryBg">
                 <h1 className="font-bold px-[10px] border-l-[5px] border-btn-primary text-textTitle text-[15px] md:text-[30px] ">Post A Comment</h1>
-                <div className=' flex justify-between bg-light px-[20px] py-[20px] '>
+                <div className=' flex w-full justify-between bg-light px-[20px] py-[20px] '>
 
 <input type="text" placeholder='Your Name...' className='text-btn2 w-full  outline-0 text-[15px] ' /> 
 <FaPencil className='text-[15px] text-btn-primary'/>
 </div>
-<div className=' md:col-span-3 flex justify-between bg-light px-[20px] py-[20px] '>
+<div className=' w-full md:col-span-3 flex justify-between bg-light px-[20px] py-[20px] '>
 
-<textarea  placeholder='Write Your Comment Here..' className='text-btn2  h-[200px] w-full outline-0 text-[15px] ' /> 
+<textarea  placeholder='Write Your Comment Here..' className='text-btn2  min-h-[200px] w-full outline-0 text-[15px] ' /> 
 <FaPencil className='text-[15px] text-btn-primary'/>
 </div>
 <button className='text-light w-fit bg-btn-primary px-[30px] py-[15px] capitalize '>Send message</button>

@@ -15,18 +15,18 @@ export const ContactUsComponent = () => {
         <div className='grid grid-cols-1 w-full md:grid-cols-2 gap-5 px-[30px]  lg:grid-cols-3'>
             <div className='border flex flex-col gap-5 w-full items-center justify-center py-[50px] px-[50px] '>
                 <Image src={emailIcon} alt=''/>
-                <h1 className='text-textTitle font-bold text-[30px]'>Email Address</h1>
-                <p className='text-textColor  '>nzubechukwu@gmail.com</p>
+                <h1 className='text-textTitle font-bold text-[20px] md:text-[25px] lg:text-[30px]'>Email Address</h1>
+                <p className='text-textColor text-[12px] md:text-[15px]  '>nzubechukwu@gmail.com</p>
             </div>
             <div className='border flex flex-col gap-5 w-full items-center justify-center py-[50px] px-[50px] '>
                 <Image src={callIcon} alt=''/>
-                <h1 className='text-textTitle font-bold text-[30px]'>Email Address</h1>
-                <p className='text-textColor  '>nzubechukwu@gmail.com</p>
+                <h1 className='text-textTitle font-bold text-[20px] md:text-[25px] lg:text-[30px]'>Phone No</h1>
+                <p className='text-textColor text-[12px] md:text-[15px]  '>+2347084183611</p>
             </div>
             <div className='border flex flex-col gap-5  w-full items-center justify-center py-[50px] px-[50px] '>
                 <Image src={locationIcon} alt=''/>
-                <h1 className='text-textTitle font-bold text-[30px]'>Email Address</h1>
-                <p className='text-textColor  '>nzubechukwu@gmail.com</p>
+                <h1 className='text-textTitle font-bold text-[20px] md:text-[25px] lg:text-[30px]'>Location</h1>
+                <p className='text-textColor text-[12px] md:text-[15px]  '>1A Denten Street, Off Ogui Road, Enugu.</p>
             </div>
         </div>
 
@@ -34,24 +34,24 @@ export const ContactUsComponent = () => {
             <div className='px-[70px] mb-[-100px] relative z-1 '>
         <div className='shadow-xl px-[20px] border py-[50px]  bg-primaryBg'>
             <div className='flex flex-col gap-[20px] '>
-                <h1 className='capitalize text-textTitle font-bold text-[25px]'>Send Us a message</h1>
+                <h1 className='capitalize text-textTitle font-bold text-[20px] md:text-[25px]'>Send Us a message</h1>
                 <div className='grid grid-cols gap-[20px] md:grid-cols-2 lg:grid-cols-3'>
                     <div className='border-[2px] flex justify-between px-[20px] py-[20px] '>
-                        <input type="text" placeholder='Username' className='text-btn2 outline-0 w-full text-[20px] ' /> 
-                        <FaUserAlt className='text-[20px] text-btn-primary'/>
+                        <input type="text" placeholder='Username' className='text-btn2 outline-0 w-full text-[15px] ' /> 
+                        <FaUserAlt className='text-[15px] text-btn-primary'/>
                     </div>
                     <div className='border-[2px] flex justify-between px-[20px] py-[20px] '>
-                        <input type="email" placeholder='nzubechukwu@gmail.com' className='text-btn2 w-full outline-0 text-[20px] ' /> 
-                        <MdEmail className='text-[20px] text-btn-primary'/>
+                        <input type="email" placeholder='nzubechukwu@gmail.com' className='text-btn2 w-full outline-0 text-[15px] ' /> 
+                        <MdEmail className='text-[15px] text-btn-primary'/>
                     </div>
                     <div className='border-[2px] flex justify-between px-[20px] py-[20px] '>
 
-                        <input type="tel" placeholder='+2347084183...' className='text-btn2 w-full outline-0 text-[20px] ' /> 
-                        <IoCall className='text-[20px] text-btn-primary'/>
+                        <input type="tel" placeholder='+2347084183...' className='text-btn2 w-full outline-0 text-[15px] ' /> 
+                        <IoCall className='text-[15px] text-btn-primary'/>
                     </div>
                     <div className='border-[2px] md:col-span-3 flex justify-between px-[20px] py-[20px] '>
 
-<textarea  placeholder='Message here..' className='text-btn2 h-[200px] w-full outline-0 text-[20px] ' /> 
+<textarea  placeholder='Message here..' className='text-btn2 h-[200px] w-full outline-0 text-[15px] ' /> 
 <FaPencil className='text-[20px] text-btn-primary'/>
                     </div>
                     <button className='text-light w-fit bg-btn-primary px-[30px] py-[15px] capitalize '>Send message</button>
