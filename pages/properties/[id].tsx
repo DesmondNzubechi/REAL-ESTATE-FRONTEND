@@ -35,7 +35,7 @@ export default function PropertyDetails() {
     }
     
     return <>
-        <div className="bg-textTitle h-[200px] ">
+        <div className="bg-textTitle h-[100px] ">
         </div>
         <MobileNav/>
         <DesktopNav/>
@@ -54,7 +54,7 @@ export default function PropertyDetails() {
                     <p className="flex items-center bg-whiteTp px-[20px] gap-5 rounded text-secondaryText "><FaLocationDot /> Enugu, Nigeria</p>
                     </div>
                     <div className="flex flex-col gap-[30px]">
-                        <h1 className="font-bold px-[10px] border-l-[5px] border-btn-primary text-textTitle text-[30px] ">Property Description</h1>
+                        <h1 className="font-bold px-[10px] border-l-[5px] border-btn-primary text-textTitle text-[30px] ">Land Description</h1>
                         <p className="text-textColor text-[15px] md:text-[20px] ">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.
 
