@@ -36,16 +36,16 @@ export const OurServices = () => {
               
 <div className='flex flex-col gap-5 justify-center mb-[50px] items-center text-center'>
             <h2 className='bg-titleBg text-btn-primary text-[15px] px-[20px] rounded-full  py-[10px] capitalize font-bold w-fit '>Our Services</h2>
-            <h1 className="font-bold text-[25px] md:text-[30px] lg:text-[35px] text-textTitle ">We offer the following services</h1>
+            <h1 className="font-bold text-[20px] md:text-[30px] lg:text-[35px] text-textTitle ">We offer the following services</h1>
         </div>
             <div className="grid grid-cols-1 gap-[50px]  md:grid-cols-2 lg:grid-cols-3">
                 {
                     services.map((sevice: ourServiceType, index : number) => {
                         return  <div key={index} className="shadow-2xl border items-center bg-primaryBg py-[50px] flex px-[20px] flex-col gap-5">
                         <Image src={sevice.image} alt="" />
-                        <h1 className="text-textTitle font-bold capitalize">Buy a home</h1>
-                        <p className="text-textColor ">over 1 million+ homes for sale available on the website, we can match you with a house you will want to call home.</p>
-                        <Link href='' className="text-btn2 flex items-center">Learn More <FaArrowRightLong /></Link>
+                        <h1 className="text-textTitle font-bold text-[15px] capitalize">Buy a home</h1>
+                        <p className="text-textColor text-[12px] ">over 1 million+ homes for sale available on the website, we can match you with a house you will want to call home.</p>
+                        <Link href='' className="text-btn2 text-[15px] flex items-center">Learn More <FaArrowRightLong /></Link>
                     </div>
                     })
                 }

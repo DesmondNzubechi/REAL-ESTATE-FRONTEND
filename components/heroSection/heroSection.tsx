@@ -60,10 +60,10 @@ useEffect(() => {
             <div className="relative max-w-[700px] text-light text-center z-[100] px-[30px] pt-[100px] pb-[100px]  lg:pt-[200px] flex flex-col gap-[30px] justify-center items-center min-h-[100vh] md:min-h-[50vh] lg:min-h-[100vh]">
                 
 
-                <h1 className="font-bold text-light   text-[15px] md:text-[25px] lg:text-[30px] uppercase ">Real estate agency</h1>
-                <p className="text-light font-medium text-[30px] md:text-[40px] lg:text-[50px] leading-[40px] md:leading-[60px] capitalize">The right place to find your dream house</p>
-                <p className="text-light">when you land on a sample web page or open an email template and see content beginning with "lorem ipsum," the page creator.</p>
-                <Link href='' className="bg-btn-primary text-[20px]  hover:bg-[#FFFFFF] hover:text-textTitle px-[25px] py-[20px] ">Make An Enquiry</Link>
+                <h1 className="font-bold text-light   text-[20px] md:text-[25px] lg:text-[30px] uppercase ">Real estate agency</h1>
+                <p className="text-light font-semibold text-[25px] md:text-[40px] lg:text-[50px] leading-[40px] md:leading-[60px] capitalize">The right place to find your dream house</p>
+                <p className="text-light text-[15px] md:text-[20px] ">when you land on a sample web page or open an email template and see content beginning with "lorem ipsum," the page creator.</p>
+                <Link href='/about' className="bg-btn-primary text-[15px] md:text-[20px]  hover:bg-[#FFFFFF] hover:text-textTitle px-[25px] py-[20px] ">Make An Enquiry</Link>
             </div>
            
             </>
