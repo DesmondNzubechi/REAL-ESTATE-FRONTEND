@@ -26,7 +26,7 @@ export default function Blog() {
 </div>
                 
                 <h1 className="font-bold text-textTitle text-[20px] md:text-[30px] lg:text-[35px] ">The latest new is here</h1>
-                <div className="flex gap-5 ">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-5 ">
                     <span className="flex items-center gap-1"><FaRegUser  className="text-btn-primary text-[10px] md:text-[15px] lg:text-[20px]" /> <p className="font-medium capitalize text-[10px] md:text-[15px] text-textColor">by admin</p></span>
                     <span className="flex items-center gap-1"><FaRegComments className="text-btn-primary text-[10px] md:text-[15px] lg:text-[20px]" /> <p className="font-medium capitalize text-[10px] md:text-[15px] text-textColor">40 Comments</p></span>
                     <span className="flex items-center gap-2"><FaCalendarAlt className="text-btn-primary text-[10px] md:text-[15px] lg:text-[20px]"/><p className="font-medium capitalize text-[10px] md:text-[15px] text-textColor">August 10, 2024</p></span>
