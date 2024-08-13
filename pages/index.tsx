@@ -30,7 +30,7 @@ export default function Home() {
       <MobileNav />
       <DesktopNav/>
     <main
-      className={`flex min-h-screen flex-col items-center justify-between ${poppins.className}`}
+      className={`flex overflow-x-hidden flex-col items-center justify-between ${poppins.className}`}
     >
         <HeroSection />
         <Overview />

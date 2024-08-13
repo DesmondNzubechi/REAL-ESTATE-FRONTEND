@@ -12,7 +12,7 @@ const HeroArray = [house1, house2, house3, house4, house5, house6];
 export const HeroSection = () => {
     const [currentImage, setCurrentImage] = useState(0);
     const [nextImage, setNextImage] = useState((currentImage + 1) % HeroArray.length);
-    const [transitionClass, setTransitionClass] = useState('slide-in');
+    const [transitionClass, setTransitionClass] = useState('');
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -29,19 +29,28 @@ export const HeroSection = () => {
         return () => clearInterval(interval);
     }, [nextImage]);
 
-    
+    const [imagesLoaded, setImagesLoaded] = useState(false);
+
+useEffect(() => {
+    const handleLoad = () => setImagesLoaded(true);
+    const img = new Image();
+    img.src = HeroArray[currentImage].src;
+    img.onload = handleLoad;
+
+    return () => img.removeEventListener('load', handleLoad);
+}, [currentImage]);
 
     return (
         <>
              <div
-                className={`background-image after:absolute after:h-full after:bg-tpr after:w-full after:left-0 after:right-0 after:top-0`}
+                className={`background-image   after:absolute after:h-full after:bg-tpr after:w-full after:left-0 after:right-0 after:top-0`}
                 style={{
                     backgroundSize : "cover",
                     backgroundImage: `url(${HeroArray[currentImage].src})`,
                 }}
             />
             <div
-                className={`background-image after:absolute after:h-full after:bg-tpr after:w-full after:left-0 after:right-0 after:top-0 bg-cover min-h-[100vh] relative flex items-center px-[30px] bg-cover z-[1] ${transitionClass === 'slide-in' ? 'slide-in' : ''}`}
+                className={`background-image after:absolute after:h-full after:bg-tpr after:w-full after:left-0 after:right-0 after:top-0 r min-h-[100vh] relative flex items-center px-[30px] bg-cover z-[1] ${transitionClass === 'slide-in' ? 'slide-in' : ''}`}
                 style={{
                     backgroundSize : "cover",
                     backgroundImage: `url(${HeroArray[nextImage].src})`,
@@ -49,7 +58,7 @@ export const HeroSection = () => {
             />
           
             <div className="relative max-w-[700px] text-light text-center z-[100] px-[30px] pt-[200px] flex flex-col gap-[30px] justify-center items-center min-h-[100vh] md:min-h-[70vh] lg:min-h-[100vh]">
-              
+                
 
                 <h1 className="font-bold text-light   text-[15px] md:text-[25px] lg:text-[30px] uppercase ">Real estate agency</h1>
                 <p className="text-light font-medium text-[30px] md:text-[40px] lg:text-[50px] leading-[40px] md:leading-[60px] capitalize">The right place to find your dream house</p>

@@ -126,7 +126,7 @@ export default function Properties() {
                             <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{property.bathroom}</h1>< MdBathtub className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bathroom</p></div>
                             <div className="flex items-center text-textColor  gap-1 "><h1 className="font-bold md:text-[20px] text-[10px] ">{property.car}</h1>< GiHomeGarage className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Carpark</p></div>
                         </div>
-                    </div>
+                    </div>  
                 </Link>
                 })
 }
