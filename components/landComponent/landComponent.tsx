@@ -67,16 +67,16 @@ export const LandComponent = () => {
                             <Image src={property.images} alt={`${property.name} image`} className="h-[350px]" />
                             <h1 className="bg-btn-primary text-light font-medium px-[20px] py-[5px] absolute top-[30px] right-[30px] uppercase ">{property.status}</h1>
                             <div className=" absolute bottom-0  flex justify-between w-full py-[10px] px-[20px] ">
-                                <p className="flex items-center bg-whiteTp px-[20px] gap-5 rounded text-secondaryText "><FaLocationDot /> {property.location}</p>
+                                <p className="flex items-center text-[12px] md:text-[15px] lg:text-[20px] bg-whiteTp px-[20px] gap-3 rounded text-secondaryText "><FaLocationDot className="text-[15px]"/> {property.location}</p>
                                 <div className="flex items-center gap-[10px] ">
-                                    <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 rounded-full "><IoCameraSharp  /> {property.imageNo}</p>
-                                      <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 px-[10px] rounded-full "><RiFolderVideoFill /> {property.video}</p>
+                                    <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 rounded-full "><IoCameraSharp className="text-[15px]" /></p>
+                                      <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 px-[10px] rounded-full "><RiFolderVideoFill className="text-[15px]"/></p>
                                 </div>
                             </div>
 </div>
                         <div className="flex flex-row justify-between items-center gap-[20px] px-[20px] py-[20px] ">
-                            <h1 className="text-btn-primary font-medium text-[20px] ">N {property.price}</h1>
-                            <h1 className="font-bold text-textTitle text-[30px] ">{property.name}</h1>
+                            <h1 className="text-btn-primary font-medium text-[12px] md:text-[15px] lg:text-[20px] ">N {property.price}</h1>
+                            <h1 className="font-bold text-textTitle text-[15px] md:text-[25px] lg:text-[30px] ">{property.name}</h1>
                         </div>
                     </Link>
                 })

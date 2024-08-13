@@ -70,24 +70,24 @@ export default function Properties() {
             
 
             <div className="bg-primaryBg border w-full  py-[20px] px-[40px] ">
-                <h1 className="font-bold text-textTitle uppercase text-center text-[20px]">Filter Property</h1>
+                <h1 className="font-bold text-textTitle uppercase text-center text-[15px] md:text-[20px]">Filter Property</h1>
                 <div className="flex flex-col lg:flex-row items-start lg:items-center gap-5 justify-between">
                 <div className="  w-full grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3   p-[20px] ">
-                <select name="" id="" className=" px-[15px] outline-0 text-center shadow font-[400] text-[25px] py-[10px] ">
+                <select name="" id="" className=" px-[15px] w-full outline-0 text-center shadow font-[400] text-[15px] md:text-[25px] py-[10px] ">
                     <option>Filter By Location</option>
                     <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
                     <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
                     <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
                     <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
                 </select>
-                <select name="" id="" className=" px-[15px] outline-0 text-center shadow font-[400] text-[25px] py-[10px] ">
+                <select name="" id="" className=" px-[15px] w-full outline-0 text-center shadow font-[400] text-[15px] md:text-[25px] py-[10px] ">
                     <option>Filter By Price</option>
                     <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
                     <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
                     <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
                     <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
                 </select>
-                <select name="" id="" className=" px-[15px] outline-0 text-center shadow font-[400] text-[25px] py-[10px] ">
+                <select name="" id="" className=" px-[15px] w-full outline-0 text-center shadow font-[400] text-[15px] md:text-[25px] py-[10px] ">
                     <option className="bg-btn-primary text-light text-[15px]">Filter BY Type</option>
                     <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
                     <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
@@ -100,7 +100,7 @@ export default function Properties() {
             </div>
             
             <div className="bg-secondaryBg w-full border py-[10px] items-center px-[20px] flex justify-between">
-                <input type="text" name="" className="text-textColor outline-0 w-full bg-transparent py-[10px] px-[20px] " placeholder="Search for a property" id="" />
+                <input type="text" name="" className="text-textColor text-[15px] md:text-[20px] outline-0 w-full bg-transparent py-[10px] px-[20px] " placeholder="Search for a property" id="" />
                 <IoIosSearch  className="text-btn-primary font-bold text-[30px]"/>
             </div>
             <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
