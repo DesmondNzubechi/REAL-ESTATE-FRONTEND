@@ -7,8 +7,44 @@ import myPic from '../../public/images/nzubechi.png'
 import Image from "next/image";
 import { MobileNav } from "@/components/Navbar/mobileNav";
 import { DesktopNav } from "@/components/Navbar/desktopNav";
+import { api} from "@/components/lib/api";
+import { useEffect } from "react";
 export default function MyAccount() {
+
+//     const getUser = async () => {
+        
+//         try {
+//             const response = await api.get('/user/me', { withCredentials: true });
+
+//             const user = response.data;
+
+//             console.log("user here", user)
+
+//         } catch (error) {
+//             console.log("error here", error)
+//         }
+//     }
+
+//     useEffect(() => {
+// getUser()
+
+//     }, [])
     
+const getUser = async () => {
+    try {
+        const response = await api.get('/user/me', {
+            withCredentials: true, // Important to send cookies
+        });
+        console.log("User fetched:", response.data);
+    } catch (error) {
+        console.log("Error fetching user:", error);
+    }
+};
+
+useEffect(() => {
+    getUser();
+}, []);
+
     return <><div className="bg-textTitle fixed top-0 w-full  h-[100px] ">
     </div>
     <MobileNav/>

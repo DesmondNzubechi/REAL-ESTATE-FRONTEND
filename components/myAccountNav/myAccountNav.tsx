@@ -50,7 +50,7 @@ export const MyAccountNav = () => {
             name: "Change password",
             url: "/my-account/change-password",
             icon: RiLockPasswordFill
-        },
+        }, 
         {
             name: "logout",
             url: "/my-account/logout",

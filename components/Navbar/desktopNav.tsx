@@ -16,6 +16,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import logo from '../../public/images/logo2.png';
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export const poppins = Poppins({
     subsets: ['latin'],
@@ -25,7 +26,17 @@ export const poppins = Poppins({
   
 export const DesktopNav = () => {
 
-    const navItems: navType[] = [
+    const router = useRouter();
+    const [pathname, setPathname] = useState('');
+
+    useEffect(() => {
+        if (router.isReady) {
+    setPathname(router.pathname)
+}
+    }, [router.isReady, router.pathname])
+
+
+    const navItems: navType[] = [ 
         {
             name: "home",
             url : "/"
@@ -52,8 +63,7 @@ export const DesktopNav = () => {
         },
     ]
 
-    const [navState, setNavState] = useState<string>("left-[-2000px]")
-
+    
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
   useEffect(() => {
@@ -103,7 +113,7 @@ export const DesktopNav = () => {
                     <ul className=" flex flex-row items-center gap-5">
                         {navItems.map((nav: navType, index: number) => (
                             <li key={index}>
-                                <Link className="text-[15px] text-light capitalize" href={nav.url}>
+                                <Link className={`text-[15px]  ${pathname === nav.url? "text-btn-primary font-bold" : "text-light"} capitalize`} href={nav.url}>
                                     {nav.name}
                                 </Link>
                             </li>

@@ -31,3 +31,8 @@ export interface accountNav {
     url: string
     icon : IconType
 }
+
+export interface loginDetail {
+    email: string
+    password : string
+}

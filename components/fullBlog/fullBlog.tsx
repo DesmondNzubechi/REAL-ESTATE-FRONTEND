@@ -19,7 +19,7 @@ export const FullBlog = () => {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-5 ">
                     <span className="flex items-center gap-1"><FaRegUser  className="text-btn-primary text-[15px] lg:text-[20px]" /> <p className="font-medium capitalize text-[12px] md:text-[15px] text-textColor">by admin</p></span>
                     <span className="flex items-center gap-1"><FaRegComments className="text-btn-primary text-[15px] lg:text-[20px]" /> <p className="font-medium capitalize text-[12px] md:text-[15px] text-textColor">40 Comments</p></span>
-                    <span className="flex items-center gap-2"><FaCalendarAlt className="text-btn-primary text-[15px] lg:text-[20px]"/><p className="font-medium capitalize text-[12px] md:text-[15px] text-textColor">August 10, 2024</p></span>
+                    <span className="flex items-center gap-2"><FaCalendarAlt className="text-btn-primary text-[15px] lg:text-[20px]"/><p className="font-medium capitalize text-[12px] md:text-[15px] text-textColor">August 15, 2024</p></span>
                 </div>
             <Image src={house1} className="h-[350px] w-full " alt="" />
             <hr />
@@ -63,7 +63,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur expedita v
                             <div className="flex flex-col gap-[5px]">
                                 <FaUserAlt className="text-light bg-btn-primary p-2 rounded-full text-[50px]" /> 
                                 <h1 className="font-bold text-[15px] ">Desmond Nzubechukwu</h1>
-                                <h2><span className="flex items-center gap-2"><p className="font-bold capitalize text-[10px] text-btn-primary">August 10, 2024</p></span></h2>
+                                <h2><span className="flex items-center gap-2"><p className="font-bold capitalize text-[10px] text-btn-primary">August 15, 2024</p></span></h2>
                             </div>
                             <p className="text-textColor text-[12px] ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, omnis fugit corporis iste magnam ratione.</p>
 </div>

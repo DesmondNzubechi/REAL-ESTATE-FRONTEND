@@ -27,7 +27,7 @@ export const LandComponent = () => {
             images : house1
         },
         {
-            name: "New House here",
+            name: "New Land here",
             price: '9000',
             location: "Enugu, Nigeria",
             bedroom: "3",
@@ -39,7 +39,7 @@ export const LandComponent = () => {
             images : house2
         },
         {
-            name: "New House here",
+            name: "New Land here",
             price: '9000',
             location: "Enugu, Nigeria",
             bedroom: "3",

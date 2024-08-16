@@ -19,7 +19,6 @@ export default function AboutUs() {
         <div className="bg-secondaryBg">
         <OurServices/>
         </div>
-        <OurTeam />
         <Feedbacks/>
         <Footer/>
     </>

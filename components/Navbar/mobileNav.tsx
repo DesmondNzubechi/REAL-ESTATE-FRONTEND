@@ -94,7 +94,7 @@ export const MobileNav = () => {
                 <div className="flex items-center justify-between ">
                 <Link href='/' className="flex  gap-1 items-center">
                        <Image src={logo} className=" w-[150px] md:w-[250px]" alt="home  features logo"/>
-                    </Link>
+                    </Link> 
 
                     <div className="flex bg-primaryBg p-2  hover:bg-slate-200">
                         {navState !== "left-[-2000px]" ?
@@ -134,10 +134,10 @@ export const MobileNav = () => {
                             <TbHomeSearch className="text-[20px]" />
                             <span>Search</span>
                         </Link>
-                        <Link href='' className="bg-btn-primary text-primary text-light text-[15px] w-[150px] py-[5px] px-[20px]">
+                        <Link href='/register' className="bg-btn-primary text-primary text-light text-[15px] w-[150px] py-[5px] px-[20px]">
                             Register
                         </Link>
-                        <Link href='' className="text-[15px] text-center border py-[5px] w-[150px] px-[20px]">
+                        <Link href='/signin' className="text-[15px] text-center border py-[5px] w-[150px] px-[20px]">
                             Login
                         </Link>
                     </div>

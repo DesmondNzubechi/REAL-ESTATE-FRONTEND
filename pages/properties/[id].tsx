@@ -158,7 +158,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur expedita v
  
                 </div>
 
-                <div className="flex flex-col gapx-5 py-2 p-4 bg-secondaryBg">
+                <div className="flex flex-col gap-5 py-2  p-4 bg-secondaryBg">
                 <h1 className="font-bold px-[10px] border-l-[5px] border-btn-primary text-textTitle text-[30px] ">Post A Review</h1>
                 <div className=' flex justify-between bg-light px-[20px] py-[20px] '>
 
