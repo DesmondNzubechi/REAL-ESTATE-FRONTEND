@@ -18,7 +18,7 @@ import { useRouter } from "next/router";
 export default function EditProfile() {
     const router = useRouter();
     const { user, setUser } = useUserStore();
-    const [theUser, setTheUser] = useState<userType | null>(user);
+    const [theUser, setTheUser] = useState<userType | any>(user);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
