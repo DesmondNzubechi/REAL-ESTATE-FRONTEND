@@ -33,7 +33,7 @@ export default function EditProfile() {
                 const response = await api.patch(`/user/updateUser/${user?._id}`,
                         { 
                                 firstName: theUser?.firstName,
-                                lastName: theUser?.lastName,
+                                 lastName: theUser?.lastName,
                                 userName: theUser?.userName,
                                 country: theUser?.country,
                                 state: theUser?.state,
