@@ -36,3 +36,17 @@ export interface loginDetail {
     email: string
     password : string
 }
+
+export interface userType {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    userName: string;
+    images: string;
+    phoneNumber: number;
+    emailVerified: boolean;
+    role: string;
+    country: string;
+    state: string;
+  }

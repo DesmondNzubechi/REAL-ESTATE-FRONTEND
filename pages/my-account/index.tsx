@@ -9,33 +9,24 @@ import { MobileNav } from "@/components/Navbar/mobileNav";
 import { DesktopNav } from "@/components/Navbar/desktopNav";
 import { api} from "@/components/lib/api";
 import { useEffect } from "react";
+
+import { useUserStore } from "@/components/store/store";
+
+
 export default function MyAccount() {
 
-//     const getUser = async () => {
-        
-//         try {
-//             const response = await api.get('/user/me', { withCredentials: true });
+    const { user, setUser } = useUserStore();
 
-//             const user = response.data;
-
-//             console.log("user here", user)
-
-//         } catch (error) {
-//             console.log("error here", error)
-//         }
-//     }
-
-//     useEffect(() => {
-// getUser()
-
-//     }, [])
+    console.log("the user is here", user)
     
 const getUser = async () => {
     try {
         const response = await api.get('/user/me', {
             withCredentials: true, // Important to send cookies
         });
-        console.log("User fetched:", response.data);
+        const user = response.data.data.user;
+        console.log("User fetched:", response.data.data.user);
+        setUser(user)
     } catch (error) {
         console.log("Error fetching user:", error);
     }
@@ -44,6 +35,8 @@ const getUser = async () => {
 useEffect(() => {
     getUser();
 }, []);
+    
+    
 
     return <><div className="bg-textTitle fixed top-0 w-full  h-[100px] ">
     </div>
@@ -59,27 +52,27 @@ useEffect(() => {
             </div>
                 <div className="flex flex-col gap-4">
                     <div className="flex flex-col ">
-                    <h1 className="font-bold capitalize text-[15px] md:text-[25px] text-textTitle">Desmond Nzubechukwu</h1>
-                    <h2 className="font-semibold text-textColor text-[12px] md:text-[20px] ">@NzubechukwuDev</h2>
+                            <h1 className="font-bold capitalize text-[15px] md:text-[25px] text-textTitle">{user?.firstName} {user?.lastName}</h1>
+                    <h2 className="font-semibold text-textColor text-[12px] md:text-[20px] ">@{user?.userName}</h2>
                     </div>
                 <div className="flex flex-col gap-5">
                     <span className="flex items-center gap-3">
                         <FaLocationDot className="text-btn-primary text-[15px] md:text-[20px] "/>
-                        <p className="text-textColor text-[12px] md:text-[15px] ">Enugu, Nigeria</p>
+                        <p className="text-textColor text-[12px] md:text-[15px] ">{user?.state}, {user?.country}</p>
                         </span>  
 
                         <span className="flex items-center gap-3">
                         <MdEmail className="text-btn-primary text-[15px] md:text-[20px] "/>
-                        <p className="text-textColor text-[12px] md:text-[15px] ">desmondnzubechukwu1@gmail.com</p>
+                        <p className="text-textColor text-[12px] md:text-[15px] ">{user?.email}</p>
                         </span>  
 
                         <span className="flex items-center gap-3">
                         <FaFlag className="text-btn-primary text-[15px] md:text-[20px] "/>
-                        <p className="text-textColor text-[12px] md:text-[15px] ">Nigeria</p>
+                        <p className="text-textColor text-[12px] md:text-[15px] ">{user?.country}</p>
                         </span>  
                         <span className="flex items-center gap-3">
                         <IoCall className="text-btn-primary text-[15px] md:text-[20px] "/>
-                        <p className="text-textColor text-[12px] md:text-[15px] ">+2347084183611</p>
+                        <p className="text-textColor text-[12px] md:text-[15px] ">+{user?.phoneNumber}</p>
                     </span>  
                 </div>
             </div>
