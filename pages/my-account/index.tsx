@@ -11,9 +11,12 @@ import { api} from "@/components/lib/api";
 import { useEffect } from "react";
 
 import { useUserStore } from "@/components/store/store";
+import { useRouter } from "next/router";
 
 
 export default function MyAccount() {
+
+    const router = useRouter()
 
     const { user, setUser } = useUserStore();
 
@@ -32,8 +35,11 @@ const getUser = async () => {
     }
 };
 
-useEffect(() => {
-    getUser();
+    useEffect(() => {
+        getUser();
+        if (!user) {
+            router.push('/signin')
+        }
 }, []);
     
     
