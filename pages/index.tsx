@@ -32,7 +32,7 @@ export default function Home() {
     <main
       className={`flex overflow-x-hidden flex-col items-center justify-between ${poppins.className}`}
     >
-        <HeroSection />
+        <HeroSection /> 
         <Overview />
         <OurServices />
         <FeaturedProperty />
