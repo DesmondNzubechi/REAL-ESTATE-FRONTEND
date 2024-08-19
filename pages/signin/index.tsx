@@ -7,6 +7,7 @@ import { api } from "@/components/lib/api";
 import { ChangeEvent, useState } from "react";
 import { loginDetail } from "@/components/types/types";
 import { Router, useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 
 export default function SignIn() {
@@ -22,7 +23,7 @@ export default function SignIn() {
 
     const validateForm = () => {
 
-        if (!userLoginDetail.email || !userLoginDetail.password) {
+        if (!userLoginDetail.email || !userLoginDetail.password) { 
             setError("Please input both email and password")
             return false
         }
@@ -50,10 +51,16 @@ export default function SignIn() {
             const response = await api.post('/user/login', {email: userLoginDetail.email, password: userLoginDetail.password}, { withCredentials: true });
 
             console.log(response.data);
-           // localStorage.setItem("token", response.token);
+
             setLoading(false)
 
-         router.push('/my-account');
+            router.push('/my-account');
+            toast.success("Logout successful", {
+                hideProgressBar : true,
+              closeOnClick: true,
+              autoClose: 500,
+              pauseOnHover: true
+            })
         } catch (error ) {
             if (error instanceof Error) {
                 setError(error.message);

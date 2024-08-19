@@ -10,14 +10,16 @@ import { DesktopNav } from "@/components/Navbar/desktopNav";
 import { FcAddImage } from "react-icons/fc";
 import { MdEdit } from "react-icons/md";
 import { useUserStore } from "@/components/store/store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { userType } from "@/components/types/types"; // Renamed 'user' to 'UserType'
 import { api } from "@/components/lib/api";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
+import EditProfileSkeleton from "@/components/skeletonloader/editProfileSkeleton";
 
 export default function EditProfile() {
     const router = useRouter();
+    const [loading, setLoading] = useState<boolean>(false);
     const { user, setUser } = useUserStore();
     const [theUser, setTheUser] = useState<userType | any>(user);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -67,6 +69,32 @@ export default function EditProfile() {
         }
     };
 
+
+     
+    const getUser = async () => {
+        setLoading(true)
+        try {
+            const response = await api.get('/user/me', { 
+                withCredentials: true, // Important to send cookies
+            });
+            const user = response.data.data.user;
+            console.log("User fetched:", response.data.data.user);
+            setUser(user) 
+            setLoading(false)
+        } catch (error) {
+            toast.error("An error occured. Try login again", {
+                hideProgressBar: true,
+                position: "top-center"
+            })
+            router.push('/signin')
+            console.log("Error fetching user:", error);
+        }
+    };
+    
+        useEffect(() => {
+            getUser();
+    }, []);
+
     return (
         <>
             <div className="bg-textTitle fixed w-full top-0 h-[100px]"></div>
@@ -76,7 +104,8 @@ export default function EditProfile() {
                 <div className="grid gap-[50px] grid-cols-10 lg:grid-cols-3">
                     <MyAccountNav />
                     <div></div>
-                    <div className="col-span-9 lg:col-span-2 flex flex-col px-[20px] gap-5 h-fit py-[30px]">
+                 { loading &&  <EditProfileSkeleton/>}
+                   {!loading && <div className="col-span-9 lg:col-span-2 flex flex-col px-[20px] gap-5 h-fit py-[30px]">
                         <h1 className="bg-titleBg w-fit px-[20px] py-[10px] text-btn-primary text-[15px] md:text-[20px] uppercase font-semibold">
                             Edit profile
                         </h1>
@@ -176,7 +205,7 @@ export default function EditProfile() {
                                 {isLoading ? "Updating user..." : "Update user"}
                             </button>
                         </form>
-                    </div>
+                    </div>}
                 </div>
             </div>
         </>

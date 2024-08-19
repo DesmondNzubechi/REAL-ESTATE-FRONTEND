@@ -91,3 +91,20 @@ body {
 .slide-out {
   animation: slideOut 1s forwards;
 }
+
+
+@keyframes skeleton-loading {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.animate-skeleton-loading{
+  animation: skeleton-loading 1.5s infinite;
+}

@@ -8,40 +8,48 @@ import Image from "next/image";
 import { MobileNav } from "@/components/Navbar/mobileNav";
 import { DesktopNav } from "@/components/Navbar/desktopNav";
 import { api} from "@/components/lib/api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Audio } from 'react-loader-spinner'
 import { useUserStore } from "@/components/store/store";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import { ProfileSkeleton } from "@/components/skeletonloader/profileSkeleton";
 
 
 export default function MyAccount() {
-
+    const [loading, setLoading] = useState<boolean>(false);
     const router = useRouter()
 
-    const { user, setUser } = useUserStore();
+    const { user, setUser, isAuthenticated } = useUserStore();
 
     console.log("the user is here", user)
     
-const getUser = async () => {
+    const getUser = async () => {
+    setLoading(true)
     try {
-        const response = await api.get('/user/me', {
+        const response = await api.get('/user/me', { 
             withCredentials: true, // Important to send cookies
         });
         const user = response.data.data.user;
         console.log("User fetched:", response.data.data.user);
-        setUser(user)
+        setUser(user) 
+        setLoading(false)
     } catch (error) {
+        toast.error("An error occured. Try login again", {
+            hideProgressBar: true,
+            position: "top-center"
+        })
+        router.push('/signin')
         console.log("Error fetching user:", error);
     }
 };
 
     useEffect(() => {
         getUser();
-        if (!user) {
-            router.push('/signin')
-        }
 }, []);
     
+    
+
     
 
     return <><div className="bg-textTitle fixed top-0 w-full  h-[100px] ">
@@ -51,8 +59,9 @@ const getUser = async () => {
     <div className="px-[30px] pt-[150px] py-[100px] ">
        <div className="grid gap-[50px] grid-cols-10 lg:grid-cols-3">
             <div></div>
-        <MyAccountNav />
-        <div className="lg:col-span-2 col-span-9 border flex flex-col lg:flex-row px-[20px] gap-5 h-fit py-[30px] ">
+                <MyAccountNav />
+                {loading && <ProfileSkeleton/>}
+        {!loading && <div className="lg:col-span-2 col-span-9 border flex flex-col lg:flex-row px-[20px] gap-5 h-fit py-[30px] ">
             <div>
                 <Image src={myPic} className="w-[300px] " alt="user image" />
             </div>
@@ -82,9 +91,9 @@ const getUser = async () => {
                     </span>  
                 </div>
             </div>
-        </div>
+        </div>}
     </div>
-     
+      
         </div>
         </>
 }

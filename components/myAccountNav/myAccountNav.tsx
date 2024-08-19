@@ -13,6 +13,7 @@ import { FaHouseCircleCheck } from "react-icons/fa6";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FaImagePortrait } from "react-icons/fa6";
+import { LogOut } from "@/pages/my-account/logout";
 
 export const MyAccountNav = () => {
 
@@ -53,25 +54,31 @@ export const MyAccountNav = () => {
         }, 
         {
             name: "logout",
-            url: "/my-account/logout",
+            url: "",
             icon: RiLogoutCircleRLine
         },
     ]
 
+    const [logOut, setLogOut] = useState<boolean>(false);
+
     return <>
-    
+        <LogOut logOut={logOut} setLogOut={setLogOut}/>
     <div className="flx fixed left-0 top-[100px] h-full lg:w-[25%] justyfy-center ">
 
         <ul className="bg-primaryBg  h-full  shadow border-l-0 border-t-[2px] flex flex-col ">
             {
                 DashboardNav.map((nav: accountNav, index: number) => {
-                    return <Link href={nav.url} key={index} className={`flex py-[20px] px-[20px] ${pathname === nav.url? "bg-textTitle" : 'bg-'} border-t justify-between items-center`}>
+                    return <Link href={nav.url} onClick={() => {
+                        if (nav.name === 'logout') {
+                            setLogOut(true)
+                        }
+                    }} key={index} className={`flex py-[20px] px-[20px] ${pathname === nav.url? "bg-textTitle" : 'bg-'} border-t justify-between items-center`}>
                         <li className={`${ pathname === nav.url? "text-light" : "text-textColor"} text-[20px] hidden lg:block `}>{nav.name}</li>
                         <nav.icon className={`text-[20px] ${ pathname === nav.url? "text-slate-300" : "text-textColor"}`} />
                     </Link>
                      
                 })
-            }
+                }
        </ul>
         </div>
         </>
