@@ -2,7 +2,7 @@ import Link from "next/link";
 import { navType } from "../types/types"
 import { SiHomeassistantcommunitystore } from "react-icons/si";
 import { TbHomeSearch } from "react-icons/tb";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaCircleUser, FaXTwitter } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import logo from '../../public/images/logo2.png';
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useUserStore } from "../store/store";
 
 export const poppins = Poppins({
     subsets: ['latin'],
@@ -25,6 +26,7 @@ export const poppins = Poppins({
 });
   
 export const DesktopNav = () => {
+    const {isAuthenticated, user} = useUserStore()
 
     const router = useRouter();
     const [pathname, setPathname] = useState('');
@@ -119,7 +121,10 @@ export const DesktopNav = () => {
                             </li>
                         ))}
                     </ul>
+                    {isAuthenticated?  <div className="flex my-[20px] flex-row items-center gap-2">
+                <Link href='/my-account' className="bg-btn-primary text-primary text-light text-[15px] w-fit  py-[10px] rounded px-[20px] flex items-center gap-2"><FaCircleUser /> My Account</Link>
                    
+                </div> :
                     <div className="flex my-[20px] flex-row items-center gap-2">
                         {/* <Link href='' className="flex text-[25px] items-center">
                             <TbHomeSearch className="text-[20px]" />
@@ -130,7 +135,7 @@ export const DesktopNav = () => {
                         <Link href='/signin' className="text-[25px] bg-primaryBg text-center border py-[5px] w-[150px] px-[20px]">
                             Login
                         </Link>
-                    </div>
+                    </div>}
              
 
                 </div>

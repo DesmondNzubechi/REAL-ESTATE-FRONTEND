@@ -13,8 +13,10 @@ import { Poppins } from "next/font/google";
 import { FaLocationDot } from "react-icons/fa6";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useUserStore } from "../store/store";
 import logo from '../../public/images/logo2.png';
 import Image from "next/image";
+import { FaCircleUser } from "react-icons/fa6";
 
 export const poppins = Poppins({
     subsets: ['latin'],
@@ -23,7 +25,7 @@ export const poppins = Poppins({
 });
   
 export const MobileNav = () => {
-
+const {user, isAuthenticated} = useUserStore()
     const navItems: navType[] = [
         {
             name: "home",
@@ -129,18 +131,21 @@ export const MobileNav = () => {
                         ))}
                     </ul>
                     <hr />
+                   {isAuthenticated? <div>
+                        <Link href='/my-account' className="bg-btn-primary text-primary text-light text-[15px] w-fit  py-[10px] rounded px-[20px] flex items-center gap-2"><FaCircleUser /> My Account</Link>
+                    </div> :
                     <div className="flex my-[20px] flex-col gap-2">
-                        <Link href='' className="flex text-[15px] items-center">
+                        {/* <Link href='' className="flex text-[15px] items-center">
                             <TbHomeSearch className="text-[20px]" />
                             <span>Search</span>
-                        </Link>
+                        </Link> */}
                         <Link href='/register' className="bg-btn-primary text-primary text-light text-[15px] w-[150px] py-[5px] px-[20px]">
                             Register
                         </Link>
                         <Link href='/signin' className="text-[15px] text-center border py-[5px] w-[150px] px-[20px]">
                             Login
                         </Link>
-                    </div>
+                    </div>}
                     <hr />
                     <div className="flex flex-col gap-2">
                         <h1 className="font-bold">Follow Us On Social</h1>

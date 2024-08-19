@@ -14,6 +14,7 @@ import { useState } from "react";
 import { userType } from "@/components/types/types"; // Renamed 'user' to 'UserType'
 import { api } from "@/components/lib/api";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 export default function EditProfile() {
     const router = useRouter();
@@ -25,6 +26,7 @@ export default function EditProfile() {
         const { name, value } = e.target;
         setTheUser({ ...theUser, [name]: value });
     };
+    console.log('the user id', user?._id)
 
     const updateUser = async (e: React.FormEvent) => {
         e.preventDefault(); // Prevent default form submission
@@ -45,8 +47,22 @@ export default function EditProfile() {
             setUser(resUser);
             setIsLoading(false);
             router.push('/my-account');
+            toast.success("Succesfully updated", {
+                position: 'top-center',
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+            })
         } catch (error) {
             setIsLoading(false);
+            toast.success("An error occured. Please try again", {
+                position: 'top-center',
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+            })
             console.error("Error updating user:", error);
         }
     };
