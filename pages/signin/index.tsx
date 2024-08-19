@@ -54,11 +54,11 @@ export default function SignIn() {
             setLoading(false)
 
          router.push('/my-account');
-        } catch (error) {
-            if (error.response && error.response.data) {
-                setError(error.response.data.message || "Invalid email or password");
+        } catch (error ) {
+            if (error instanceof Error) {
+                setError(error.message);
             } else {
-                setError("An unexpected error occurred. Please try again.");
+                setError("An unexpected error occurred");
             }
         } finally {
             setLoading(false);
