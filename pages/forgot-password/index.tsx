@@ -52,16 +52,7 @@ export default function ForgotPassword() {
             })
             setLoading(false)
         } catch (error) {
-
-            if (error instanceof Error) {
-                toast.error(`${error.respons} An error occured. Please try again`, {
-                    position: "top-center",
-                    hideProgressBar: true,
-                    delay: 10000,
-                    pauseOnHover: true,
-                    closeOnClick: true
-                })
-            }
+            
             toast.error("An error occured. Please try again", {
                 position: "top-center",
                 hideProgressBar: true,
