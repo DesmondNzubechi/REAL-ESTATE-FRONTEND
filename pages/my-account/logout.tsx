@@ -5,7 +5,7 @@ import { useUserStore } from "@/components/store/store";
 import { api } from "@/components/lib/api";
 
 
-export const LogOut = ({logOut, setLogOut} : {logOut: boolean, setLogOut: React.Dispatch<React.SetStateAction<boolean>>}) => {
+export default function LogOut({logOut, setLogOut} : {logOut: boolean, setLogOut: React.Dispatch<React.SetStateAction<boolean>>}) {
 
     const {clearUser} = useUserStore()
 
