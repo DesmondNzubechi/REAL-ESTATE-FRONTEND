@@ -5,8 +5,48 @@ import Image from "next/image";
 import myPic from '../../../public/images/nzubechi.png'
 import Link from "next/link";
 import { GoDotFill } from "react-icons/go";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { api } from "@/components/lib/api";
+import { userType } from "@/components/types/types";
+import { useUserStore } from "@/components/store/store";
+import { useRouter } from "next/router";
+import MyOrderSkeleton from "@/components/skeletonloader/orderSkeletonLoader";
 
 export default function MyOrder() {
+
+    const router = useRouter();
+    const [loading, setLoading] = useState<boolean>(false);
+    const { user, setUser } = useUserStore();
+    console.log('the user id', user?._id)
+
+
+     
+    const getUser = async () => {
+        setLoading(true)
+        try {
+            const response = await api.get('/user/me', { 
+                withCredentials: true, // Important to send cookies
+            });
+            const user = response.data.data.user;
+            console.log("User fetched:", response.data.data.user);
+            setUser(user) 
+            setLoading(false)
+        } catch (error) {
+            toast.error("An error occured. Try login again", {
+                hideProgressBar: true,
+                position: "top-center"
+            })
+            router.push('/signin')
+            console.log("Error fetching user:", error);
+        }
+    };
+    
+        useEffect(() => {
+            getUser();
+    }, []);
+
+
     return (
         <>
             <div className="bg-textTitle fixed w-full top-0 h-[100px] "></div>
@@ -16,7 +56,8 @@ export default function MyOrder() {
                 <div className="grid gap-[50px] grid-cols-10 lg:grid-cols-3">
                     <MyAccountNav />
                     <div></div>
-                    <div className="col-span-9 lg:col-span-2 flex flex-col px-[20px] gap-5 h-fit py-[30px]">
+                  {loading &&  <MyOrderSkeleton/>}
+                    {!loading && <div className="col-span-9 lg:col-span-2 flex flex-col px-[20px] gap-5 h-fit py-[30px]">
                     <h1 className="bg-titleBg w-fit px-[20px] py-[10px] text-btn-primary text-[15px] md:text-[20px] uppercase font-semibold ">My Order</h1>
                         <div className="overflow-x-auto">
                             <table className="w-fit overflow-x-auto  bg-white border border-gray-200">
@@ -53,7 +94,7 @@ export default function MyOrder() {
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                    </div>}
                 </div>
             </div>
         </>

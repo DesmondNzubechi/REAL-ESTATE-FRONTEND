@@ -6,11 +6,12 @@ import { MobileNav } from "@/components/Navbar/mobileNav";
 import { useUserStore } from "@/components/store/store";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 
 export default function ChangePassword() {
 const router = useRouter()
-    const { isAuthenticated, clearUser } = useUserStore();
+    const { isAuthenticated, clearUser, user, setUser } = useUserStore();
     const [isLoading, setIsLoading] = useState<boolean>(false)
     const [userPassword, setUserPassword] = useState({
         currentPassword: '',
@@ -51,6 +52,12 @@ const router = useRouter()
             
             clearUser();
             setIsLoading(false);
+            toast.success("Password change successful", {
+                hideProgressBar : true,
+              closeOnClick: true,
+              autoClose: 500,
+              pauseOnHover: true
+            })
             router.push('/my-account')
             
         } catch (error) {
@@ -60,6 +67,31 @@ const router = useRouter()
 
 }
     
+
+
+console.log("the user is here", user)
+
+const getUser = async () => {
+try {
+    const response = await api.get('/user/me', { 
+        withCredentials: true, // Important to send cookies
+    });
+    const user = response.data.data.user;
+    console.log("User fetched:", response.data.data.user);
+    setUser(user) 
+} catch (error) {
+    toast.error("An error occured. Try login again", {
+        hideProgressBar: true,
+        position: "top-center"
+    })
+    router.push('/signin')
+    console.log("Error fetching user:", error);
+}
+};
+
+useEffect(() => {
+    getUser();
+}, []);
 
     
     

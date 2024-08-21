@@ -17,7 +17,7 @@ export const LogOut = ({logOut, setLogOut} : {logOut: boolean, setLogOut: React.
         console.log(response, "the log")
            clearUser()
             setLogOut(false)
-          //router.push('/signin');
+          router.push('/signin');
             toast.success("Logout successful", {
               hideProgressBar : true,
             closeOnClick: true, 

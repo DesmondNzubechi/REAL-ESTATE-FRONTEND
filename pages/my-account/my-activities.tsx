@@ -3,8 +3,51 @@ import { MobileNav } from "@/components/Navbar/mobileNav";
 import { DesktopNav } from "@/components/Navbar/desktopNav";
 import Link from "next/link";
 import { IoIosNotifications } from "react-icons/io";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { api } from "@/components/lib/api";
+import { useUserStore } from "@/components/store/store";
+import { useRouter } from "next/router";
+import MyActivitiesSkeleton from "@/components/skeletonloader/myActivitySkeleton";
+
 export default function MyActivities() {
     
+
+    const router = useRouter();
+    const [loading, setLoading] = useState<boolean>(false);
+    const { user, setUser } = useUserStore();
+    console.log('the user id', user?._id)
+
+
+     
+    const getUser = async () => {
+        setLoading(true)
+        try {
+            const response = await api.get('/user/me', { 
+                withCredentials: true, // Important to send cookies
+            });
+            const user = response.data.data.user;
+            console.log("User fetched:", response.data.data.user);
+            setUser(user) 
+            setLoading(false)
+        } catch (error) {
+            toast.error("An error occured. Try login again", {
+                hideProgressBar: true,
+                position: "top-center"
+            })
+            router.push('/signin')
+            console.log("Error fetching user:", error);
+        }
+    };
+    
+        useEffect(() => {
+            getUser();
+    }, []);
+
+
+    
+
+
     return <>
          <div className="bg-textTitle fixed w-full top-0 h-[100px] ">
         </div>
@@ -13,8 +56,9 @@ export default function MyActivities() {
     <div className="px-[30px] py-[100px] ">
        <div className="grid gap-[50px] grid-cols-10 lg:grid-cols-3">
             <MyAccountNav />
-            <div></div>
-            <div className="col-span-9 lg:col-span-2 flex flex-col pt-[70px] px-[20px] gap-5 h-fit py-[30px] ">
+                <div></div>
+               {loading && <MyActivitiesSkeleton/>}
+          { !loading && <div className="col-span-9 lg:col-span-2 flex flex-col pt-[70px] px-[20px] gap-5 h-fit py-[30px] ">
             <h1 className="bg-titleBg w-fit px-[20px] py-[10px] text-btn-primary text-[15px] md:text-[20px] uppercase font-semibold ">My Order</h1>
                     <div className="grid grid-cols-1 mt-[30px] gap-5">
                        
@@ -32,7 +76,7 @@ export default function MyActivities() {
                             {/* <Link className="font-semibold px-[5px] py-[2px] bg-titleBg text-btn-primary rounded-[10px] " href=''>View</Link> */}
                         </Link>  
           </div>
-        </div>
+        </div>}
     </div>
      
         </div>

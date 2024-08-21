@@ -45,17 +45,17 @@ export default function SignIn() {
         if (!validateForm) {
             return
         }
-
+ 
         setLoading(true)
         try {
             const response = await api.post('/user/login', {email: userLoginDetail.email, password: userLoginDetail.password}, { withCredentials: true });
 
             console.log(response.data);
 
-            setLoading(false)
+            //setLoading(false)
 
             router.push('/my-account');
-            toast.success("Logout successful", {
+            toast.success("Login successful", {
                 hideProgressBar : true,
               closeOnClick: true,
               autoClose: 500,
@@ -77,27 +77,27 @@ export default function SignIn() {
 
         <div className="flex flex-col gap-[50px] justify-center h-full by-primaryBg px-[50px] md:px-[100px] py-[50px] ">
             <div className="flex flex-col gap-3 max-w-[500px] ">
-                <h1 className="text-textTitlte uppercase text-[30px] font-bold">Sign In
+                <h1 className="text-textTitlte uppercase text-[20px] md:text-[30px] font-bold">Sign In
                     To Your Account</h1>
                
             </div>
             <form onSubmit={loginUser} className="flex flex-col gap-5">
             <div className='border-[2px] flex justify-between px-[20px] py-[20px] '>
-                        <input type="email" value={userLoginDetail.email} required onChange={(e: ChangeEvent<HTMLInputElement>) => setUserLoginDetail({...userLoginDetail, email: e.target.value})} placeholder='nzubechukwu@gmail.com' className='text-btn2 w-full bg-transparent outline-0 text-[20px] ' /> 
+                        <input type="email" value={userLoginDetail.email} required onChange={(e: ChangeEvent<HTMLInputElement>) => setUserLoginDetail({...userLoginDetail, email: e.target.value})} placeholder='nzubechukwu@gmail.com' className='text-btn2 w-full bg-transparent outline-0 text-[12px] md:text-[20px] ' /> 
                         {/* <MdEmail className='text-[20px] text-btn-primary'/> */}
                 </div>
                 <div className='border-[2px] flex justify-between px-[20px] py-[20px] '>
-                        <input value={userLoginDetail.password} type="password" required onChange={(e: ChangeEvent<HTMLInputElement>) => setUserLoginDetail({...userLoginDetail, password : e.target.value})} placeholder='password' className='text-btn2 w-full bg-transparent outline-0 text-[20px] ' /> 
+                        <input value={userLoginDetail.password} type="password" required onChange={(e: ChangeEvent<HTMLInputElement>) => setUserLoginDetail({...userLoginDetail, password : e.target.value})} placeholder='password' className='text-btn2 w-full bg-transparent outline-0 text-[12px] md:text-[20px] ' /> 
                         {/* <RiLockPasswordFill className='text-[20px] text-btn-primary'/> */}
                 </div>
               {error &&  <p>{error}</p>}
-                <button type="submit" disabled={loading} className='text-light uppercase w-fit bg-btn-primary px-[30px] py-[15px] font-bold hover:bg-textTitle hover:text-light '>{loading ? "sign in progress" : "sign in"}</button>
+                <button type="submit" disabled={loading} className='text-light uppercase text-[12px] md:text-[20px] w-fit bg-btn-primary px-[30px] py-[15px] font-bold hover:bg-textTitle hover:text-light '>{loading ? "sign in progress" : "sign in"}</button>
 
                 <Link href="" className="text-textTitle hover:text-btn-primary">Forgotten your password?</Link>
             </form>
             <div className="flex flex-col gap-5">
-                <h1 className="font-bold text-textTitle text-[25px] ">DON'T HAVE AN ACCOUNT?</h1>
-                <Link href='/register' className='text-light uppercase w-fit bg-btn-primary px-[30px] py-[15px] font-bold hover:bg-textTitle hover:text-light '>create an account</Link>
+                <h1 className="font-bold text-textTitle text-[15px] md:text-[25px] ">DON'T HAVE AN ACCOUNT?</h1>
+                <Link href='/register' className='text-light uppercase w-fit bg-btn-primary px-[30px] py-[15px] font-bold hover:bg-textTitle hover:text-light text-[12px] md:text-[20px] '>create an account</Link>
             </div>
         </div>
         

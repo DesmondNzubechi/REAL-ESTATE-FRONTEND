@@ -98,7 +98,7 @@ export default function EditProfile() {
     return (
         <>
             <div className="bg-textTitle fixed w-full top-0 h-[100px]"></div>
-            <MobileNav />
+            <MobileNav /> 
             <DesktopNav />
             <div className="px-[30px] py-[100px]">
                 <div className="grid gap-[50px] grid-cols-10 lg:grid-cols-3">

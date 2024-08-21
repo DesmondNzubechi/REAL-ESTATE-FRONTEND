@@ -42,8 +42,8 @@ export default function MyAccount() {
         router.push('/signin')
         console.log("Error fetching user:", error);
     }
-};
-
+}; 
+ 
     useEffect(() => {
         getUser();
 }, []);
