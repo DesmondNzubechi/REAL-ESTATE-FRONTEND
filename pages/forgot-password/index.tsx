@@ -9,6 +9,7 @@ import { toast } from 'react-toastify'
 
 export default function ForgotPassword() {
 
+
     const [email, setEmail] = useState<string>('')
     const [error, setError] = useState<string>('')
     const [loading, setLoading] = useState<boolean>(false);
@@ -24,8 +25,8 @@ export default function ForgotPassword() {
         return true;
     }
 
-    const ForgotPasswordFn = async () => {
-        
+    const ForgotPasswordFn = async (e: any) => {
+        e.preventDefault()
         if (!validateForm) {
             return;
         }
@@ -35,13 +36,40 @@ export default function ForgotPassword() {
             return;
         }
 
-        setLoading(false);
+        setLoading(true);
 
 
         try {
-            const response = await api.patch('/user/forgotPassword', {email})
-        } catch (error) {
+         
+            await api.post('/user/forgotPassword', { email })
             
+            toast.success("Rest password link has been sent to your. Kindly check", {
+                position: "top-center",
+                hideProgressBar: true,
+                autoClose: 10000,
+                pauseOnHover: true,
+                closeOnClick: true
+            })
+            setLoading(false)
+        } catch (error) {
+
+            if (error instanceof Error) {
+                toast.error(`${error.respons} An error occured. Please try again`, {
+                    position: "top-center",
+                    hideProgressBar: true,
+                    delay: 10000,
+                    pauseOnHover: true,
+                    closeOnClick: true
+                })
+            }
+            toast.error("An error occured. Please try again", {
+                position: "top-center",
+                hideProgressBar: true,
+                delay: 10000,
+                pauseOnHover: true,
+                closeOnClick: true
+            })
+            setLoading(false)
         }
 
     }
@@ -58,7 +86,7 @@ export default function ForgotPassword() {
                         <input value={email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} type="email" placeholder='nzubechukwu@gmail.com' className='text-btn2 w-full bg-transparent outline-0 text-[20px] ' /> 
                         <MdEmail className='text-[20px] text-btn-primary'/>
                 </div>
-                <button type="submit" className='text-light uppercase w-fit bg-btn-primary px-[30px] py-[15px] font-bold hover:bg-textTitle hover:text-light '>Submit email</button>
+                <button type="submit" disabled={loading} className='text-light uppercase w-fit bg-btn-primary px-[30px] py-[15px] font-bold hover:bg-textTitle hover:text-light '>{loading? "Submitting..." : "Submit email"}</button>
 
                 <Link href="/signin" className="text-textTitle hover:text-btn-primary">Remember password?</Link>
             </form>
