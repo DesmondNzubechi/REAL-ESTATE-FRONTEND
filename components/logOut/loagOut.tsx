@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { useUserStore } from "@/components/store/store";
-import { api } from "@/components/lib/api";
+import { api } from "../lib/api";
+import { useUserStore } from "../store/store";
 
 
-export default function LogOut({logOut, setLogOut} : {logOut: boolean, setLogOut: React.Dispatch<React.SetStateAction<boolean>>}) {
+export const LogOut = ({logOut, setLogOut} : {logOut: boolean, setLogOut: React.Dispatch<React.SetStateAction<boolean>>}) => {
 
     const {clearUser} = useUserStore()
 

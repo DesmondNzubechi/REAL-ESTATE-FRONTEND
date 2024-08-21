@@ -13,7 +13,7 @@ import { FaHouseCircleCheck } from "react-icons/fa6";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { FaImagePortrait } from "react-icons/fa6";
-import { LogOut } from "@/pages/my-account/logout";
+import { LogOut } from "../logOut/loagOut";
 
 export const MyAccountNav = () => {
 
