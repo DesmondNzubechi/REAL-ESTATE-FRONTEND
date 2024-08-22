@@ -127,9 +127,9 @@ fetchPoperties()
             <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
             {
                 properties?.map((property: propertyType, index: number) => {
-                    return <Link href={`/properties/:id`} key={index} className="border">
+                    return <Link href={`/properties/${property._id}`} key={index} className="border">
                     <div className="relative">
-                        <Image width={500} height={500} src={`${!property.images[0].startsWith("https://")? '/' : property.images[0]}`} alt={`${property.name} image`} className="md:h-[350px] " />
+                        <Image width={500} height={500} src={`${!property.images[0].startsWith("https://")? house1.src : property.images[0]}`} alt={`${property.name} image`} className="md:h-[350px] " />
                         <h1 className="bg-btn-primary text-light font-medium px-[20px] py-[5px] absolute top-[30px] right-[30px] uppercase ">{property.developmentStatus}</h1>
                         <div className=" absolute bottom-0  flex justify-between w-full py-[10px] px-[20px] ">
                             <p className="flex items-center bg-whiteTp px-[20px] gap-2 rounded text-secondaryText "><FaLocationDot className="text-[10px] md:text-[20px]" /> <span className="'text-[10px] md:text-[15px] ">{property.location}</span></p>
