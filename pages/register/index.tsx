@@ -30,6 +30,8 @@ export default function Register() {
     const [error, setError] = useState("");
     const router = useRouter();
 
+    console.log("error here", error)
+
     const validateInput = (name: string, value: string) => {
         switch (name) {
             case 'firstName':

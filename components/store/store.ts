@@ -1,47 +1,7 @@
-// import { create } from "zustand";
-
-// interface UserState {
-//     user: {
-//         id: string
-//         firstName: string
-//         lastName: string
-//         email: string
-//         userName: string
-//         images: string
-//         phoneNumber: number
-//         emailVerified: boolean
-//         role: string
-//         country: string
-//         state: string
-//     } | null,
-//     isAuthenticated: boolean
-//     setUser: (user: {
-//         id: string
-//         firstName: string
-//         lastName: string
-//         email: string
-//         userName: string
-//         images: string
-//         phoneNumber: number
-//         emailVerified: boolean
-//         role: string
-//         country: string
-//         state: string
-//     }) => void;
-//     clearUser: () => void;
-// };
-
-// export const useUserStore = create<UserState>((set) => ({
-//     user: null,
-//     isAuthenticated: false,
-//     setUser: (user) => set({ user, isAuthenticated: true }),
-//     clearUser: () => set({ user: null, isAuthenticated: false })
-// }));
-
 
 
 import { create } from "zustand";
-import { userType } from "../types/types";
+import { propertyType, userType } from "../types/types";
 
 interface UserState {
   user: userType | null;
@@ -49,7 +9,11 @@ interface UserState {
   setUser: (user: UserState["user"]) => void;
   clearUser: () => void;
 }
-
+ 
+interface propertyState {
+  properties: propertyType[],
+  setProperties: (property: propertyState["properties"]) => void;
+}
 // Check if we're running in a browser environment
 const isBrowser = typeof window !== "undefined";
 
@@ -59,6 +23,24 @@ const getUserFromLocalStorage = () => {
   const storedUser = localStorage.getItem("user");
   return storedUser ? JSON.parse(storedUser) : null;
 };
+
+const getPropertiesFromLocalStorage = () => {
+  if (!isBrowser) return null;
+  const storedProperties = localStorage.getItem('properties');
+  return storedProperties ? JSON.parse(storedProperties) : null
+}
+
+
+export const usePropertiesStore = create<propertyState>((set) => ({
+  properties: getPropertiesFromLocalStorage(),
+  setProperties: (properties) => {
+    set({ properties });
+    if (isBrowser) {
+      localStorage.setItem("properties", JSON.stringify(properties));
+    }
+  }
+}))
+ 
 
 export const useUserStore = create<UserState>((set) => ({
   user: getUserFromLocalStorage(),

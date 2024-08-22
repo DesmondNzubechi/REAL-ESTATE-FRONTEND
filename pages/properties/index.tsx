@@ -14,14 +14,35 @@ import { IoIosSearch } from "react-icons/io";
 import house1 from '../../public/images/house8.avif';
 import house2 from '../../public/images/house3.avif';
 import house3 from '../../public/images/house5.avif';
-import { propertyOverview } from "@/components/types/types";
+import { propertyOverview, propertyType } from "@/components/types/types";
 import Image from "next/image";
 import Link from "next/link";
+import { usePropertiesStore } from "@/components/store/store";
+import { api } from "@/components/lib/api";
+import { useEffect } from "react";
 
 
 export default function Properties() {
     
+    const { properties, setProperties } = usePropertiesStore()
+    
+    console.log("Our properties", properties)
 
+    const fetchPoperties = async () => {
+        
+        try {
+            const response = await api.get('/properties/');
+            const props = response.data.data.properties;
+            setProperties(props)
+            console.log("The properties", props);
+        } catch (error) {
+            console.log("the errors", error)
+        }
+    } 
+
+    useEffect(() => {
+fetchPoperties()
+    }, [])
     const featuredProps: propertyOverview[] = [
         {
             name: "New House here",
@@ -98,23 +119,23 @@ export default function Properties() {
                 <button className="bg-btn-primary ml-[20px] text-[20px] text-light hover:text-[#FFFFFF] hover:bg-textTitle px-[25px] text-center flex items-center gap-2 font-bold w-fit  w  py-[10px] "><BsFilterSquareFill />Filter</button>
                 </div>
             </div>
-            
+             
             <div className="bg-secondaryBg w-full border py-[10px] items-center px-[20px] flex justify-between">
                 <input type="text" name="" className="text-textColor text-[15px] md:text-[20px] outline-0 w-full bg-transparent py-[10px] px-[20px] " placeholder="Search for a property" id="" />
                 <IoIosSearch  className="text-btn-primary font-bold text-[30px]"/>
             </div>
             <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
             {
-                featuredProps.map((property: propertyOverview, index: number) => {
+                properties?.map((property: propertyType, index: number) => {
                     return <Link href={`/properties/:id`} key={index} className="border">
                     <div className="relative">
-                        <Image src={property.images} alt={`${property.name} image`} className="md:h-[350px] " />
-                        <h1 className="bg-btn-primary text-light font-medium px-[20px] py-[5px] absolute top-[30px] right-[30px] uppercase ">{property.status}</h1>
+                        <Image width={500} height={500} src={`${!property.images[0].startsWith("https://")? '/' : property.images[0]}`} alt={`${property.name} image`} className="md:h-[350px] " />
+                        <h1 className="bg-btn-primary text-light font-medium px-[20px] py-[5px] absolute top-[30px] right-[30px] uppercase ">{property.developmentStatus}</h1>
                         <div className=" absolute bottom-0  flex justify-between w-full py-[10px] px-[20px] ">
                             <p className="flex items-center bg-whiteTp px-[20px] gap-2 rounded text-secondaryText "><FaLocationDot className="text-[10px] md:text-[20px]" /> <span className="'text-[10px] md:text-[15px] ">{property.location}</span></p>
                             <div className="flex items-center gap-[10px] ">
-                                <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 rounded-full "><IoCameraSharp className="text-[10px] md:text-[20px]" /> <span className="'text-[10px] md:text-[15px] ">{property.imageNo}</span></p>
-                                  <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 px-[10px] rounded-full "><RiFolderVideoFill className="text-[10px] md:text-[20px]"/> <span className="'text-[10px] md:text-[15px] ">{property.video}</span></p>
+                                <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 rounded-full "><IoCameraSharp className="text-[10px] md:text-[20px]" /> <span className="'text-[10px] md:text-[15px] ">{property.images.length}</span></p>
+                                  <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 px-[10px] rounded-full "><RiFolderVideoFill className="text-[10px] md:text-[20px]"/> <span className="'text-[10px] md:text-[15px] "></span></p>
                             </div>
                         </div>
 </div>
@@ -122,9 +143,9 @@ export default function Properties() {
                         <h1 className="text-btn-primary font-medium md:text-[20px] text-[10px] ">N {property.price}</h1>
                         <h1 className="font-bold text-textTitle text-[20px] md:text-[30px] ">{property.name}</h1>
                         <div className=" gap-2 grid grid-cols-2 md:grid-col-3">
-                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{property.bedroom}</h1>< MdBedroomParent className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bedroom</p></div>
-                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{property.bathroom}</h1>< MdBathtub className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bathroom</p></div>
-                            <div className="flex items-center text-textColor  gap-1 "><h1 className="font-bold md:text-[20px] text-[10px] ">{property.car}</h1>< GiHomeGarage className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Carpark</p></div>
+                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">3</h1>< MdBedroomParent className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bedroom</p></div>
+                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">4</h1>< MdBathtub className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bathroom</p></div>
+                            <div className="flex items-center text-textColor  gap-1 "><h1 className="font-bold md:text-[20px] text-[10px] ">9</h1>< GiHomeGarage className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Carpark</p></div>
                         </div>
                     </div>  
                 </Link>

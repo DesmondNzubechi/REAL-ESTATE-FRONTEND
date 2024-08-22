@@ -49,4 +49,20 @@ export interface userType {
     role: string;
     country: string;
     state: string;
-  }
+}
+  
+export interface propertyType {
+    name: string,
+    _id: string,
+    location: string,
+    map: string,
+    price: number,
+    images: string[],
+    description: string,
+    developmentStatus: string,
+    amenities: string,
+    interiorFeatures: string,
+    extriorFaetures: string,
+    reviews: any,
+    date : Date
+}

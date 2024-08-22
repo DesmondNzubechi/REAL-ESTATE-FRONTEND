@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['www.freepik.com', 'img.freepik.com'],
+    domains: ['www.freepik.com', 'img.freepik.com', 'res.cloudinary.com'],
     formats: ['image/avif', 'image/webp']
  }
 };
