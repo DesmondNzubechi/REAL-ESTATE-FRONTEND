@@ -4,7 +4,7 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { FaComments } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { FaRegComments } from "react-icons/fa";
-import house1 from '../../public/images/house5.avif'
+import house1 from '../../public/images/house5.avif' 
 import Image from "next/image";
 import { FaPencil } from "react-icons/fa6";
 import { blogType, commentType } from "../types/types";
