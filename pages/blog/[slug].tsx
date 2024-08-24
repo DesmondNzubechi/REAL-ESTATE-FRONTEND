@@ -19,7 +19,7 @@ export default function TheFullBlog() {
     comments: [],
     status: "",
     images: "",
-    _id: "",
+    _id: '',
     tag: "",
     date: '' 
     })

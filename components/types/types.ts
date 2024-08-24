@@ -72,7 +72,7 @@ export interface commentType {
     username: String,
     _id: String,
     blog: String,
-    user: ObjectId,
+    user: ObjectId | string,
     comment: String,
     createdAt : String
 }
@@ -84,7 +84,7 @@ export interface blogType {
     comments: commentType[],
     status: string,
     images: string,
-    _id: ObjectId,
+    _id: ObjectId  | string,
     tag: String,
     date: any 
 }
