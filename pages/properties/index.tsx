@@ -150,7 +150,7 @@ fetchPoperties()
                     </div>  
                 </Link>
                 })
-}
+} 
         </div>
             
        </div>

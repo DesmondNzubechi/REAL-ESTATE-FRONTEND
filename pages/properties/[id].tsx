@@ -13,7 +13,7 @@ import { MobileNav } from "@/components/Navbar/mobileNav";
 import { DesktopNav } from "@/components/Navbar/desktopNav";
 import { PageBgOverview } from "@/components/pageOverview/pageOverview";
 import { MdReviews } from "react-icons/md";
-import { FaCalendarAlt } from "react-icons/fa";
+import { FaCalendarAlt } from "react-icons/fa"; 
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
@@ -21,33 +21,27 @@ import { FaUserAlt } from "react-icons/fa";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { api } from "@/components/lib/api";
-  
-interface props{
-fullProperty : propertyType
-}
 
-export default function PropertyDetails(props :props) {
-
-const {fullProperty} = props
+export default function PropertyDetails() {
 
     const router = useRouter();
     const { id } = router.query;
     const [resolvedId, setResolveId] = useState<undefined | string | string[]>()
-    // const [fullProperty, setFullProperty] = useState<propertyType>({
-    //     name: '',
-    // _id: '',
-    // location: '',
-    // map: '',
-    // price: 0,
-    // images: [],
-    // description: '',
-    // developmentStatus: '',
-    // amenities: '',
-    // interiorFeatures: '',
-    // extriorFaetures: '',
-    // reviews: [],
-    // date : ''
-    // })
+    const [fullProperty, setFullProperty] = useState<propertyType>({
+        name: '',
+    _id: '',
+    location: '',
+    map: '',
+    price: 0,
+    images: [],
+    description: '',
+    developmentStatus: '',
+    amenities: '',
+    interiorFeatures: '',
+    extriorFaetures: '',
+    reviews: [],
+    date : ''
+    })
     const [propertyReviews, setPropertyReviews] = useState<[]>([]);
 
     const propertyDetails: propertyOverview =  {
@@ -64,19 +58,19 @@ const {fullProperty} = props
         
     }
 
-    // const fetchProperty = async () => {
+    const fetchProperty = async () => {
 
-    //     try {
-    //         const response = await api.get(`/properties/${resolvedId}`)
+        try {
+            const response = await api.get(`/properties/${id}`)
 
-    //         const property = response.data.data.property;
+            const property = response.data.data.property;
 
-    //         setFullProperty(property)
+            setFullProperty(property)
 
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     const fetchPropertyReviews = async () => {
 
@@ -96,7 +90,7 @@ const {fullProperty} = props
     console.log("full property reviews", propertyReviews)
 
     useEffect(() => {
-       // fetchProperty();
+       fetchProperty();
         fetchPropertyReviews()
     }, [])
 
@@ -173,6 +167,9 @@ const {fullProperty} = props
                     
                             
                             <div className="flex flex-col gap-5">
+                                {
+
+                                }
                         <div className="flex flex-col border p-[15px]  gap-5">
                             <div className="flex flex-col gap-[5px]">
                                 <FaUserAlt className="text-textTitle bg-secondaryBg p-2 rounded-full text-[100px]" /> 
