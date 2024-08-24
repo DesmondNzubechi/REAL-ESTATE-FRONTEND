@@ -1,3 +1,4 @@
+import { ObjectId } from "mongoose"
 import { IconType } from "react-icons"
 
 
@@ -71,7 +72,7 @@ export interface commentType {
     username: String,
     _id: String,
     blog: String,
-    user: String,
+    user: ObjectId,
     comment: String,
     createdAt : String
 }
@@ -83,7 +84,7 @@ export interface blogType {
     comments: commentType[],
     status: string,
     images: string,
-    _id: string,
+    _id: ObjectId,
     tag: String,
     date: any 
 }
