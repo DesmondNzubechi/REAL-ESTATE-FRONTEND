@@ -9,6 +9,7 @@ import { MobileNav } from "@/components/Navbar/mobileNav";
 import { DesktopNav } from "@/components/Navbar/desktopNav";
 import { api} from "@/components/lib/api";
 import { useEffect, useState } from "react";
+import defaultImg from '../../public/images/userProfile.jpg'
 import { Audio } from 'react-loader-spinner'
 import { useUserStore } from "@/components/store/store";
 import { useRouter } from "next/router";
@@ -63,7 +64,7 @@ export default function MyAccount() {
                 {loading && <ProfileSkeleton/>}
         {!loading && <div className="lg:col-span-2 col-span-9 border flex flex-col lg:flex-row px-[20px] gap-5 h-fit py-[30px] ">
             <div>
-                <Image src={myPic} className="w-[300px] " alt="user image" />
+                <Image src={user?.images? user.images : defaultImg} className="w-[300px]  " alt="user image" />
             </div>
                 <div className="flex flex-col gap-4">
                     <div className="flex flex-col ">

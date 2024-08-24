@@ -1,4 +1,4 @@
-import { propertyOverview } from "@/components/types/types"
+import { propertyOverview, propertyType } from "@/components/types/types"
 import house1 from '../../public/images/house1.avif';
 import house2 from '../../public/images/house2.avif';
 import house3 from '../../public/images/house3.avif';
@@ -18,9 +18,37 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { api } from "@/components/lib/api";
+  
+interface props{
+fullProperty : propertyType
+}
 
+export default function PropertyDetails(props :props) {
 
-export default function PropertyDetails() {
+const {fullProperty} = props
+
+    const router = useRouter();
+    const { id } = router.query;
+    const [resolvedId, setResolveId] = useState<undefined | string | string[]>()
+    // const [fullProperty, setFullProperty] = useState<propertyType>({
+    //     name: '',
+    // _id: '',
+    // location: '',
+    // map: '',
+    // price: 0,
+    // images: [],
+    // description: '',
+    // developmentStatus: '',
+    // amenities: '',
+    // interiorFeatures: '',
+    // extriorFaetures: '',
+    // reviews: [],
+    // date : ''
+    // })
+    const [propertyReviews, setPropertyReviews] = useState<[]>([]);
 
     const propertyDetails: propertyOverview =  {
         name: "New House here",
@@ -35,6 +63,49 @@ export default function PropertyDetails() {
         images: [house1, house2,house3,house4,house5,house6,house7,house8,house9],
         
     }
+
+    // const fetchProperty = async () => {
+
+    //     try {
+    //         const response = await api.get(`/properties/${resolvedId}`)
+
+    //         const property = response.data.data.property;
+
+    //         setFullProperty(property)
+
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
+
+    const fetchPropertyReviews = async () => {
+
+        try {
+            const response =  await api.get(`reviews/property/${fullProperty._id}/reviews`);
+
+            const reviews = response.data.data.result;
+
+            setPropertyReviews(reviews);
+
+        } catch (error) {
+           console.log("error fetching reviews", error) 
+        }
+    }
+
+    console.log("full property", fullProperty)
+    console.log("full property reviews", propertyReviews)
+
+    useEffect(() => {
+       // fetchProperty();
+        fetchPropertyReviews()
+    }, [])
+
+    useEffect(() => {
+        if (id) {
+          
+            setResolveId(id);
+}
+    }, [router.query, id])
     
     return <>
         <div className="bg-textTitle h-[100px] ">
@@ -49,38 +120,17 @@ export default function PropertyDetails() {
                 <div className="flex flex-col gap-[50px] ">
                 <div className="flex gap-5 ">
                 <span className="flex items-center gap-1"><p className="font-medium uppercase bg-btn-primary py-[10px] px-[20px] text-light">For Sale</p></span>
-                    <span className="flex items-center gap-1"><MdReviews className="text-btn-primary text-[15px] md:text-[20px] lg:text-[20px]" /> <p className="font-medium capitalize text-[15px] text-textColor">40 Reviews</p></span>
-                    <span className="flex items-center gap-2"><FaCalendarAlt className="text-btn-primary text-[15px] md:text-[20px] lg:text-[20px]"/><p className="font-medium capitalize text-[15px] text-textColor">August 10, 2024</p></span>
+                    <span className="flex items-center gap-1"><MdReviews className="text-btn-primary text-[15px] md:text-[20px] lg:text-[20px]" /> <p className="font-medium capitalize text-[15px] text-textColor">{propertyReviews?.length} Reviews</p></span>
+                    <span className="flex items-center gap-2"><FaCalendarAlt className="text-btn-primary text-[15px] md:text-[20px] lg:text-[20px]"/><p className="font-medium capitalize text-[15px] text-textColor">{fullProperty?.date?.split('T')?.splice(0, 1)}</p></span>
                     </div>
                     <div>
-                    <p className="flex items-center bg-whiteTp px-[20px] gap-5 rounded text-secondaryText "><FaLocationDot /> Enugu, Nigeria</p>
+                        <p className="flex items-center bg-whiteTp px-[20px] gap-5 rounded text-secondaryText "><FaLocationDot />{fullProperty?.location}</p>
                     </div>
                     <div className="flex flex-col gap-[30px]">
-                        <h1 className="font-bold px-[10px] border-l-[5px] border-btn-primary text-textTitle text-[30px] ">Land Description</h1>
+                        <h1 className="font-bold px-[10px] border-l-[5px] border-btn-primary text-textTitle text-[30px] ">Property Description</h1>
                         <p className="text-textColor text-[15px] md:text-[20px] ">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.
-
-Setting the mood with incense
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.
-
-Setting the mood with incense
- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-BY HETMAYAR
-Viral dreamcatcher keytar typewriter, aest hetic offal umami. Aesthetic polaroid pug pitchfork post-ironic.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.
-
-Image
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur expedita velit laboriosam est sint laborum eos assumenda, quam voluptatem adipisci, reprehenderit ut nobis blanditiis perspiciatis!      
-</p>
+                            {fullProperty?.description}
+              </p>
                     </div>
 
                     <div className="flex flex-col gap-[30px] ">
@@ -184,4 +234,18 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur expedita v
             </div>
     </div>
     </>
+}
+
+
+export const ServerSideProps = async (context: any) => {
+
+    const { params } = context;
+
+    const response = await api.get(`/property/${params.id}`);
+    return {
+        props: {
+            fullProperty : response.data.data.result
+        }
+    }
+
 }

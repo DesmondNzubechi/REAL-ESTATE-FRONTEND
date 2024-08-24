@@ -93,10 +93,10 @@ fetchPoperties()
             <div className="bg-primaryBg border w-full  py-[20px] px-[40px] ">
                 <h1 className="font-bold text-textTitle uppercase text-center text-[15px] md:text-[20px]">Filter Property</h1>
                 <div className="flex flex-col lg:flex-row items-start lg:items-center gap-5 justify-between">
-                <div className="  w-full grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3   p-[20px] ">
+                <div className="  w-full grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 p-[20px] ">
                 <select name="" id="" className=" px-[15px] w-full outline-0 text-center shadow font-[400] text-[15px] md:text-[25px] py-[10px] ">
-                    <option>Filter By Location</option>
-                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
+                    <option >Filter By Location</option>
+                    <option className="bg-btn-primary text-light text-[15px]" value="">Enugu</option>
                     <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
                     <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
                     <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
@@ -125,7 +125,7 @@ fetchPoperties()
                 <IoIosSearch  className="text-btn-primary font-bold text-[30px]"/>
             </div>
             <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
-            {
+            { 
                 properties?.map((property: propertyType, index: number) => {
                     return <Link href={`/properties/${property._id}`} key={index} className="border">
                     <div className="relative">

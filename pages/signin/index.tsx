@@ -8,7 +8,7 @@ import { ChangeEvent, useState } from "react";
 import { loginDetail } from "@/components/types/types";
 import { Router, useRouter } from "next/router";
 import { toast } from "react-toastify";
-
+import { BounceLoader, CircleLoader, ClipLoader} from "react-spinners";
 
 export default function SignIn() {
     const router = useRouter();
@@ -74,7 +74,9 @@ export default function SignIn() {
     }
     
     return <div className="grid grid-cols-1 gap-0 md:grid-cols-2">
-
+{loading && <div className="fixed bg-tpr w-full z-[500] left-0 right-0 flex justify-center h-full top-0 bottom-0 items-center"><BounceLoader color="#FF5A3C"
+                    size={100}
+                /></div>}
         <div className="flex flex-col gap-[50px] justify-center h-full by-primaryBg px-[50px] md:px-[100px] py-[50px] ">
             <div className="flex flex-col gap-3 max-w-[500px] ">
                 <h1 className="text-textTitlte uppercase text-[20px] md:text-[30px] font-bold">Sign In

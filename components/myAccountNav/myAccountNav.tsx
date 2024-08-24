@@ -30,7 +30,7 @@ export const MyAccountNav = () => {
         {
             name: "My Profile",
             url: "/my-account",
-            icon: FaUserAlt
+            icon: FaUserAlt 
         },
         {
             name: "Edit profile",
@@ -72,7 +72,7 @@ export const MyAccountNav = () => {
                         if (nav.name === 'logout') {
                             setLogOut(true)
                         }
-                    }} key={index} className={`flex py-[20px] px-[20px] ${pathname === nav.url? "bg-textTitle" : 'bg-'} border-t justify-between items-center`}>
+                    }} key={index} className={`flex py-[20px] px-[20px] hover:bg-slate-200 ${pathname === nav.url? "bg-textTitle" : 'bg-'} border-t justify-between items-center`}>
                         <li className={`${ pathname === nav.url? "text-light" : "text-textColor"} text-[20px] hidden lg:block `}>{nav.name}</li>
                         <nav.icon className={`text-[20px] ${ pathname === nav.url? "text-slate-300" : "text-textColor"}`} />
                     </Link>

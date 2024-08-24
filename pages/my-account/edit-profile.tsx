@@ -41,7 +41,8 @@ export default function EditProfile() {
                                 userName: theUser?.userName,
                                 country: theUser?.country,
                                 state: theUser?.state,
-                                email: theUser?.email,
+                            email: theUser?.email,
+                                phoneNumber : theUser?.phoneNumber
                          },
                         { withCredentials: true }
                 );

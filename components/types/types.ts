@@ -64,5 +64,27 @@ export interface propertyType {
     interiorFeatures: string,
     extriorFaetures: string,
     reviews: any,
-    date : Date
+    date : any
 }
+
+export interface commentType {
+    username: String,
+    _id: String,
+    blog: String,
+    user: String,
+    comment: String,
+    createdAt : String
+}
+
+export interface blogType {
+    title: string,
+    slug: string,
+    content: string,
+    comments: commentType[],
+    status: string,
+    images: string,
+    _id: string,
+    tag: String,
+    date: any 
+}
+
