@@ -71,7 +71,7 @@ export interface propertyType {
 export interface commentType {
     username: String,
     _id: String,
-    blog: String,
+    blog: ObjectId,
     user: ObjectId | string,
     comment: String,
     createdAt : String
@@ -89,3 +89,12 @@ export interface blogType {
     date: any 
 }
 
+
+export interface landType {
+    name: string,
+    map: string,
+    images: string[],
+    description: string,
+    location: string,
+    date : string,
+}

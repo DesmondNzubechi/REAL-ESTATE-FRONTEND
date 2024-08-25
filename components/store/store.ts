@@ -1,7 +1,7 @@
-
+ 
 
 import { create } from "zustand";
-import { propertyType, userType } from "../types/types";
+import { propertyType, userType, landType } from "../types/types";
 
 interface UserState {
   user: userType | null;
@@ -11,9 +11,16 @@ interface UserState {
 }
  
 interface propertyState {
-  properties: propertyType[],
+  properties: propertyType,
   setProperties: (property: propertyState["properties"]) => void;
 }
+
+
+interface landState {
+  land: propertyType,
+  setLand: (property: landState["land"]) => void;
+}
+
 // Check if we're running in a browser environment
 const isBrowser = typeof window !== "undefined";
 
@@ -24,10 +31,17 @@ const getUserFromLocalStorage = () => {
   return storedUser ? JSON.parse(storedUser) : null;
 };
 
+ 
 const getPropertiesFromLocalStorage = () => {
   if (!isBrowser) return null;
   const storedProperties = localStorage.getItem('properties');
   return storedProperties ? JSON.parse(storedProperties) : null
+}
+
+const getLandFromLocalStorage = () => {
+  if (!isBrowser) return null;
+  const storedLand = localStorage.getItem('land');
+  return storedLand ? JSON.parse(storedLand) : null
 }
 
 
@@ -36,11 +50,23 @@ export const usePropertiesStore = create<propertyState>((set) => ({
   setProperties: (properties) => {
     set({ properties });
     if (isBrowser) {
-      localStorage.setItem("properties", JSON.stringify(properties));
+      localStorage.setItem("properties", JSON.stringify(properties))
     }
   }
 }))
  
+
+export const useLandStore = create<landState>((set) => ({
+  land: getLandFromLocalStorage(),
+  setLand: (land) => {
+    set({ land });
+    if (isBrowser) {
+      localStorage.setItem("land", JSON.stringify(land))
+    }
+  }
+}))
+
+
 
 export const useUserStore = create<UserState>((set) => ({
   user: getUserFromLocalStorage(),

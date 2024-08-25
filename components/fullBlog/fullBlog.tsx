@@ -52,7 +52,7 @@ const [loading, setLoading] = useState<boolean>(false)
             const response = await api.post('/comments/createComment',
                 {
                     username: commentInput.username,
-                    blog: commentInput.blog,
+                    blog: fullBlogArticle._id,
                     user: commentInput.user,
                     comment : commentInput.comment
                }
