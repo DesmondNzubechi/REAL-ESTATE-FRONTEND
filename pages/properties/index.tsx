@@ -19,69 +19,40 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePropertiesStore } from "@/components/store/store";
 import { api } from "@/components/lib/api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { PropertySkeleton } from "@/components/skeletonloader/propertySkeleton";
+import { ReloadPage } from "@/components/Reload/Reload";
 
 
 export default function Properties() {
     
     const { properties, setProperties } = usePropertiesStore()
+    const [loading, setLoading] = useState<boolean>(false);
+    const [succeeded, setSucceeded] = useState<boolean>(false)
+    
     
     console.log("Our properties", properties)
 
     const fetchPoperties = async () => {
-        
+        setLoading(true)
         try {
             const response = await api.get('/properties/');
             const props = response.data.data.properties;
             setProperties(props)
             console.log("The properties", props);
+            setLoading(false)
+            setSucceeded(true);
         } catch (error) {
             console.log("the errors", error)
+            setLoading(false)
+            setSucceeded(false);
         }
     } 
 
     useEffect(() => {
 fetchPoperties()
     }, [])
-    const featuredProps: propertyOverview[] = [
-        {
-            name: "New House here",
-            price: '9000',
-            location: "Enugu, Nigeria",
-            bedroom: "3",
-            bathroom: "2",
-            car: "2",
-            status: "for sale",
-            imageNo: "2",
-            video: "1",
-            images : house1
-        },
-        {
-            name: "New House here",
-            price: '9000',
-            location: "Enugu, Nigeria",
-            bedroom: "3",
-            bathroom: "2",
-            car: "2",
-            status: "for sale",
-            imageNo: "2",
-            video: "1",
-            images : house2
-        },
-        {
-            name: "New House here",
-            price: '9000',
-            location: "Enugu, Nigeria",
-            bedroom: "3",
-            bathroom: "2",
-            car: "2",
-            status: "for sale",
-            imageNo: "2",
-            video: "1",
-            images : house3
-        },
-       
-    ]
+   
 
     return <>
         <MobileNav/>
@@ -124,7 +95,9 @@ fetchPoperties()
                 <input type="text" name="" className="text-textColor text-[15px] md:text-[20px] outline-0 w-full bg-transparent py-[10px] px-[20px] " placeholder="Search for a property" id="" />
                 <IoIosSearch  className="text-btn-primary font-bold text-[30px]"/>
             </div>
-            <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
+            {loading && !succeeded && <PropertySkeleton /> }
+            {!loading && !succeeded && <ReloadPage reload={fetchPoperties}/>}
+           {!loading && succeeded && <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
             { 
                 properties?.map((property: propertyType, index: number) => {
                     return <Link href={`/properties/${property._id}`} key={index} className="border">
@@ -151,7 +124,7 @@ fetchPoperties()
                 </Link>
                 })
 } 
-        </div>
+        </div>}
             
        </div>
     </>

@@ -63,7 +63,7 @@ export interface propertyType {
     developmentStatus: string,
     amenities: string,
     interiorFeatures: string,
-    extriorFaetures: string,
+    extriorFeatures: string,
     reviews: any,
     date : any
 }

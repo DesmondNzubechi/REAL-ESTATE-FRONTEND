@@ -38,7 +38,7 @@ export default function PropertyDetails() {
     developmentStatus: '',
     amenities: '',
     interiorFeatures: '',
-    extriorFaetures: '',
+    extriorFeatures: '',
     reviews: [],
     date : ''
     })
