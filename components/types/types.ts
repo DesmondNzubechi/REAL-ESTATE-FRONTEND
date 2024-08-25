@@ -39,8 +39,8 @@ export interface loginDetail {
 }
 
 export interface userType {
-    _id: string;
-    firstName: string;
+    _id: ObjectId;
+    firstName: string; 
     lastName: string;
     email: string;
     userName: string;

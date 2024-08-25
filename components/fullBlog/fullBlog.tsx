@@ -20,7 +20,7 @@ export const FullBlog = ({ fullBlogArticle, setFullBlogArticle }: { fullBlogArti
     const [commentInput, setCommentInput] = useState({
     username: '',
     blog: fullBlogArticle._id,
-    user: user && user._id ,
+    user: user?._id && user._id ,
         comment: '',
         createdAt: 'Just now',
     _id : '' 
