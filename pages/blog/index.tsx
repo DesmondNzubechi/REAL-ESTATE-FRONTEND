@@ -14,14 +14,18 @@ import { Footer } from "@/components/Footer/footer";
 import { useEffect, useState } from "react"
 import { blogType } from "@/components/types/types"
 import { api } from "@/components/lib/api"
+import { BlogSkeleton } from "@/components/skeletonloader/blogSkeleton"
+import { ReloadPage } from "@/components/Reload/Reload"
 
 export default function Blog() {
-
+    const [loading, setLoading] = useState<boolean>(false);
+    const [succeeded, setSucceeded] = useState<boolean>(false)
+    
     const [blog, setBlog] = useState<blogType[]>([]);
     console.log("the blogs", blog);
 
     const fetchBlog = async () => {
-      
+        setLoading(true);
         try {
          
             const response = await api.get('/blog/getAllBlogPost')
@@ -30,9 +34,12 @@ export default function Blog() {
 
             console.log("the res", blogs)
             setBlog(blogs)
-
+            setSucceeded(true);
+            setLoading(false);
         } catch (error) {
             console.log(error)
+            setSucceeded(false);
+            setLoading(false)
         }
     } 
 
@@ -40,11 +47,14 @@ export default function Blog() {
         fetchBlog();
     }, [])
     
-    return <>
+    return <> 
         <MobileNav />
         <DesktopNav/>
         <PageBgOverview HomeLink='Home' page="Blog" CurrentPage="Blog" BgImgLink="https://img.freepik.com/free-photo/elevated-view-headphone-paper-keyboard-blue-background_23-2147889936.jpg?t=st=1717449452~exp=1717453052~hmac=3ccf1d5383cc9a67a5f965c1eeaf10ff0fc6ab6c41542d80877f4eb76e41bd4f&w=740" />
-        <div className="grid grid-cols-1 md:grid-cols-2  px-[30px] gap-[30px] py-[100px] ">
+       {!loading && !succeeded && <ReloadPage reload={fetchBlog}/>}
+       {loading && !succeeded && <BlogSkeleton/>}
+        {!loading && succeeded &&
+            (<div className="grid grid-cols-1 md:grid-cols-2  px-[30px] gap-[30px] py-[100px] ">
       
             {
                 blog.map((article: blogType, index: number) => {
@@ -58,7 +68,7 @@ export default function Blog() {
                 <p className="font-medium uppercase bg-btn-primary text-light py-[10px] px-[20px]">{article.tag? article.tag : "real estate"}</p>
             </span>
         </div>
-
+ 
         <h1 className="font-bold text-textTitle text-[20px] md:text-[30px] lg:text-[35px]">{article.title}</h1>
         <div className="flex gap-5">
             <span className="flex items-center gap-1">
@@ -83,7 +93,8 @@ export default function Blog() {
                 })
             }
        
-        </div>
+            </div>)
+        }
         <Footer/>
     </>
 }

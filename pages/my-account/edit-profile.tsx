@@ -20,7 +20,7 @@ import EditProfileSkeleton from "@/components/skeletonloader/editProfileSkeleton
 export default function EditProfile() {
     const router = useRouter();
     const [loading, setLoading] = useState<boolean>(false);
-    const { user, setUser } = useUserStore();
+    const { user, setUser, isAuthenticated } = useUserStore();
     const [theUser, setTheUser] = useState<userType | any>(user);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -29,6 +29,7 @@ export default function EditProfile() {
         setTheUser({ ...theUser, [name]: value });
     };
     console.log('the user id', user?._id)
+
 
     const updateUser = async (e: React.FormEvent) => {
         e.preventDefault(); // Prevent default form submission
