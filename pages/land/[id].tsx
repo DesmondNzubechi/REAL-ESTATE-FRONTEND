@@ -1,4 +1,4 @@
-import { propertyOverview } from "@/components/types/types"
+import { landType, propertyOverview } from "@/components/types/types"
 import house1 from '../../public/images/house1.avif';
 import house2 from '../../public/images/house2.avif';
 import house3 from '../../public/images/house3.avif';
@@ -18,9 +18,21 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaCheckCircle } from "react-icons/fa";
 import { FaPencil } from "react-icons/fa6";
 import { FaUserAlt } from "react-icons/fa";
+import { LandDetailsSkeleton } from "@/components/skeletonloader/landFullSkeleton";
+import { ReloadPage } from "@/components/Reload/Reload";
+import { api } from "@/components/lib/api";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { Footer } from "@/components/Footer/footer";
 
 export default function LandDetails() {
 
+    const [loading, setLoading] = useState<boolean>(false);
+    const [succeeded, setSucceeded] = useState<boolean>(false)
+    const [theLand, setTheLand] = useState<landType>();
+
+    const router = useRouter(); 
+    const { id } = router.query;
     const propertyDetails: propertyOverview =  {
         name: "New House here",
         price: '9000',
@@ -35,12 +47,38 @@ export default function LandDetails() {
         
     }
     
+    const fetchLand = async () => {
+        setLoading(true);
+        
+        try {
+            const response = await api.get(`/land/fetchALand/${id}`)
+
+            const land = response.data.data.land;
+
+            setTheLand(land)
+            setLoading(false);
+            setSucceeded(true);
+
+        } catch (error) {
+            console.log(error);
+            setLoading(false);
+            setSucceeded(false);
+        }
+    }
+
+    useEffect(() => {
+        fetchLand();
+    }, [])
+    
     return <>
         <div className="bg-textTitle h-[100px] ">
         </div>
         <MobileNav/>
-        <DesktopNav/>
-       <div className="px-[30px]  py-[100px] grid grid-cols-1 ">
+        <DesktopNav />
+       {loading && !succeeded && <LandDetailsSkeleton />}
+       {!loading && !succeeded && <ReloadPage reload={fetchLand}/>}
+        { !loading && succeeded &&
+            (<div className="px-[30px]  py-[100px] grid grid-cols-1 ">
             <ImageSlider housing={propertyDetails} />
             
             <div className="grid gap-[100px] grid-cols-1 pt-[50px] md:grid-cols-2">
@@ -96,6 +134,8 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur expedita v
                 </div>
                 
             </div>
-    </div>
+        </div>)
+        }
+        <Footer/> 
     </>
 }
