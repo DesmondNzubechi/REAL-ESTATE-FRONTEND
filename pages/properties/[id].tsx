@@ -76,7 +76,7 @@ setSucceeded(true)
     const fetchPropertyReviews = async () => {
 
         try {
-            const response =  await api.get(`reviews/property/${fullProperty._id}/reviews`);
+            const response =  await api.get(`reviews/property/${id}/reviews`);
 
             const reviews = response.data.data.result;
 
@@ -133,15 +133,11 @@ setSucceeded(true)
 
     useEffect(() => { 
        fetchProperty();
-        fetchPropertyReviews()
     }, [])
 
     useEffect(() => {
-        if (id) {
-          
-            setResolveId(id);
-}
-    }, [router.query, id]) 
+        fetchPropertyReviews()
+    }, []) 
     
     return <>
         <div className="bg-textTitle h-[100px] ">
@@ -223,10 +219,10 @@ setSucceeded(true)
                                             return   <div className="flex flex-col border p-[15px]  gap-5">
                                             <div className="flex flex-col gap-[5px]">
                                                 <FaUserAlt className="text-textTitle bg-secondaryBg p-2 rounded-full text-[100px]" /> 
-                                                <h1 className="font-bold">Desmond Nzubechukwu</h1>
-                                                <h2><span className="flex items-center gap-2"><p className="font-bold capitalize shadow px-5 py-2 rounded-full text-btn-primary">August 10, 2024</p></span></h2>
+                                                <h1 className="font-bold">{review.reviewerName}</h1>
+                                                <h2><span className="flex items-center gap-2"><p className="font-bold capitalize shadow px-5 py-2 rounded-full text-btn-primary">{review.createdAt.split("T").splice(0, 1)}</p></span></h2>
                                             </div>
-                                            <p className="text-textColor text-[15px] ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, omnis fugit corporis iste magnam ratione.</p>
+                                                <p className="text-textColor text-[15px] ">{review.review}</p>
                                                 </div>
                                         })
                                     }

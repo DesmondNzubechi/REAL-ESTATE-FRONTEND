@@ -107,6 +107,6 @@ export interface reviewType{
     rating: number,
     property: ObjectId | string,
     user: ObjectId | string,
-    createdAt: Date | string,
+    createdAt: string,
     _id : ObjectId | string
 }
