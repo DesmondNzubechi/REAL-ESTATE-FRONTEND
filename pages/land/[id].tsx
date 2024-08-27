@@ -26,10 +26,19 @@ import { useRouter } from "next/router";
 import { Footer } from "@/components/Footer/footer";
 
 export default function LandDetails() {
-
+ 
     const [loading, setLoading] = useState<boolean>(false);
     const [succeeded, setSucceeded] = useState<boolean>(false)
-    const [theLand, setTheLand] = useState<landType>();
+    const [theLand, setTheLand] = useState<landType>({
+        name: '',
+        map: '',
+        images: [],
+        description: '',
+        location: '',
+        date: '',
+        price: 0,
+        _id: ''
+    });
 
     const router = useRouter(); 
     const { id } = router.query;
@@ -52,7 +61,6 @@ export default function LandDetails() {
         
         try {
             const response = await api.get(`/land/fetchALand/${id}`)
-
             const land = response.data.data.land;
 
             setTheLand(land)
@@ -79,45 +87,24 @@ export default function LandDetails() {
        {!loading && !succeeded && <ReloadPage reload={fetchLand}/>}
         { !loading && succeeded &&
             (<div className="px-[30px]  py-[100px] grid grid-cols-1 ">
-            <ImageSlider housing={propertyDetails} />
+            <ImageSlider housing={theLand} />
             
             <div className="grid gap-[100px] grid-cols-1 pt-[50px] md:grid-cols-2">
 
                 <div className="flex flex-col gap-[50px] ">
                 <div className="flex gap-5 ">
                 <span className="flex items-center gap-1"><p className="font-medium uppercase bg-btn-primary py-[10px] px-[20px] text-light">For Sale</p></span>
-                    <span className="flex items-center gap-1"><MdReviews className="text-btn-primary text-[15px] md:text-[20px] lg:text-[20px]" /> <p className="font-medium capitalize text-[15px] text-textColor">40 Reviews</p></span>
-                    <span className="flex items-center gap-2"><FaCalendarAlt className="text-btn-primary text-[15px] md:text-[20px] lg:text-[20px]"/><p className="font-medium capitalize text-[15px] text-textColor">August 10, 2024</p></span>
+                    {/* <span className="flex items-center gap-1"><MdReviews className="text-btn-primary text-[15px] md:text-[20px] lg:text-[20px]" /> <p className="font-medium capitalize text-[15px] text-textColor">40 Reviews</p></span> */}
+                        <span className="flex items-center gap-2"><FaCalendarAlt className="text-btn-primary text-[15px] md:text-[20px] lg:text-[20px]" /><p className="font-medium capitalize text-[15px] text-textColor">{ theLand.date.split("T").splice(0, 1)}</p></span>
                     </div>
                     <div>
-                    <p className="flex items-center bg-whiteTp px-[20px] gap-5 rounded text-secondaryText "><FaLocationDot /> Enugu, Nigeria</p>
+                    <p className="flex items-center bg-whiteTp px-[20px] gap-5 rounded text-secondaryText "><FaLocationDot /> {theLand?.location}</p>
                     </div>
                     <div className="flex flex-col gap-[30px]">
-                        <h1 className="font-bold px-[10px] border-l-[5px] border-btn-primary text-textTitle text-[30px] ">Property Description</h1>
+                        <h1 className="font-bold px-[10px] border-l-[5px] border-btn-primary text-textTitle text-[30px] ">Land Description</h1>
                         <p className="text-textColor text-[15px] md:text-[20px] ">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.
-
-Setting the mood with incense
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.
-
-Setting the mood with incense
- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
- Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-BY HETMAYAR
-Viral dreamcatcher keytar typewriter, aest hetic offal umami. Aesthetic polaroid pug pitchfork post-ironic.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.
-
-Image
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur expedita velit laboriosam est sint laborum eos assumenda, quam voluptatem adipisci, reprehenderit ut nobis blanditiis perspiciatis!      
-</p>
+                            {theLand?.description}
+                </p>
                     </div>
 
              
@@ -128,7 +115,8 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur expedita v
                 <div className="flex flex-col gap-[50px]">
         
                     <div className="flex flex-col gap-5">
-                    <h1 className="font-bold px-[10px] border-l-[5px] border-btn-primary text-textTitle text-[30px] ">Map</h1>
+                        <h1 className="font-bold px-[10px] border-l-[5px] border-btn-primary text-textTitle text-[30px] ">Map</h1>
+                        {/* <div >{theLand?.map }</div> */}
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.630659343489!2d7.493425073649227!3d6.441451324114151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1044a3d916d74623%3A0xbc5e0380e77941ad!2s1a%20Denton%20St%2C%20Ogui%2C%20Enugu%20400102%2C%20Enugu!5e0!3m2!1sen!2sng!4v1723050537379!5m2!1sen!2sng" width="full" className='w-full' height="700"   loading="lazy" ></iframe>
                     </div>
                 </div>

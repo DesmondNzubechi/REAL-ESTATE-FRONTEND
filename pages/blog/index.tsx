@@ -27,7 +27,7 @@ export default function Blog() {
     const fetchBlog = async () => {
         setLoading(true);
         try {
-         
+          
             const response = await api.get('/blog/getAllBlogPost')
 
             const blogs = response.data.data.blogPost;

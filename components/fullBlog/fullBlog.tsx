@@ -77,7 +77,7 @@ const [loading, setLoading] = useState<boolean>(false)
                 autoClose : 5000
             }) 
             setLoading(false);
-        }
+        } 
     }
     
     return <div className="grid px-[30px] py-[100px] gap-[100px] grid-cols-1 md:grid-cols-2">

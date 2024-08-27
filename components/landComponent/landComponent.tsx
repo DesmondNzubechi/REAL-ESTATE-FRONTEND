@@ -54,15 +54,11 @@ export const LandComponent = ({ allTheLand }: { allTheLand : landType[] | any}) 
     ]
 
     return <div className="py-[100px] px-[30px] ">
-{/* 
-<div className='flex flex-col gap-5 justify-center mb-[50px] items-center text-center'>
-            <h2 className='bg-titleBg text-btn-primary text-[15px] px-[20px] rounded-full  py-[10px] font-bold w-fit '>Our Properties</h2>
-            <h1 className="font-bold text-[25px] md:text-[30px] lg:text-[35px] text-textTitle ">Featured Properties</h1>
-        </div> */}
+
         <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
             {
                 allTheLand.map((land: landType, index: number) => {
-                    return <Link href='/land/:slug' key={index} className="border">
+                    return <Link href={`/land/${land._id}`} key={index} className="border">
                         <div className="relative">
                             <Image width={500} height={500} src={land.images[0]} alt={`${land.name} image`} className="h-[350px]" />
                             <h1 className="bg-btn-primary text-light font-medium px-[20px] py-[5px] absolute top-[30px] right-[30px] uppercase ">for sale</h1>

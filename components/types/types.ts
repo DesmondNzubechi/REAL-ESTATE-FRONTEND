@@ -92,9 +92,11 @@ export interface blogType {
 
 export interface landType {
     name: string,
-    map: string,
+    map: string | TrustedHTML | any,
     images: string[],
     description: string,
     location: string,
-    date : string,
+    date: string,
+    price: number,
+    _id: ObjectId | string
 }
