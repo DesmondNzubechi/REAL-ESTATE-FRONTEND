@@ -30,7 +30,7 @@ export default function PropertyDetails() {
 
     const router = useRouter();
     const { id } = router.query;
-    const {user} = useUserStore()
+    const {user, isAuthenticated} = useUserStore()
     const [resolvedId, setResolveId] = useState<undefined | string | string[]>()
     const [fullProperty, setFullProperty] = useState<propertyType>({
         name: '',
@@ -53,7 +53,8 @@ export default function PropertyDetails() {
     const [reviewerName, setReviewerName] = useState<string>('');
     const [theReview, setTheReview] = useState<string>("")
     const [submit, setSubmit] = useState<boolean>(false);
-  
+    const [ordering, setOrdering] = useState<boolean>(false);
+
 
     const fetchProperty = async () => {
         setLoading(true)
@@ -91,11 +92,7 @@ setSucceeded(true)
     const addAReview = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!reviewerName || !theReview) {
-            toast.error("Please fill in the required field", {
-                hideProgressBar: true,
-                position: "top-center",
-                autoClose : 5000
-            }) 
+            toast.error("Please fill in the required field") 
             return;
         }
         setSubmit(true)
@@ -109,18 +106,10 @@ setSucceeded(true)
             });
             const Thereview = response.data.data.theReview;
             setPropertyReviews((prevState) => [...prevState, Thereview])
-            toast.success("added review successfully.", {
-                hideProgressBar: true,
-                position: "top-center",
-                autoClose : 5000
-            })
+            toast.success("added review successfully.")
             fetchPropertyReviews();
         } catch (error) {
-            toast.error("An error occured. Please try again", {
-                hideProgressBar: true,
-                position: "top-center",
-                autoClose : 5000
-            }) 
+            toast.error("An error occured. Please try again") 
             console.log(error)
         } finally {
             setSubmit(false)
@@ -128,8 +117,32 @@ setSucceeded(true)
 
     }
 
-    console.log("full property", fullProperty)
-    console.log("full property reviews", propertyReviews)
+    const createOrder = async () => {
+
+        if (!isAuthenticated || !user) {
+            toast.error("Please signin before ordering for this property");
+            return;
+        }
+
+        if (!id) {
+            toast.error("Try ordering again. Something went wrong");
+            return;
+        }
+setOrdering(true)
+        try {
+          await api.post('/order/createOrder', {
+                user: user?._id,
+                property : id
+            }, {withCredentials : true})
+            toast.success("you have successfully ordered for this property");
+            router.push('/my-account/my-order');
+        } catch (error) {
+                toast.error("Sorry you could not order for this property, Try ordering again.");
+            console.log(error, "error here")
+        } finally {
+            setOrdering(false)
+        }
+    }
 
     useEffect(() => { 
        fetchProperty();
@@ -194,7 +207,9 @@ setSucceeded(true)
                     <span className="flex items-center gap-1"><FaCheckCircle className="text-btn-primary text-[15px] md:text-[20px] lg:text-[20px]" /> <p className="font-medium capitalize text-[15px] text-textColor">Microwave</p></span>
                 </div>
                     </div>
-                    
+                    <div>
+                        <button onClick={createOrder} disabled={ordering} className="bg-btn-primary text-slate-50 hover:bg-slate-900 text-[15px] font-medium p-[10px] ">{ordering? "Ordering Property" : "Order Property"}</button>
+                    </div>
 
                 </div>
 

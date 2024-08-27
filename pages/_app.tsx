@@ -7,6 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function App({ Component, pageProps }: AppProps) {
   return <>
     <Component {...pageProps} />
-    <ToastContainer />
+    <ToastContainer
+      autoClose={5000}
+      hideProgressBar={true}
+      position="top-center"
+      pauseOnHover={true}
+      closeOnClick={true}
+    />
     </>
 }
