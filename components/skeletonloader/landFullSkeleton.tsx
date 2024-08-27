@@ -30,7 +30,7 @@ export const LandDetailsSkeleton = () => {
     
     return <>
        <div className="px-[30px] animate-skeleton-loading  py-[100px] grid grid-cols-1 ">
-            <ImageSliderSkeleton housing={propertyDetails} />
+            <ImageSliderSkeleton/>
             
             <div className="grid gap-[100px] grid-cols-1 pt-[50px] md:grid-cols-2">
 

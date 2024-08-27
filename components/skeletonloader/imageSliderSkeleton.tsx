@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { GrPrevious, GrNext } from 'react-icons/gr';
 
-const ImageSliderSkeleton = ({ housing }: { housing: { images: string[] } }) => {
+const ImageSliderSkeleton = () => {
   
   
     const theImg: number[] = [1, 1, 1, 1, 1, 1, 1,1,1];

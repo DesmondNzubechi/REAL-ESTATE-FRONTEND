@@ -33,13 +33,13 @@ const ImageSlider = ({ housing }: { housing: { images: string[] } }) => {
           className="flex transition-transform duration-500 ease-in-out"
           style={{
             transform: `translateX(-${currentImgIndex * 100}%)`,
-            width: `${housing.images.length * 100}%`,
+            width: `${housing?.images.length * 100}%`,
           }}
         >
           {housing.images.map((image, index) => (
             <div key={index} className="w-full flex-shrink-0 flex justify-center items-center md:h-[80vh] relative">
               <Image
-                src={image}
+                src={image || '/'}
                 alt={`Image ${index}`}
                
                 width={1000} // Arbitrary width to maintain aspect ratio
@@ -58,9 +58,9 @@ const ImageSlider = ({ housing }: { housing: { images: string[] } }) => {
       </div>
 
       <div className="flex justify-center overflow-x-auto gap-2 mt-2">
-        {housing.images.map((pic, picIndex) => (
+        {housing?.images?.map((pic, picIndex) => (
           <Image
-            key={picIndex}
+            key={picIndex || '/'}
             src={pic}
             onClick={() => setCurrentImg(picIndex)}
             width={80}

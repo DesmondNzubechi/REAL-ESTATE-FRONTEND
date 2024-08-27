@@ -100,3 +100,13 @@ export interface landType {
     price: number,
     _id: ObjectId | string
 }
+
+export interface reviewType{
+    reviewerName: string,
+    review: string,
+    rating: number,
+    property: ObjectId | string,
+    user: ObjectId | string,
+    createdAt: Date | string,
+    _id : ObjectId | string
+}
