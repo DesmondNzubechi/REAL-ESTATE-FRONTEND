@@ -3,14 +3,14 @@ import { MdEmail } from "react-icons/md";
 import { MyAccountNav } from "@/components/myAccountNav/myAccountNav";
 import { FaFlag } from "react-icons/fa";
 import { IoCall } from "react-icons/io5";
-import myPic from '../../public/images/nzubechi.png';
+import defaultPic from '../../public/images/userProfile.jpg';
 import Image from "next/image";
 import { MobileNav } from "@/components/Navbar/mobileNav";
 import { DesktopNav } from "@/components/Navbar/desktopNav";
 import { FcAddImage } from "react-icons/fc";
 import { MdEdit } from "react-icons/md";
 import { useUserStore } from "@/components/store/store";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { userType } from "@/components/types/types"; // Renamed 'user' to 'UserType'
 import { api } from "@/components/lib/api";
 import { useRouter } from "next/router";
@@ -72,7 +72,7 @@ export default function EditProfile() {
     };
 
 
-     
+      
     const getUser = async () => {
         setLoading(true)
         try {
@@ -95,9 +95,52 @@ export default function EditProfile() {
     
         useEffect(() => {
             getUser();
-    }, []);
+        }, []);
+    
+    const [file, setFile] = useState(null);
+    const [myPic, setMyPic] = useState<string | undefined>(undefined)
+    
+        const handleFileChange = (e : any) => {
+            const file = e.target.files[0];
+            if (file) {
+              setFile(file);
+              const reader = new FileReader();
+              reader.onloadend = () => {
+                if (typeof reader.result === "string") {
+                  setMyPic(reader.result);
+                }
+              };
+              reader.readAsDataURL(file);
+            }
+          };
+          
+        const handleFileUpload = async () => {
+    if (!file) return;
 
-    return (
+    const formData = new FormData();
+    formData.append("images", file);
+
+    try {
+        const response = await api.patch(`/user/updateProfilePic/${user?._id}`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+            withCredentials: true
+        });
+        toast.success("Profile picture updated successfully");
+        console.log("File uploaded successfully:", response.data);
+    } catch (error) {
+        console.error("Error uploading file:", error);
+        toast.error("An error occurred during file upload");
+    }
+};
+
+          
+    useEffect(() => {
+handleFileUpload()
+    }, [myPic])
+
+    return ( 
         <>
             <div className="bg-textTitle fixed w-full top-0 h-[100px]"></div>
             <MobileNav /> 
@@ -184,14 +227,22 @@ export default function EditProfile() {
                             </div>
                             <div className="items-center flex relative">
                                 <Image
-                                    src={myPic}
+                                    src={
+                                        myPic ?
+                                        myPic: 
+                                        theUser?.images ?
+                                            theUser?.images :
+                                            defaultPic 
+                                    }
                                     alt={`profile picture`}
                                     height={200}
-                                    width={200}
+                                    width={200} 
                                     className="rounded-full h-[80px] w-[80px]"
                                 />
                                 <input
+                                    onChange={(e: React.ChangeEvent<any>) => handleFileChange(e)}
                                     type="file"
+                                    accept="image/*"
                                     name="user profile pic"
                                     className="hidden"
                                     id="user profile pic"

@@ -15,7 +15,7 @@ import { useUserStore } from "@/components/store/store";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import { ProfileSkeleton } from "@/components/skeletonloader/profileSkeleton";
-
+ 
 
 export default function MyAccount() {
     const [loading, setLoading] = useState<boolean>(false);
@@ -64,7 +64,7 @@ export default function MyAccount() {
                 {loading && <ProfileSkeleton/>}
         {!loading && <div className="lg:col-span-2 col-span-9 border flex flex-col lg:flex-row px-[20px] gap-5 h-fit py-[30px] ">
             <div>
-                <Image src={user?.images? user.images : defaultImg} className="w-[300px]  " alt="user image" />
+                <Image width={500} height={500} src={user?.images? user.images : defaultImg} className="w-[300px]  " alt="user image" />
             </div>
                 <div className="flex flex-col gap-4">
                     <div className="flex flex-col ">
