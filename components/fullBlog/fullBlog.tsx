@@ -130,13 +130,13 @@ const [loading, setLoading] = useState<boolean>(false)
                 <h1 className="font-bold px-[10px] border-l-[5px] border-btn-primary text-textTitle text-[15px] md:text-[30px] ">Post A Comment</h1>
                 <div className=' flex w-full justify-between bg-light px-[20px] py-[20px] '>
 
-<input  value={commentInput.username} type="text" onChange={(e) => setCommentInput({...commentInput, username : e.target.value})} placeholder='Your Name...' className='text-btn2 w-full  outline-0 text-[15px] ' /> 
-<FaPencil className='text-[15px] text-btn-primary'/>
+<input  value={commentInput.username} type="text" onChange={(e) => setCommentInput({...commentInput, username : e.target.value})} placeholder='Your Name...' className='text-btn2 w-full  outline-0 text-[12px] ' /> 
+<FaPencil className='text-[10px] text-btn-primary'/>
 </div>
 <div className=' w-full md:col-span-3 flex justify-between bg-light px-[20px] py-[20px] '>
 
-<textarea  value={commentInput.comment} onChange={(e) => setCommentInput({...commentInput, comment : e.target.value})}  placeholder='Write Your Comment Here..' className='text-btn2  min-h-[200px] w-full outline-0 text-[15px] ' /> 
-<FaPencil className='text-[15px] text-btn-primary'/>
+<textarea  value={commentInput.comment} onChange={(e) => setCommentInput({...commentInput, comment : e.target.value})}  placeholder='Write Your Comment Here..' className='text-btn2  min-h-[200px] w-full outline-0 text-[12px] ' /> 
+<FaPencil className='text-[10px] text-btn-primary'/>
 </div>
 <button type="submit" className='text-light w-fit bg-btn-primary px-[30px] py-[15px] capitalize '>{loading? "commenting..." : "Comment"}</button>
                 </form>

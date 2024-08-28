@@ -63,7 +63,7 @@ export default function TheFullBlog() {
         page="Full Blog Post" 
         CurrentPage="Blog" 
         BgImgLink="https://img.freepik.com/free-photo/elevated-view-headphone-paper-keyboard-blue-background_23-2147889936.jpg?t=st=1717449452~exp=1717453052~hmac=3ccf1d5383cc9a67a5f965c1eeaf10ff0fc6ab6c41542d80877f4eb76e41bd4f&w=740" 
-      />
+      /> 
      {!loading && !succeeded && <ReloadPage reload={fetchFullBlogArticle}/>}
      {loading && !succeeded && <FullBlogSkeleton/>}
      {!loading && succeeded && <FullBlog setFullBlogArticle={setFullBlogArticle} fullBlogArticle={fullBlogArticle}/>}

@@ -65,7 +65,8 @@ export default function PropertyDetails() {
             const property = response.data.data.property;
 
             setFullProperty(property)
-setSucceeded(true)
+            setSucceeded(true)
+            fetchPropertyReviews()
         } catch (error) {
             console.log(error);
             setSucceeded(false)
@@ -182,7 +183,7 @@ setOrdering(true)
 
                     <div className="flex flex-col gap-[30px] ">
                         <h1 className="font-semibold px-[10px] border uppercase text-textTitle w-fit py-[5px] px-[10px] text-[25px] ">Property Detail</h1>
-                        <div className="grid grid-cols-3 bg-secondaryBg gap-5 rounded px-[20px] py-[30px] ">
+                        <div className="grid grid-cols-2 md:grid-cols-3 bg-secondaryBg gap-5 rounded px-[20px] py-[30px] ">
                             <span className="flex items-center gap-1"><h1 className="capitalize text-textTitle font-semibold text-[15px]">Rooms : </h1> <p className=" capitalize text-[12px] text-textColor">40</p></span>
                             <span className="flex items-center gap-1"><h1 className="capitalize text-textTitle font-semibold text-[15px]">Baths : </h1> <p className=" capitalize text-[12px] text-textColor">40</p></span>
                             <span className="flex items-center gap-1"><h1 className="capitalize text-textTitle font-semibold text-[15px]">Year built : </h1> <p className=" capitalize text-[12px] text-textColor">2024</p></span>
@@ -195,7 +196,7 @@ setOrdering(true)
                
                 <div className="flex flex-col gap-5">
                 <h1 className="font-semibold px-[10px] border text-textTitle w-fit py-[5px] px-[10px] text-[25px] ">Amenities</h1>
-                <div className="grid grid-cols-3 gap-5">
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
                     <span className="flex items-center gap-1"><FaCheckCircle className="text-btn-primary text-[12px] " /> <p className="font-medium capitalize text-[15px] text-textColor">Microwave</p></span>
                     <span className="flex items-center gap-1"><FaCheckCircle className="text-btn-primary text-[12px] " /> <p className="font-medium capitalize text-[15px] text-textColor">Microwave</p></span>
                     <span className="flex items-center gap-1"><FaCheckCircle className="text-btn-primary text-[12px] " /> <p className="font-medium capitalize text-[15px] text-textColor">Microwave</p></span>

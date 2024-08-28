@@ -93,15 +93,15 @@ export default function LandDetails() {
 
                 <div className="flex flex-col gap-[50px] ">
                 <div className="flex gap-5 ">
-                <span className="flex items-center gap-1"><p className="font-medium uppercase bg-btn-primary py-[10px] px-[20px] text-light">For Sale</p></span>
+                <span className="flex items-center gap-1"><p className="font-medium uppercase bg-btn-primary py-[10px] px-[20px] text-[12px] text-light">For Sale</p></span>
                     {/* <span className="flex items-center gap-1"><MdReviews className="text-btn-primary text-[15px] md:text-[20px] lg:text-[20px]" /> <p className="font-medium capitalize text-[15px] text-textColor">40 Reviews</p></span> */}
-                        <span className="flex items-center gap-2"><FaCalendarAlt className="text-btn-primary text-[15px] md:text-[20px] lg:text-[20px]" /><p className="font-medium capitalize text-[15px] text-textColor">{ theLand.date.split("T").splice(0, 1)}</p></span>
+                    <span className="flex items-center gap-2"><FaCalendarAlt className="text-btn-primary text-[12px]"/><p className=" capitalize text-[12px] text-textColor">{theLand?.date?.split('T')?.splice(0, 1)}</p></span>
                     </div>
-                    <div>
-                    <p className="flex items-center bg-whiteTp px-[20px] gap-5 rounded text-secondaryText "><FaLocationDot /> {theLand?.location}</p>
-                    </div>
+                    <div className="self-start">
+                        <p className="flex self-start items-center bg-whiteTp  capitalize font-semibold gap-3 rounded text-secondaryText "><FaLocationDot className="text-btn-primary"/>{theLand?.location}</p>
+                    </div> 
                     <div className="flex flex-col gap-[30px]">
-                        <h1 className="font-bold px-[10px] border-l-[5px] border-btn-primary text-textTitle text-[30px] ">Land Description</h1>
+                    <h1 className="font-semibold px-[10px] border text-textTitle w-fit py-[5px] px-[10px] text-[25px] ">Land Description</h1>
                         <p className="text-textColor text-[15px] md:text-[20px] ">
                             {theLand?.description}
                 </p>
@@ -109,15 +109,15 @@ export default function LandDetails() {
 
              
            
-
+ 
                 </div>
 
                 <div className="flex flex-col gap-[50px]">
         
                     <div className="flex flex-col gap-5">
-                        <h1 className="font-bold px-[10px] border-l-[5px] border-btn-primary text-textTitle text-[30px] ">Map</h1>
+                    <h1 className="font-semibold px-[10px] border text-textTitle w-fit py-[5px] px-[10px] text-[25px] ">Map</h1>
                         {/* <div >{theLand?.map }</div> */}
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.630659343489!2d7.493425073649227!3d6.441451324114151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1044a3d916d74623%3A0xbc5e0380e77941ad!2s1a%20Denton%20St%2C%20Ogui%2C%20Enugu%20400102%2C%20Enugu!5e0!3m2!1sen!2sng!4v1723050537379!5m2!1sen!2sng" width="full" className='w-full' height="700"   loading="lazy" ></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.630659343489!2d7.493425073649227!3d6.441451324114151!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1044a3d916d74623%3A0xbc5e0380e77941ad!2s1a%20Denton%20St%2C%20Ogui%2C%20Enugu%20400102%2C%20Enugu!5e0!3m2!1sen!2sng!4v1723050537379!5m2!1sen!2sng" width="full" className='w-full' height="400"   loading="lazy" ></iframe>
                     </div>
                 </div>
                 
