@@ -7,84 +7,76 @@ import { FaLocationDot } from "react-icons/fa6";
 import house1 from '../../public/images/house8.avif';
 import house2 from '../../public/images/house3.avif';
 import house3 from '../../public/images/house5.avif';
-import { propertyOverview } from "../types/types";
+import { propertyOverview, propertyType } from "../types/types";
 import Image from "next/image";
-
+import { usePropertiesStore } from "../store/store";
+import Link from "next/link";
+import { api } from "../lib/api";
+import { useEffect, useState } from "react";
+ 
 
 export const FeaturedProperty = () => {
 
+    const { properties, setProperties } = usePropertiesStore()
+    const [loading, setLoading] = useState<boolean>(false);
+    const [succeeded, setSucceeded] = useState<boolean>(false)
+    
+    
+    console.log("Our properties", properties)
 
-    const featuredProps: propertyOverview[] = [
-        {
-            name: "New House here",
-            price: '9000',
-            location: "Enugu, Nigeria",
-            bedroom: "3",
-            bathroom: "2",
-            car: "2",
-            status: "for sale",
-            imageNo: "2",
-            video: "1",
-            images : house1
-        },
-        {
-            name: "New House here",
-            price: '9000',
-            location: "Enugu, Nigeria",
-            bedroom: "3",
-            bathroom: "2",
-            car: "2",
-            status: "for sale",
-            imageNo: "2",
-            video: "1",
-            images : house2
-        },
-        {
-            name: "New House here",
-            price: '9000',
-            location: "Enugu, Nigeria",
-            bedroom: "3",
-            bathroom: "2",
-            car: "2",
-            status: "for sale",
-            imageNo: "2",
-            video: "1",
-            images : house3
-        },
-       
-    ]
+    const fetchPoperties = async () => {
+        setLoading(true)
+        try {
+            const response = await api.get('/properties/');
+            const props = response.data.data.properties;
+            setProperties(props)
+            console.log("The properties", props);
+            setLoading(false)
+            setSucceeded(true);
+        } catch (error) {
+            console.log("the errors", error)
+            setLoading(false)
+            setSucceeded(false);
+        }
+    } 
+
+    useEffect(() => {
+fetchPoperties()
+    }, [])
+   
+ 
 
     return <div className="py-[100px] px-[30px] ">
-
+ 
 <div className='flex flex-col gap-5 justify-center mb-[50px] items-center text-center'>
             <h2 className='bg-titleBg text-btn-primary text-[15px] px-[20px] rounded-full  py-[10px] font-bold w-fit '>Our Properties</h2>
             <h1 className="font-bold text-[20px] md:text-[30px] lg:text-[35px] text-textTitle ">Featured Properties</h1>
         </div>
         <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
             {
-                featuredProps.map((property: propertyOverview, index: number) => {
-                    return <div key={index} className="border">
+                properties?.splice(0, 3).map((property: propertyType, index: number) => {
+                    return <Link href={`/properties/${property._id}`} key={index} className="border">
                         <div className="relative">
-                            <Image src={property.images} alt={`${property.name} image`} className="md:h-[350px] " />
-                            <h1 className="bg-btn-primary text-light font-medium px-[20px] py-[5px] absolute top-[30px] right-[30px] uppercase ">{property.status}</h1>
+                            <Image width={500} height={500} src={`${!property.images[0].startsWith("https://")? house1.src : property.images[0]}`} alt={`${property.name} image`} className="md:h-[350px] " />
+                            <h1 className="bg-btn-primary text-light font-medium px-[20px] py-[5px] absolute top-[30px] right-[30px] uppercase ">For sale</h1>
                             <div className=" absolute bottom-0  flex justify-between w-full py-[10px] px-[20px] ">
                                 <p className="flex items-center bg-whiteTp px-[20px] gap-2 rounded text-secondaryText "><FaLocationDot className="text-[10px] md:text-[20px]" /> <span className="'text-[10px] md:text-[15px] ">{property.location}</span></p>
                                 <div className="flex items-center gap-[10px] ">
-                                    <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 rounded-full "><IoCameraSharp className="text-[10px] md:text-[20px]" /> <span className="'text-[10px] md:text-[15px] ">{property.imageNo}</span></p>
-                                      <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 px-[10px] rounded-full "><RiFolderVideoFill className="text-[10px] md:text-[20px]"/> <span className="'text-[10px] md:text-[15px] ">{property.video}</span></p>
-                                </div>
+                                    <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 rounded-full "><IoCameraSharp className="text-[10px] md:text-[20px]" /> <span className="'text-[10px] md:text-[15px] ">{/*property.images.length*/}</span></p>
+                                      <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 px-[10px] rounded-full "><RiFolderVideoFill className="text-[10px] md:text-[20px]"/> <span className="'text-[10px] md:text-[15px] "></span></p>
+                                </div> 
                             </div>
 </div>
                         <div className="flex flex-col gap-[20px] px-[20px] py-[20px] ">
                             <h1 className="text-btn-primary font-medium md:text-[20px] text-[10px] ">N {property.price}</h1>
-                            <h1 className="font-bold text-textTitle text-[20px] md:text-[30px] ">{property.name}</h1>
+                            <h1 className="font-bold text-textTitle text-[15px] md:text-[20px] ">{property.name}</h1>
                             <div className=" gap-2 grid grid-cols-2 md:grid-cols-3 ">
-                                <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{property.bedroom}</h1>< MdBedroomParent className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bedroom</p></div>
-                                <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{property.bathroom}</h1>< MdBathtub className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bathroom</p></div>
-                                <div className="flex items-center text-textColor  gap-1 "><h1 className="font-bold md:text-[20px] text-[10px] ">{property.car}</h1>< GiHomeGarage className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Carpark</p></div>
+                                <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{/*property.bedroom*/}</h1>< MdBedroomParent className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bedroom</p></div>
+                                <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{/*property.bathroom*/}</h1>< MdBathtub className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bathroom</p></div>
+                                <div className="flex items-center text-textColor  gap-1 "><h1 className="font-bold md:text-[20px] text-[10px] ">{/*property.car*/}</h1>< GiHomeGarage className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Carpark</p></div>
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 })
 }
         </div>

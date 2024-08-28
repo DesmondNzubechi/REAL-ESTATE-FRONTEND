@@ -22,7 +22,7 @@ export const BlogPost = () => {
                     
                 <div className="flex flex-col py-[20px] px-[30px]  gap-5 ">
                     <div className="flex flex-row gap-5 items-center">
-                        <span className="flex items-center gap-1"><FaUserAlt className="text-btn-primary text-[10px] md:text-[20px] lg:text-[25px]" /> <p className="font-medium capitalize text-textColor text-[12px] md:text-[15px]">by admin</p></span>
+                         <span className="flex items-center gap-1"><FaUserAlt className="text-btn-primary text-[10px] md:text-[20px] lg:text-[25px]" /> <p className="font-medium capitalize text-textColor text-[12px] md:text-[15px]">by admin</p></span>
                         <span className="flex items-center gap-1"><FaTags  className="text-btn-primary text-[10px] md:text-[20px] lg:text-[25px]"/> <p className="font-medium uppercase text-[12px] md:text-[15px] text-textColor">business</p></span>
 </div>
                 
