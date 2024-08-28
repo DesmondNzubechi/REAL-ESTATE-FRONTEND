@@ -52,7 +52,7 @@ export default function MyOrder() {
     const getMyOrder = async () => {
         setLoading(true);
         try {
-
+ 
             const response = await api.get(`/order/getAllOrderByUser/${user?._id}`, { withCredentials: true });
 
             const orders = response.data.data.orders;

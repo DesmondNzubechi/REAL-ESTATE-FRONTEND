@@ -22,7 +22,7 @@ export default function MyActivities() {
     const { user, setUser } = useUserStore();
     console.log('the user id', user?._id)
 
-
+console.log("my activities", myActivities)
      
     const getUser = async () => {
        // setLoading(true)
@@ -47,7 +47,7 @@ export default function MyActivities() {
         useEffect(() => {
             getUser();
     }, []);
-
+ 
 
     const getMyActivities = async () => {
         setLoading(true);
@@ -57,7 +57,7 @@ export default function MyActivities() {
             const activities = response.data.data.activities;
 
             console.log("This activity", activities)
-            setMyActivities(prevState =>  [...prevState, activities]);
+            setMyActivities(activities);
 
             setSucceeded(true)
         } catch (error) {
@@ -89,34 +89,38 @@ export default function MyActivities() {
                         
                         {
                             myActivities?.map((activity: activitiesType) => {
-                                return   <Link href='' className="bg-secondaryBg shadow-2xl hover:bg-primaryBg px-[20px] py-[20px] flex flex-col lg:flex-row w-full md:w-fit  gap-2  rounded">
-                           
+                                return <Link
+                                    href={
+                                        activity.activityType.includes("order")?
+                                            `/my-account/my-order` :
+                                            activity.activityType.includes("comment") ?
+                                                `/blog` :
+                                                activity.activityType.includes("review") ?
+                                                    `/properties/${activity.property._id}` :
+                                                '/'}
+                                    className="bg-secondaryBg shadow-2xl hover:bg-primaryBg px-[20px] py-[20px] flex flex-col lg:flex-row w-full md:w-fit  gap-2  rounded">
+                            
                                 <div className="flex justify-between gap-2 items-center">
                                 <span className="flex items-center">
                                     <IoIosNotifications className="md:text-[20px] text-[15px] text-btn-primary"/>
-                                    <h1 className="font-bold uppercase md:text-[20px] text-[15px] text-textTitle">Order Placed</h1>
+                                    <h1 className="font-bold uppercase md:text-[20px] text-[15px] text-textTitle">{activity.activityType.replace("_", ' ')}</h1>
                                     </span>
-                                    <p className="md:text-[10px] text-[8px] font-bold text-textColor">jul, 12, 2024</p>
-                                </div>
-                            <p className="text-textColor text-[12px] md:text-[15px]">You just place an order for a property</p>
+                                    <p className="md:text-[10px] text-[8px] font-bold text-textColor">{activity.timestamp.split("T").splice(0, 1)}</p>
+                                </div> 
+                                    <p className="text-textColor text-[12px] md:text-[15px]">
+                                        {activity.activityType.includes("order")?
+                                            "You just place an order for a property" :
+                                            activity.activityType.includes("comment") ?
+                                                "You commented on a blog post" :
+                                                activity.activityType.includes("review") ?
+                                                    "You added a review to a property" :
+                                                    "You performed activity"
+                                        }
+                                    </p>
                              
-                            {/* <Link className="font-semibold px-[5px] py-[2px] bg-titleBg text-btn-primary rounded-[10px] " href=''>View</Link> */}
                         </Link>  
                             })
                         }
-                        <Link href='' className="bg-secondaryBg shadow-2xl hover:bg-primaryBg px-[20px] py-[20px] flex flex-col lg:flex-row w-full md:w-fit  gap-2  rounded">
-                           
-                                <div className="flex justify-between gap-2 items-center">
-                                <span className="flex items-center">
-                                    <IoIosNotifications className="md:text-[20px] text-[15px] text-btn-primary"/>
-                                    <h1 className="font-bold uppercase md:text-[20px] text-[15px] text-textTitle">Order Placed</h1>
-                                    </span>
-                                    <p className="md:text-[10px] text-[8px] font-bold text-textColor">jul, 12, 2024</p>
-                                </div>
-                            <p className="text-textColor text-[12px] md:text-[15px]">You just place an order for a property</p>
-                            
-                            {/* <Link className="font-semibold px-[5px] py-[2px] bg-titleBg text-btn-primary rounded-[10px] " href=''>View</Link> */}
-                        </Link>  
           </div>
         </div>}
     </div>

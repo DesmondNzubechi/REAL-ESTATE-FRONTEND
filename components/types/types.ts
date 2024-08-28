@@ -120,7 +120,7 @@ export interface orderType{
 };
 
 export interface activitiesType {
-    property: propertyType | landType,
+    property: propertyType | landType | blogType,
     activityType: string
     timestamp: string
     user: string | ObjectId
