@@ -97,41 +97,52 @@ export default function EditProfile() {
             getUser();
         }, []);
     
-    const [file, setFile] = useState(null);
+    const [file, setFile] = useState<File | null>(null);
     const [myPic, setMyPic] = useState<string | undefined>(undefined)
     
-        const handleFileChange = (e : any) => {
-            const file = e.target.files[0];
-            if (file) {
-              setFile(file);
-              const reader = new FileReader();
-              reader.onloadend = () => {
-                if (typeof reader.result === "string") {
-                  setMyPic(reader.result);
-                }
-              };
-              reader.readAsDataURL(file);
-            }
-          };
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+           
+  const file = e.target.files?.[0];
+  if (file) {
+    setFile(file);
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      if (typeof reader.result === "string") {
+        setMyPic(reader.result);
+      }
+    };
+    reader.readAsDataURL(file);
+        }
+        
+};
+
           
-        const handleFileUpload = async () => {
+    
+    const handleFileUpload = async () => {
+            
     if (!file) return;
 
     const formData = new FormData();
     formData.append("images", file);
 
-    try {
-        const response = await api.patch(`/user/updateProfilePic/${user?._id}`, formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
+            try {
+        
+     await api.patch(
+            `/user/updateProfilePic/${user?._id}`,
+         formData,
+         {
+            headers: { "Content-Type": "multipart/form-data"},
             withCredentials: true
-        });
+         });
+                
         toast.success("Profile picture updated successfully");
-        console.log("File uploaded successfully:", response.data);
-    } catch (error) {
-        console.error("Error uploading file:", error);
-        toast.error("An error occurred during file upload");
+            } catch (error) {
+                 
+                console.error("Error updating profile picture:", error);
+                
+                toast.error("An error occurred during profile picture update");
+                
     }
 };
 
@@ -139,7 +150,7 @@ export default function EditProfile() {
     useEffect(() => {
 handleFileUpload()
     }, [myPic])
-
+ 
     return ( 
         <>
             <div className="bg-textTitle fixed w-full top-0 h-[100px]"></div>
@@ -240,7 +251,7 @@ handleFileUpload()
                                     className="rounded-full h-[80px] w-[80px]"
                                 />
                                 <input
-                                    onChange={(e: React.ChangeEvent<any>) => handleFileChange(e)}
+                                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFileChange(e)}
                                     type="file"
                                     accept="image/*"
                                     name="user profile pic"

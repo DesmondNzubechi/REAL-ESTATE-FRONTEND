@@ -93,7 +93,7 @@ fetchPoperties()
              
             <div className="bg-secondaryBg w-full border py-[10px] items-center px-[20px] flex justify-between">
                 <input type="text" name="" className="text-textColor text-[15px] md:text-[20px] outline-0 w-full bg-transparent py-[10px] px-[20px] " placeholder="Search for a property" id="" />
-                <IoIosSearch  className="text-btn-primary font-bold text-[30px]"/>
+                 <IoIosSearch  className="text-btn-primary font-bold text-[30px]"/>
             </div>
             {loading && !succeeded && <PropertySkeleton /> }
             {!loading && !succeeded && <ReloadPage reload={fetchPoperties}/>}

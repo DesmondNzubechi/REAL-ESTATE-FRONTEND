@@ -37,7 +37,7 @@ const ImageSlider = ({ housing }: { housing: { images: string[] } }) => {
           }}
         >
           {housing.images.map((image, index) => (
-            <div key={index} className="w-full flex-shrink-0 flex justify-center items-center md:h-[80vh] relative">
+            <div key={index} className="w-full flex-shrink-0 flex justify-between items-start md:h-[80vh] relative">
               <Image
                 src={image || '/'}
                 alt={`Image ${index}`}
@@ -57,7 +57,7 @@ const ImageSlider = ({ housing }: { housing: { images: string[] } }) => {
         />
       </div>
 
-      <div className="flex justify-center overflow-x-auto gap-2 mt-2">
+      <div className="flex justify-between overflow-x-auto gap-2 mt-2">
         {housing?.images?.map((pic, picIndex) => (
           <Image
             key={picIndex || '/'}
