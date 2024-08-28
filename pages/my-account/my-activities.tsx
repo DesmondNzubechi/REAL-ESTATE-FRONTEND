@@ -55,9 +55,10 @@ console.log("my activities", myActivities)
             const response = await api.get(`/activities/getUserActivities/${user?._id}`, { withCredentials: true });
             
             const activities = response.data.data.activities;
+            const sortedActivities = activities.sort((a : any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
 
             console.log("This activity", activities)
-            setMyActivities(activities);
+            setMyActivities(sortedActivities);
 
             setSucceeded(true)
         } catch (error) {
@@ -98,7 +99,7 @@ console.log("my activities", myActivities)
                                                 activity.activityType.includes("review") ?
                                                     `/properties/${activity.property._id}` :
                                                 '/'}
-                                    className="bg-secondaryBg shadow-2xl hover:bg-primaryBg px-[20px] py-[20px] flex flex-col lg:flex-row w-full md:w-fit  gap-2  rounded">
+                                    className="bg-secondaryBg shadow hover:bg-primaryBg px-[20px] py-[20px] flex flex-col lg:flex-row w-full md:w-fit  gap-2  rounded">
                             
                                 <div className="flex justify-between gap-2 items-center">
                                 <span className="flex items-center">
