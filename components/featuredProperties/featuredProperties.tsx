@@ -13,6 +13,8 @@ import { usePropertiesStore } from "../store/store";
 import Link from "next/link";
 import { api } from "../lib/api";
 import { useEffect, useState } from "react";
+import { ReloadPage } from "../Reload/Reload";
+import { PropertySkeleton } from "../skeletonloader/propertySkeleton";
  
 
 export const FeaturedProperty = () => {
@@ -52,7 +54,9 @@ fetchPoperties()
             <h2 className='bg-titleBg text-btn-primary text-[15px] px-[20px] rounded-full  py-[10px] font-bold w-fit '>Our Properties</h2>
             <h1 className="font-bold text-[20px] md:text-[30px] lg:text-[35px] text-textTitle ">Featured Properties</h1>
         </div>
-        <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
+        {!loading && !succeeded && <ReloadPage reload={fetchPoperties} />}
+        {loading && !succeeded && <PropertySkeleton/>}
+        {!loading && succeeded && <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
             {
                 properties?.splice(0, 3).map((property: propertyType, index: number) => {
                     return <Link href={`/properties/${property._id}`} key={index} className="border">
@@ -79,8 +83,6 @@ fetchPoperties()
                     </Link>
                 })
 }
-        </div>
-
-
+        </div>}
     </div>
 }
