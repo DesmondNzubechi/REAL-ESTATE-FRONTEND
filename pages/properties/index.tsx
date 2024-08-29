@@ -19,7 +19,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePropertiesStore } from "@/components/store/store";
 import { api } from "@/components/lib/api";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { PropertySkeleton } from "@/components/skeletonloader/propertySkeleton";
 import { ReloadPage } from "@/components/Reload/Reload";
 
@@ -52,6 +52,29 @@ export default function Properties() {
     useEffect(() => {
 fetchPoperties()
     }, [])
+ 
+    const [searchText, setSearchText] = useState<string>('')
+    const [searchedProperties, setSearchedProperties] = useState<propertyType[] | any>()
+
+    console.log("The search properties", searchedProperties)
+
+    const searchgProperty = (e: string) => {
+
+        const value = e.toLowerCase();
+
+        setSearchText(value)
+        const filterProperty = properties?.filter((prop: propertyType) => {
+            return (
+                prop.amenities.toLowerCase().includes(value) ||
+                (prop.price === value) ||
+                prop.name.toLowerCase().includes(value) ||
+                prop.developmentStatus.toLowerCase().includes(value) ||
+                prop.yearBuilt.includes(value) ||
+                prop.location.toLowerCase().includes(value)
+            )
+        })
+        setSearchedProperties(filterProperty)
+    }
    
  
     return <>
@@ -92,13 +115,42 @@ fetchPoperties()
             </div>
              
             <div className="bg-secondaryBg w-full border py-[10px] items-center px-[20px] flex justify-between">
-                <input type="text" name="" className="text-textColor text-[15px] md:text-[20px] outline-0 w-full bg-transparent py-[10px] px-[20px] " placeholder="Search for a property" id="" />
+                <input type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => searchgProperty(e.target.value)} value={searchText} name="" className="text-textColor text-[15px] md:text-[20px] outline-0 w-full bg-transparent py-[10px] px-[20px] " placeholder="Search for a property" id="" />
                  <IoIosSearch  className="text-btn-primary font-bold text-[30px]"/>
             </div>
             {loading && !succeeded && <PropertySkeleton /> }
-            {!loading && !succeeded && <ReloadPage reload={fetchPoperties}/>}
-           {!loading && succeeded && <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
-            { 
+            {!loading && !succeeded && <ReloadPage reload={fetchPoperties} />}
+           {searchText && <div className="text-center">
+                <h1 className="font-medium capitalize">{searchedProperties.length} result for your search</h1>
+            </div>}
+            {!loading && succeeded && <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
+                { searchedProperties && searchText &&
+                searchedProperties?.map((property: propertyType, index: number) => {
+                    return <Link href={`/properties/${property._id}`} key={index} className="border">
+                    <div className="relative">
+                        <Image width={500} height={500} src={`${!property.images[0].startsWith("https://")? house1.src : property.images[0]}`} alt={`${property.name} image`} className="md:h-[350px] " />
+                        <h1 className="bg-btn-primary text-light font-medium px-[20px] py-[5px] absolute top-[30px] right-[30px] uppercase ">{property.developmentStatus}</h1>
+                        <div className=" absolute bottom-0  flex justify-between w-full py-[10px] px-[20px] ">
+                            <p className="flex items-center bg-whiteTp px-[20px] gap-2 rounded text-secondaryText "><FaLocationDot className="text-[10px] md:text-[20px]" /> <span className="'text-[10px] md:text-[15px] ">{property.location}</span></p>
+                            <div className="flex items-center gap-[10px] ">
+                                <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 rounded-full "><IoCameraSharp className="text-[10px] md:text-[20px]" /> <span className="'text-[10px] md:text-[15px] ">{property.images.length}</span></p>
+                                  <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 px-[10px] rounded-full "><RiFolderVideoFill className="text-[10px] md:text-[20px]"/> <span className="'text-[10px] md:text-[15px] "></span></p>
+                            </div>
+                        </div>
+</div>
+                    <div className="flex flex-col gap-[20px] px-[20px] py-[20px] ">
+                        <h1 className="text-btn-primary font-medium md:text-[20px] text-[10px] ">N {property.price}</h1>
+                        <h1 className="font-bold text-textTitle text-[20px] md:text-[30px] ">{property.name}</h1>
+                        <div className=" gap-2 grid grid-cols-2 md:grid-col-3">
+                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{property?.bedroom}</h1>< MdBedroomParent className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bedroom</p></div>
+                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{property?.bathroom}</h1>< MdBathtub className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bathroom</p></div>
+                            <div className="flex items-center text-textColor  gap-1 "><h1 className="font-bold md:text-[20px] text-[10px] ">{property.garadge}</h1>< GiHomeGarage className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Carpark</p></div>
+                        </div>
+                    </div>  
+                </Link>
+                })
+} 
+            {!searchText &&
                 properties?.map((property: propertyType, index: number) => {
                     return <Link href={`/properties/${property._id}`} key={index} className="border">
                     <div className="relative">

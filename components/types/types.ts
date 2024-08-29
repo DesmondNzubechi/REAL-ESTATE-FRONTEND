@@ -57,7 +57,7 @@ export interface propertyType {
     _id: string,
     location: string,
     map: string,
-    price: number,
+    price: number | string,
     images: string[],
     description: string,
     developmentStatus: string,
