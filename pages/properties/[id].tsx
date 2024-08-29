@@ -45,7 +45,12 @@ export default function PropertyDetails() {
     interiorFeatures: '',
     extriorFeatures: '',
     reviews: [],
-    date : ''
+        date: '',
+        status: '',
+        yearBuilt: '',
+        bedroom: '',
+        bathroom: '',
+        garadge : '',
     })
     const [propertyReviews, setPropertyReviews] = useState<reviewType[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
@@ -184,29 +189,25 @@ setOrdering(true)
                     <div className="flex flex-col gap-[30px] ">
                         <h1 className="font-semibold px-[10px] border uppercase text-textTitle w-fit py-[5px] px-[10px] text-[25px] ">Property Detail</h1>
                         <div className="grid grid-cols-2 md:grid-cols-3 bg-secondaryBg gap-5 rounded px-[20px] py-[30px] ">
-                            <span className="flex items-center gap-1"><h1 className="capitalize text-textTitle font-semibold text-[15px]">Rooms : </h1> <p className=" capitalize text-[12px] text-textColor">40</p></span>
-                            <span className="flex items-center gap-1"><h1 className="capitalize text-textTitle font-semibold text-[15px]">Baths : </h1> <p className=" capitalize text-[12px] text-textColor">40</p></span>
-                            <span className="flex items-center gap-1"><h1 className="capitalize text-textTitle font-semibold text-[15px]">Year built : </h1> <p className=" capitalize text-[12px] text-textColor">2024</p></span>
-                            <span className="flex items-center gap-1"><h1 className="capitalize text-textTitle font-semibold text-[15px]"> Beds : </h1> <p className=" capitalize text-[12px] text-textColor">32</p></span>
-                            <span className="flex items-center gap-1"><h1 className="capitalize text-textTitle font-semibold text-[15px]">Price : </h1> <p className=" capitalize text-[12px] text-textColor">N 400000</p></span>
-                            <span className="flex items-center gap-1"><h1 className="capitalize text-textTitle font-semibold text-[15px]">Status : </h1> <p className=" capitalize text-[12px] text-textColor">For Rent</p></span>
+                            <span className="flex items-center gap-1"><h1 className="capitalize text-textTitle font-semibold text-[15px]">Rooms : </h1> <p className=" capitalize text-[12px] text-textColor">{fullProperty.bathroom}</p></span>
+                            <span className="flex items-center gap-1"><h1 className="capitalize text-textTitle font-semibold text-[15px]">Baths : </h1> <p className=" capitalize text-[12px] text-textColor">{fullProperty.bathroom}</p></span>
+                            <span className="flex items-center gap-1"><h1 className="capitalize text-textTitle font-semibold text-[15px]">Year built : </h1> <p className=" capitalize text-[12px] text-textColor">{fullProperty.yearBuilt}</p></span>
+                            <span className="flex items-center gap-1"><h1 className="capitalize text-textTitle font-semibold text-[15px]"> Garadge : </h1> <p className=" capitalize text-[12px] text-textColor">{fullProperty.garadge}</p></span>
+                            <span className="flex items-center gap-1"><h1 className="capitalize text-textTitle font-semibold text-[15px]">Price : </h1> <p className=" capitalize text-[12px] text-textColor">N {fullProperty.price}</p></span>
+                            <span className="flex items-center gap-1"><h1 className="capitalize text-textTitle font-semibold text-[15px]">Status : </h1> <p className=" capitalize text-[12px] text-textColor">{fullProperty.status}</p></span>
                         </div>
                     </div>
 
                
                 <div className="flex flex-col gap-5">
                 <h1 className="font-semibold px-[10px] border text-textTitle w-fit py-[5px] px-[10px] text-[25px] ">Amenities</h1>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
-                    <span className="flex items-center gap-1"><FaCheckCircle className="text-btn-primary text-[12px] " /> <p className="font-medium capitalize text-[15px] text-textColor">Microwave</p></span>
-                    <span className="flex items-center gap-1"><FaCheckCircle className="text-btn-primary text-[12px] " /> <p className="font-medium capitalize text-[15px] text-textColor">Microwave</p></span>
-                    <span className="flex items-center gap-1"><FaCheckCircle className="text-btn-primary text-[12px] " /> <p className="font-medium capitalize text-[15px] text-textColor">Microwave</p></span>
-                    <span className="flex items-center gap-1"><FaCheckCircle className="text-btn-primary text-[12px] " /> <p className="font-medium capitalize text-[15px] text-textColor">Microwave</p></span>
-                    <span className="flex items-center gap-1"><FaCheckCircle className="text-btn-primary text-[12px] " /> <p className="font-medium capitalize text-[15px] text-textColor">Microwave</p></span>
-                    <span className="flex items-center gap-1"><FaCheckCircle className="text-btn-primary text-[12px] " /> <p className="font-medium capitalize text-[15px] text-textColor">Microwave</p></span>
-                    <span className="flex items-center gap-1"><FaCheckCircle className="text-btn-primary text-[12px] " /> <p className="font-medium capitalize text-[15px] text-textColor">Microwave</p></span>
-                    <span className="flex items-center gap-1"><FaCheckCircle className="text-btn-primary text-[12px] " /> <p className="font-medium capitalize text-[15px] text-textColor">Microwave</p></span>
-                    <span className="flex items-center gap-1"><FaCheckCircle className="text-btn-primary text-[12px] " /> <p className="font-medium capitalize text-[15px] text-textColor">Microwave</p></span>
-                </div>
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+                            {
+                                fullProperty.amenities.split(",").map((amenity: string) => {
+                                return   <span className="flex items-center gap-1"><FaCheckCircle className="text-btn-primary text-[12px] " /> <p className="font-medium capitalize text-[15px] text-textColor">{amenity}</p></span>
+                                })
+                            }
+                   </div>
                     </div>
                     <div>
                         <button onClick={createOrder} disabled={ordering} className="bg-btn-primary text-slate-50 hover:bg-slate-900 text-[15px] font-medium p-[10px] ">{ordering? "Ordering Property" : "Order Property"}</button>

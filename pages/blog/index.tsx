@@ -43,7 +43,7 @@ export default function Blog() {
         }
     } 
 
-    useEffect(() => {
+    useEffect(() => { 
         fetchBlog();
     }, [])
     

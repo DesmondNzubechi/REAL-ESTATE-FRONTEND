@@ -65,7 +65,12 @@ export interface propertyType {
     interiorFeatures: string,
     extriorFeatures: string,
     reviews: any,
-    date : any
+    date: any
+    status: string
+    yearBuilt: string
+    bedroom: string
+    bathroom: string
+    garadge : string
 }
 
 export interface commentType {

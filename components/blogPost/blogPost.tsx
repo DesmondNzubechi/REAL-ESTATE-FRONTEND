@@ -63,13 +63,13 @@ export const BlogPost = () => {
                             <span className="flex items-center gap-1"><FaTags  className="text-btn-primary text-[10px] md:text-[20px] lg:text-[25px]"/> <p className="font-medium uppercase text-[12px] md:text-[15px] text-textColor">{blog.status}</p></span>
     </div>
                     
-                    <h1 className="font-bold text-textTitle text-[15px] md:text-[20px]  ">{blog.title}</h1> 
+                    <h1 className="font-bold text-textTitle text-[15px] md:text-[20px]  ">{blog.title}</h1>  
                     <hr />
                     <div className="flex justify-between ">
     <span className="flex items-center gap-2"><FaCalendarAlt className="text-btn-primary text-[10px] md:text-[20px] lg:text-[25px]"/><p className="font-medium capitalize text-textColor text-[12px] md:text-[15px]">{blog.date.split("T").splice(0, 1)}</p></span>
                         <Link href='' className="font-medium uppercase text-btn-primary text-[12px] md:text-[15px] hover:text-btn2">Read more</Link>
-                            </div>
-                            </div>
+                            </div> 
+                            </div> 
                     </Link>
                     })
                 }
