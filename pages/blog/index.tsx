@@ -59,9 +59,11 @@ export default function Blog() {
             {
                 blog.map((article: blogType, index: number) => {
                     return <Link href={`/blog/${article._id}`} key={index} className="border relative hover:shadow-2xl group overflow-hidden">
-                         <Image height={500} width={500}  src={article.images} 
+                        <div className="relative overflow-hidden">
+                        <Image height={500} width={500} src={article.images} 
            className="md:h-[350px] w-full transition-transform duration-500 group-hover:scale-105" 
            alt="" /> 
+                     </div>
     <div className="flex flex-col py-[20px] px-[30px] gap-5">
         <div className="flex flex-row gap-5 items-center">
             <span className="flex items-center gap-1">

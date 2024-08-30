@@ -187,7 +187,10 @@ fetchPoperties()
             </div>
              
             <div className="bg-secondaryBg w-full border py-[10px] items-center px-[20px] flex justify-between">
-                <input type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => searchgProperty(e.target.value)} value={searchText} name="" className="text-textColor text-[15px] md:text-[20px] outline-0 w-full bg-transparent py-[10px] px-[20px] " placeholder="Search for a property" id="" />
+                <input type="text" onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    searchgProperty(e.target.value)
+                    setFilteringProps({location : '', status : '', type : ''})
+                }} value={searchText} name="" className="text-textColor text-[15px] md:text-[20px] outline-0 w-full bg-transparent py-[10px] px-[20px] " placeholder="Search for a property" id="" />
                  <IoIosSearch  className="text-btn-primary font-bold text-[30px]"/>
             </div>
             {loading && !succeeded && <PropertySkeleton /> }
@@ -256,9 +259,11 @@ fetchPoperties()
 }  
             {!searchText && !filteringProps.location && !filteringProps.status && !filteringProps.type &&
                 properties?.map((property: propertyType, index: number) => {
-                    return <Link href={`/properties/${property._id}`} key={index} className="border">
-                    <div className="relative">
-                        <Image width={500} height={500} src={`${!property.images[0].startsWith("https://")? house1.src : property.images[0]}`} alt={`${property.name} image`} className="md:h-[350px] w-full " />
+                    return <Link href={`/properties/${property._id}`} key={index} className="border group">
+                        <div className="relative">
+                            <div className="relative overflow-hidden">
+                            <Image width={500} height={500} src={`${!property.images[0].startsWith("https://")? house1.src : property.images[0]}`} alt={`${property.name} image`} className="md:h-[350px] w-full transition-transform duration-500 group-hover:scale-105" />
+                            </div>
                         <h1 className="bg-btn-primary text-light font-medium px-[20px] py-[5px] absolute top-[30px] right-[30px] uppercase ">{property.developmentStatus}</h1>
                         <div className=" absolute bottom-0  flex justify-between w-full py-[10px] px-[20px] ">
                             <p className="flex items-center bg-whiteTp px-[20px] gap-2 rounded text-secondaryText "><FaLocationDot className="text-[10px] md:text-[20px]" /> <span className="'text-[10px] md:text-[15px] ">{property.location}</span></p>
