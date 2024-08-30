@@ -50,7 +50,8 @@ export default function PropertyDetails() {
         yearBuilt: '',
         bedroom: '',
         bathroom: '',
-        garadge : '',
+        garadge: '',
+        type : ''
     })
     const [propertyReviews, setPropertyReviews] = useState<reviewType[]>([]);
     const [loading, setLoading] = useState<boolean>(false);

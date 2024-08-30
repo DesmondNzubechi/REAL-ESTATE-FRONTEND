@@ -14,7 +14,7 @@ import { IoIosSearch } from "react-icons/io";
 import house1 from '../../public/images/house8.avif';
 import house2 from '../../public/images/house3.avif';
 import house3 from '../../public/images/house5.avif';
-import { propertyOverview, propertyType } from "@/components/types/types";
+import { filteringPropsType, propertyOverview, propertyType } from "@/components/types/types";
 import Image from "next/image";
 import Link from "next/link";
 import { usePropertiesStore } from "@/components/store/store";
@@ -22,23 +22,37 @@ import { api } from "@/components/lib/api";
 import React, { useEffect, useState } from "react";
 import { PropertySkeleton } from "@/components/skeletonloader/propertySkeleton";
 import { ReloadPage } from "@/components/Reload/Reload";
+import { useRouter } from "next/router";
+import { toast } from "react-toastify";
+import { Footer } from "@/components/Footer/footer";
 
 
 export default function Properties() {
-    
+    const router = useRouter();
     const { properties, setProperties } = usePropertiesStore()
     const [loading, setLoading] = useState<boolean>(false);
     const [succeeded, setSucceeded] = useState<boolean>(false)
-    
-    
+    const [uniqueLocation, setUniqueLocation] = useState<string[] | unknown[]>([]);
+    const [uniqueType, setUniqueType] = useState<string[] | unknown[]>([]);
+    const [uniqueStatus, setUniqueStatus] = useState<string[] | unknown[]>([]);
+    const [filteringProps, setFilteringProps] = useState<filteringPropsType>({
+        location: '',
+        type: '',
+        status : ''
+    })
+     
+    console.log("filtering props", filteringProps)
     console.log("Our properties", properties)
-
+    console.log("Our properties", uniqueLocation)
     const fetchPoperties = async () => {
         setLoading(true)
         try {
             const response = await api.get('/properties/');
             const props = response.data.data.properties;
             setProperties(props)
+            setUniqueLocation([...new Set(props.map((prop: propertyType) => prop.location))])
+            setUniqueType([...new Set(props.map((prop: propertyType) => prop.type))])
+            setUniqueStatus([...new Set(props.map((prop: propertyType) => prop.status))])
             console.log("The properties", props);
             setLoading(false)
             setSucceeded(true);
@@ -53,9 +67,9 @@ export default function Properties() {
 fetchPoperties()
     }, [])
  
-    const [searchText, setSearchText] = useState<string>('')
+    const [searchText, setSearchText] = useState<string | any>(router.query.search ||'')
     const [searchedProperties, setSearchedProperties] = useState<propertyType[] | any>()
-
+    const [filteredProperty, setFilteredProperty] = useState<propertyType[]>();
     console.log("The search properties", searchedProperties)
 
     const searchgProperty = (e: string) => {
@@ -75,7 +89,53 @@ fetchPoperties()
         })
         setSearchedProperties(filterProperty)
     }
+
+    //console.log("the filtered properties", filteredProperty)
+    
+    const filterPropertiesHandle = () => {
+    
+
+    // if (!filteringProps.location && !filteringProps.status && !filteringProps.type) {
+    //     toast.info("Please select what you need to filter");
+    //     return;
+    //     }
+        
+
+    const theProperty = properties?.filter((props: propertyType) => {
+        return (
+            (filteringProps.location ? props.location.toLowerCase().trim().includes(filteringProps.location.toLowerCase().trim()) : true) &&
+            (filteringProps.status ? props.status.toLowerCase().trim() === filteringProps.status.toLowerCase().trim() : true) &&
+            (filteringProps.type ? props.type.toLowerCase().trim().includes(filteringProps.type.toLowerCase().trim()) : true)
+        );
+    });
+
+    setFilteredProperty(theProperty);
+
+    // Build the query string with selected filters
+    const query = new URLSearchParams();
+
+    if (filteringProps.location) {
+        query.append('location', filteringProps.location);
+    }
+    if (filteringProps.status) {
+        query.append('status', filteringProps.status);
+    }
+    if (filteringProps.type) {
+        query.append('type', filteringProps.type);
+    }
+
+    router.push(`/properties/?${query.toString()}`, undefined, { shallow: true });
+    
+};
+
+ 
    
+
+    useEffect(() => {
+
+        const queryParams = searchText ? `?search=${encodeURIComponent(searchText)}` : '';
+ router.push(`/properties/${queryParams}`, undefined, {shallow : true})
+    }, [searchText])
  
     return <>
         <MobileNav/>
@@ -88,29 +148,41 @@ fetchPoperties()
                 <h1 className="font-bold text-textTitle uppercase text-center text-[15px] md:text-[20px]">Filter Property</h1>
                 <div className="flex flex-col lg:flex-row items-start lg:items-center gap-5 justify-between">
                 <div className="  w-full grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 p-[20px] ">
-                <select name="" id="" className=" px-[15px] w-full outline-0 text-center shadow font-[400] text-[15px] md:text-[25px] py-[10px] ">
-                    <option >Filter By Location</option>
-                    <option className="bg-btn-primary text-light text-[15px]" value="">Enugu</option>
-                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
-                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
-                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
+                        <select name=""
+                            value={filteringProps.location}
+                            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {setFilteringProps({ ...filteringProps, location: e.target.value })}}
+                            id="" className=" px-[15px] w-full outline-0 text-center shadow font-[400] text-[15px] md:text-[25px] py-[10px] ">
+                            <option value=''>Filter By Location</option>
+                            {
+                                uniqueLocation.map((location: string | any, index:number) => {
+                                    return <option key={index} className="bg-btn-primary text-light text-[15px]" value={location}>{location}</option>
+                                })
+                            } 
+               
                 </select>
-                <select name="" id="" className=" px-[15px] w-full outline-0 text-center shadow font-[400] text-[15px] md:text-[25px] py-[10px] ">
-                    <option>Filter By Price</option>
-                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
-                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
-                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
-                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
+                <select name="" value={filteringProps.status}
+                            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFilteringProps({ ...filteringProps, status: e.target.value })} id="" className=" px-[15px] w-full outline-0 text-center shadow font-[400] text-[15px] md:text-[25px] py-[10px] ">
+                            <option value=''> Filter By Status</option>
+                            {
+                                uniqueStatus.map((status: string | any, index:number) => {
+                                    return <option key={index} className="bg-btn-primary text-light text-[15px]" value={status}>{status}</option>
+                                })
+                            }
+                 
                 </select>
-                <select name="" id="" className=" px-[15px] w-full outline-0 text-center shadow font-[400] text-[15px] md:text-[25px] py-[10px] ">
-                    <option className="bg-btn-primary text-light text-[15px]">Filter BY Type</option>
-                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
-                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
-                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
-                    <option className="bg-btn-primary text-light text-[15px]" value="Enugu">Enugu</option>
-                </select>
+                        <select name="" value={filteringProps.type}
+                            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFilteringProps({ ...filteringProps, type: e.target.value })}
+                            id=""
+                            className=" px-[15px] w-full outline-0 text-center shadow font-[400] text-[15px] md:text-[25px] py-[10px] ">
+                            <option value=''>Filter BY Type</option> 
+                            {
+                                uniqueType.map((type: string | any, index:number) => {
+                                    return <option key={index} className="bg-btn-primary text-light text-[15px]" value={type}>{type}</option>
+                                })
+                            }
+                </select> 
 </div>
-                <button className="bg-btn-primary ml-[20px] text-[20px] text-light hover:text-[#FFFFFF] hover:bg-textTitle px-[25px] text-center flex items-center gap-2 font-bold w-fit  w  py-[10px] "><BsFilterSquareFill />Filter</button>
+                <button onClick={filterPropertiesHandle} className="bg-btn-primary ml-[20px] text-[20px] text-light hover:text-[#FFFFFF] hover:bg-textTitle px-[25px] text-center flex items-center gap-2 font-bold w-fit  w  py-[10px] "><BsFilterSquareFill />Filter</button>
                 </div>
             </div>
              
@@ -123,7 +195,39 @@ fetchPoperties()
            {searchText && <div className="text-center">
                 <h1 className="font-medium capitalize">{searchedProperties.length} result for your search</h1>
             </div>}
+            {filteredProperty && <div className="text-center">
+                <h1 className="font-medium capitalize">{filteredProperty.length} result for your Filter</h1>
+            </div>}
             {!loading && succeeded && <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
+                
+                {
+                    filteringProps && !searchText &&
+                filteredProperty?.map((property: propertyType, index: number) => {
+                    return <Link href={`/properties/${property._id}`} key={index} className="border">
+                    <div className="relative">
+                        <Image width={500} height={500} src={`${!property.images[0].startsWith("https://")? house1.src : property.images[0]}`} alt={`${property.name} image`} className="md:h-[350px] " />
+                        <h1 className="bg-btn-primary text-light font-medium px-[20px] py-[5px] absolute top-[30px] right-[30px] uppercase ">{property.developmentStatus}</h1>
+                        <div className=" absolute bottom-0  flex justify-between w-full py-[10px] px-[20px] ">
+                            <p className="flex items-center bg-whiteTp px-[20px] gap-2 rounded text-secondaryText "><FaLocationDot className="text-[10px] md:text-[20px]" /> <span className="'text-[10px] md:text-[15px] ">{property.location}</span></p>
+                            <div className="flex items-center gap-[10px] ">
+                                <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 rounded-full "><IoCameraSharp className="text-[10px] md:text-[20px]" /> <span className="'text-[10px] md:text-[15px] ">{property.images.length}</span></p>
+                                  <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 px-[10px] rounded-full "><RiFolderVideoFill className="text-[10px] md:text-[20px]"/> <span className="'text-[10px] md:text-[15px] "></span></p>
+                            </div>
+                        </div>
+</div>
+                    <div className="flex flex-col gap-[20px] px-[20px] py-[20px] ">
+                        <h1 className="text-btn-primary font-medium md:text-[20px] text-[10px] ">N {property.price}</h1>
+                        <h1 className="font-bold text-textTitle text-[20px] md:text-[30px] ">{property.name}</h1>
+                        <div className=" gap-2 grid grid-cols-2 md:grid-col-3">
+                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{property?.bedroom}</h1>< MdBedroomParent className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bedroom</p></div>
+                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{property?.bathroom}</h1>< MdBathtub className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bathroom</p></div>
+                            <div className="flex items-center text-textColor  gap-1 "><h1 className="font-bold md:text-[20px] text-[10px] ">{property.garadge}</h1>< GiHomeGarage className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Carpark</p></div>
+                        </div>
+                    </div>  
+                </Link>
+                })
+} 
+
                 { searchedProperties && searchText &&
                 searchedProperties?.map((property: propertyType, index: number) => {
                     return <Link href={`/properties/${property._id}`} key={index} className="border">
@@ -149,12 +253,12 @@ fetchPoperties()
                     </div>  
                 </Link>
                 })
-} 
-            {!searchText &&
+}  
+            {!searchText && !filteringProps.location && !filteringProps.status && !filteringProps.type &&
                 properties?.map((property: propertyType, index: number) => {
                     return <Link href={`/properties/${property._id}`} key={index} className="border">
                     <div className="relative">
-                        <Image width={500} height={500} src={`${!property.images[0].startsWith("https://")? house1.src : property.images[0]}`} alt={`${property.name} image`} className="md:h-[350px] " />
+                        <Image width={500} height={500} src={`${!property.images[0].startsWith("https://")? house1.src : property.images[0]}`} alt={`${property.name} image`} className="md:h-[350px] w-full " />
                         <h1 className="bg-btn-primary text-light font-medium px-[20px] py-[5px] absolute top-[30px] right-[30px] uppercase ">{property.developmentStatus}</h1>
                         <div className=" absolute bottom-0  flex justify-between w-full py-[10px] px-[20px] ">
                             <p className="flex items-center bg-whiteTp px-[20px] gap-2 rounded text-secondaryText "><FaLocationDot className="text-[10px] md:text-[20px]" /> <span className="'text-[10px] md:text-[15px] ">{property.location}</span></p>
@@ -177,7 +281,8 @@ fetchPoperties()
                 })
 } 
         </div>}
-            
+             
        </div>
+       <Footer/>
     </>
 } 

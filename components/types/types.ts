@@ -70,7 +70,8 @@ export interface propertyType {
     yearBuilt: string
     bedroom: string
     bathroom: string
-    garadge : string
+    garadge: string
+    type : string
 }
 
 export interface commentType {
@@ -129,4 +130,10 @@ export interface activitiesType {
     activityType: string
     timestamp: string
     user: string | ObjectId
+}
+
+export interface filteringPropsType {
+    location: string
+    type: string
+    status : string
 }
