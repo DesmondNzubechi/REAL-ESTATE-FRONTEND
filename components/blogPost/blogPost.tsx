@@ -67,7 +67,7 @@ export const BlogPost = () => {
                     <hr />
                     <div className="flex justify-between ">
     <span className="flex items-center gap-2"><FaCalendarAlt className="text-btn-primary text-[10px] md:text-[20px] lg:text-[25px]"/><p className="font-medium capitalize text-textColor text-[12px] md:text-[15px]">{blog.date.split("T").splice(0, 1)}</p></span>
-                        <Link href='' className="font-medium uppercase text-btn-primary text-[12px] md:text-[15px] hover:text-btn2">Read more</Link>
+                        <Link href={`/blog/${blog._id}`} className="font-medium uppercase text-btn-primary text-[12px] md:text-[15px] hover:text-btn2">Read more</Link>
                             </div> 
                             </div> 
                     </Link>

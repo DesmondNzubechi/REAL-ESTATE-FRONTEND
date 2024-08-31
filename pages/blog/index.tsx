@@ -86,9 +86,9 @@ export default function Blog() {
                 <p className="font-medium capitalize text-[10px] md:text-[15px] text-textColor">{article?.date.split("T").splice(0, 1)}</p>
             </span> 
         </div>
-                            <p className="text-textColor text-[15px]">{article?.content.split(" ").splice(0, 15)}...</p>
+                            <p className="text-textColor text-[15px]">{article?.content.split(" ").splice(0, 15).join(' ')}...</p>
         <div className="flex justify-between">
-            <Link href='' className="font-medium uppercase hover:text-btn-primary text-btn2">Read more</Link>
+            <Link href={`/blog/${article._id}`} className="font-medium uppercase hover:text-btn-primary text-btn2">Read more</Link>
         </div>
     </div>
                     </Link>
