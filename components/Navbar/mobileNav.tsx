@@ -115,7 +115,7 @@ const {user, isAuthenticated} = useUserStore()
                 if (e.target.tagName !== 'DIV') {
                     setNavState('left-[-2000px]')
                 }
-            }} style={{ transition: "ease-in-out 1s" }} className={`fixed z-[10000] h-[100vh] text-priimaryText bg-tp ${navState} right-0 top-0 bottom-0 w-full`}>
+            }} style={{ transition: "ease-in-out 1s" }} className={`fixed z-[10000] min-h-[100vh] text-priimaryText bg-tp ${navState} right-0 top-0 bottom-0 w-full`}>
                 <div className="flex bg-primaryBg flex-col overflow-y-auto gap-[30px] absolute top-0 bottom-0 w-[70%] left-0 px-[30px] py-[30px]">
                     <div className="flex justify-between items-center">
                     <Link href='' className="flex items-center">
