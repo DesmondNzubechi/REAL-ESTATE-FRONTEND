@@ -104,7 +104,7 @@ const {user, isAuthenticated} = useUserStore()
                        <Image src={logo} className=" w-[150px] md:w-[250px]" alt="home  features logo"/>
                     </Link> 
 
-                    <div className="flex bg-primaryBg p-2  hover:bg-slate-200">
+                    <div className="flex bg-transparent  text-light p-2  hover:text-slate-200">
                         {navState !== "left-[-2000px]" ?
                         <HiXMark onClick={() => setNavState('left-[-2000px]')} className="text-[30px]  "/> :
                         <FaBarsStaggered onClick={() => setNavState('left-0')} className="text-[30px]  "/>}

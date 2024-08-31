@@ -24,11 +24,11 @@ export const Footer = () => {
                     <Link href='' className="flex  gap-1 items-center">
                         <Image src={logo} alt="logo"/>
                     </Link>
-                {/* <h1 className="font-bold text-[25px] uppercase mb-[5px] ">b2r-tech</h1> */}
+                {/* <h1 className="font-bold text-[25px] capitalize mb-[5px] ">b2r-tech</h1> */}
                 <p>we bring your ideas to life with technology. Our expert team turns concepts into impactful digital solutions, ensuring excellence every step of the way. Partner with us to drive your success.</p>
             </div>
             <div className="flex flex-col gap-1">
-                <h1 className="font-bold text-[25px] uppercase mb-[5px]">Company</h1>
+                <h1 className="font-bold text-[25px] capitalize mb-[5px]">Company</h1>
                 <div className="flex flex-col gap-2 ">
                     <Link className="text-slate-300 text-[15px]" href='/'>Home</Link>
                     <Link className="text-slate-300 text-[15px]" href='/About'>About Us</Link>
@@ -40,7 +40,7 @@ export const Footer = () => {
                 </div>
             </div>
             <div className="flex flex-col gap-1">
-                <h1 className="font-bold text-[25px] uppercase mb-[5px]">Our Services</h1>
+                <h1 className="font-bold text-[25px] capitalize mb-[5px]">Our Services</h1>
                 <div className="flex flex-col gap-2 ">
                     <Link className="text-slate-300 text-[15px]" href='/Services/Web-Decelopment'>Buy Properties</Link>
                     <Link className="text-slate-300 text-[15px]" href='/Services/Video-Editing'>Sell Properties</Link>
@@ -51,11 +51,11 @@ export const Footer = () => {
                 </div>
             </div>
             <div className="flex flex-col gap-1">
-                <h1 className="font-bold text-[25px] uppercase mb-[5px]">Get In Touch</h1>
+                <h1 className="font-bold text-[25px] capitalize mb-[5px]">Get In Touch</h1>
                 <div className="flex flex-col gap-2 ">
                    <a href="mailto:"></a>
                     <Link className="text-slate-300 text-[15px]" href='mailto:dexdigit1@gmail.com'>ceo@homefeatures.com</Link>
-                    <Link className="text-slate-300 text-[15px]" href='tel:+2347084183611'>+234 708 4183 611</Link>
+                    <Link className="text-slate-300 text-[15px]" href='tel:+2347084183611'>+234 708 4183 0000</Link>
                     <div className="flex lex-row gap-2">
                         <Link href='https://www.linkedin.com/company/dexdigit/'><FaLinkedin /></Link>
                         <Link href='https://www.facebook.com/profile.php?id=61561997349461'><FaFacebookSquare /></Link>

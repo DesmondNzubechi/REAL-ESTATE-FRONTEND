@@ -43,7 +43,7 @@ llamco laboris. Lorem ipsum dolor sit amet
 
                     </p>
                 </div>
-                <Link href='/' className='text-light w-fit bg-btn-primary px-[30px] py-[15px] '>Our Services</Link>
+                <Link href='/services' className='text-light w-fit bg-btn-primary px-[30px] py-[15px] '>Our Services</Link>
             </div>
 </div>
     </div>
