@@ -16,12 +16,12 @@ export const ContactUsComponent = () => {
             <div className='border flex flex-col gap-5 w-full items-center justify-center py-[50px] px-[50px] '>
                 <Image src={emailIcon} alt=''/>
                 <h1 className='text-textTitle font-bold text-[20px] md:text-[25px] lg:text-[30px]'>Email Address</h1>
-                <p className='text-textColor text-[12px] md:text-[15px]  '>nzubechukwu@gmail.com</p>
+                <p className='text-textColor text-[12px] md:text-[15px]  '>ceo@homefeatures.com</p>
             </div>
             <div className='border flex flex-col gap-5 w-full items-center justify-center py-[50px] px-[50px] '>
                 <Image src={callIcon} alt=''/>
                 <h1 className='text-textTitle font-bold text-[20px] md:text-[25px] lg:text-[30px]'>Phone No</h1>
-                <p className='text-textColor text-[12px] md:text-[15px]  '>+2347084183611</p>
+                <p className='text-textColor text-[12px] md:text-[15px]  '>+234708418000</p>
             </div>
             <div className='border flex flex-col gap-5  w-full items-center justify-center py-[50px] px-[50px] '>
                 <Image src={locationIcon} alt=''/>

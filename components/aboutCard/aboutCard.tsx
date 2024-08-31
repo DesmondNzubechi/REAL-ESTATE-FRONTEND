@@ -29,7 +29,7 @@ export const AboutCard = () => {
                     <div className='flex gap-5 items-center'>
                         <FaHouseLaptop className='bg-titleBg text-btn-primary p-[10px] text-[40px] md:text-[50px] rounded-full'/>
                         <p className='text-textColor text-[12px] md:text-[15px] '>Smart Home Consultations</p>
-                    </div>
+                    </div> 
                     <div className='flex gap-5 items-center'>
                         <FaHouseLaptop className='bg-titleBg text-btn-primary p-[10px] text-[40px] md:text-[50px] rounded-full'/>
                         <p className='text-textColor text-[12px] md:text-[15px] '>Smart Home Management</p>
