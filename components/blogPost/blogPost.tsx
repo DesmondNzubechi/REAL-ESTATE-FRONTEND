@@ -53,7 +53,7 @@ export const BlogPost = () => {
            {loading && !succeeded && <BlogSkeleton/>}
        {  !loading && succeeded &&   <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
                 {
-                    blog?.map((blog: blogType) => {
+                    blog.slice(0, 3).map((blog: blogType) => {
                         return  <Link href={`/blog/${blog._id}`} className="border ">
                         <Image width={500} height={500} src={blog?.images} className="md:h-[350px] " alt="" />
                         

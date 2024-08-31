@@ -22,16 +22,16 @@ export const FeaturedProperty = () => {
     const { properties, setProperties } = usePropertiesStore()
     const [loading, setLoading] = useState<boolean>(false);
     const [succeeded, setSucceeded] = useState<boolean>(false)
+    const [featuredProp, setFeaturedProp] = useState<propertyType[]>()
     
-    
-    console.log("Our properties", properties)
+    console.log("Our properties", featuredProp)
 
     const fetchPoperties = async () => {
         setLoading(true)
-        try {
+        try { 
             const response = await api.get('/properties/');
             const props = response.data.data.properties;
-            setProperties(props)
+           setFeaturedProp(props)
             console.log("The properties", props);
             setLoading(false)
             setSucceeded(true);
@@ -53,12 +53,12 @@ fetchPoperties()
 <div className='flex flex-col gap-5 justify-center mb-[50px] items-center text-center'>
             <h2 className='bg-titleBg text-btn-primary text-[15px] px-[20px] rounded-full  py-[10px] font-bold w-fit '>Our Properties</h2>
             <h1 className="font-bold text-[20px] md:text-[30px] lg:text-[35px] text-textTitle ">Featured Properties</h1>
-        </div>
+        </div> 
         {!loading && !succeeded && <ReloadPage reload={fetchPoperties} />}
         {loading && !succeeded && <PropertySkeleton/>}
         {!loading && succeeded && <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
             {
-                properties?.splice(0, 3).map((property: propertyType, index: number) => {
+                featuredProp?.slice(0, 3)?.map((property: propertyType, index: number) => {
                     return <Link href={`/properties/${property._id}`} key={index} className="border">
                         <div className="relative">
                             <Image width={500} height={500} src={`${!property.images[0].startsWith("https://")? house1.src : property.images[0]}`} alt={`${property.name} image`} className="md:h-[350px] " />

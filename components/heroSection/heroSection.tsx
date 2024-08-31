@@ -61,8 +61,8 @@ useEffect(() => {
                 
 
                 <h1 className="font-bold text-light text-center  text-[20px] md:text-[25px] lg:text-[30px] uppercase ">Real estate agency</h1>
-                <p className="text-light  font-semibold text-[25px] md:text-[40px] lg:text-[50px] leading-[40px] md:leading-[60px] capitalize">The right place to find your dream house</p>
-                <p className="text-light  text-[15px] md:text-[20px] ">when you land on a sample web page or open an email template and see content beginning with "lorem ipsum," the page creator.</p>
+                <p className="text-light  font-semibold text-[25px] md:text-[40px] lg:text-[50px] leading-[40px] md:leading-[60px] capitalize">Your Gateway to the Perfect Home</p>
+                <p className="text-light  text-[15px] md:text-[20px] ">When you step into our world, you're not just browsing listings—you’re beginning your journey to find the home of your dreams. Explore our expertly curated properties, tailored to fit your lifestyle and needs.</p>
                 <Link href='/about' className="bg-btn-primary text-[15px] md:text-[20px]  hover:bg-[#FFFFFF] hover:text-textTitle px-[25px] py-[20px] ">Make An Enquiry</Link>
             </div>
            
