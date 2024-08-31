@@ -17,6 +17,7 @@ import { useUserStore } from "../store/store";
 import logo from '../../public/images/logo2.png';
 import Image from "next/image";
 import { FaCircleUser } from "react-icons/fa6";
+import { TfiArrowCircleUp } from "react-icons/tfi";
 
 export const poppins = Poppins({
     subsets: ['latin'],
@@ -81,10 +82,15 @@ const {user, isAuthenticated} = useUserStore()
   }
 
     return (
-        <nav className={`${poppins.className} lg:hidden relative z-[1000]`}>
+        <nav className={`${poppins.className} lg:hidden relative z-[10000]`}>
+            <TfiArrowCircleUp onClick={scrollToTop} style={{
+                    transition: "ease-in .7s",
+                    scrollBehavior : "smooth"
+            }}
+                className={`bg-btn-primary fixed ${isScrolled? "bottom-[50px] " : "top-[-1000px]"} text-[50px] rounded-full text-light hover:bg-textTitle right-[20px] z-[2000000]`} />
             <div
                  style={{
-                    transition: "ease-in .7s",
+                    transition: "ease-in 1s",
                     scrollBehavior : "smooth"
                   }}
                 className={`py-[15px]  px-[30px] flex flex-col gap-y-[20px] fixed left-0 right-0 top-0 w-full ${isScrolled? "bg-textTitle" : "bg-transparent"} `}>
@@ -109,7 +115,7 @@ const {user, isAuthenticated} = useUserStore()
                 if (e.target.tagName !== 'DIV') {
                     setNavState('left-[-2000px]')
                 }
-            }} style={{ transition: "ease-in-out 1s" }} className={`fixed z-[10] h-[100vh] text-priimaryText bg-tp ${navState} right-0 top-0 bottom-0 w-full`}>
+            }} style={{ transition: "ease-in-out 1s" }} className={`fixed z-[10000] h-[100vh] text-priimaryText bg-tp ${navState} right-0 top-0 bottom-0 w-full`}>
                 <div className="flex bg-primaryBg flex-col overflow-y-auto gap-[30px] absolute top-0 bottom-0 w-[70%] left-0 px-[30px] py-[30px]">
                     <div className="flex justify-between items-center">
                     <Link href='' className="flex items-center">

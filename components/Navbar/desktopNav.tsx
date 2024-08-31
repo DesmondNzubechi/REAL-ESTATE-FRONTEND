@@ -18,6 +18,7 @@ import logo from '../../public/images/logo2.png';
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useUserStore } from "../store/store";
+import { TfiArrowCircleUp } from "react-icons/tfi";
 
 export const poppins = Poppins({
     subsets: ['latin'],
@@ -93,6 +94,12 @@ export const DesktopNav = () => {
 
     return (
         <nav className={`${poppins.className} hidden lg:flex  relative z-[1000]`}>
+           <TfiArrowCircleUp onClick={scrollToTop} style={{
+                    transition: "ease-in .7s",
+                    scrollBehavior : "smooth"
+            }}
+                className={`bg-btn-primary fixed ${isScrolled? "bottom-[50px] " : "top-[-1000px]"} text-[50px] rounded-full text-light hover:bg-textTitle right-[20px] z-[2000000]`} />
+           
             <div
                  style={{
                     transition: "ease-in .7s",
