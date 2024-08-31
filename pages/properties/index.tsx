@@ -219,12 +219,12 @@ fetchPoperties()
                         </div>
 </div>
                     <div className="flex flex-col gap-[20px] px-[20px] py-[20px] ">
-                        <h1 className="text-btn-primary font-medium md:text-[20px] text-[10px] ">N {property.price}</h1>
+                        <h1 className="text-btn-primary font-medium md:text-[20px] text-[15px] ">N {property.price}</h1>
                         <h1 className="font-bold text-textTitle text-[20px] md:text-[30px] ">{property.name}</h1>
                         <div className=" gap-2 grid grid-cols-2 md:grid-col-3">
-                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{property?.bedroom}</h1>< MdBedroomParent className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bedroom</p></div>
-                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{property?.bathroom}</h1>< MdBathtub className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bathroom</p></div>
-                            <div className="flex items-center text-textColor  gap-1 "><h1 className="font-bold md:text-[20px] text-[10px] ">{property.garadge}</h1>< GiHomeGarage className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Carpark</p></div>
+                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[15px] ">{property?.bedroom}</h1>< MdBedroomParent className="md:text-[20px] text-[15px] "/> <p className="text-[10px] md:text-[15px]">Bedroom</p></div>
+                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[15px] ">{property?.bathroom}</h1>< MdBathtub className="md:text-[20px] text-[15px] "/> <p className="text-[10px] md:text-[15px]">Bathroom</p></div>
+                            <div className="flex items-center text-textColor  gap-1 "><h1 className="font-bold md:text-[20px] text-[15px] ">{property.garadge}</h1>< GiHomeGarage className="md:text-[20px] text-[15px] "/> <p className="text-[10px] md:text-[15px]">Carpark</p></div>
                         </div>
                     </div>  
                 </Link>
@@ -246,12 +246,12 @@ fetchPoperties()
                         </div>
 </div>
                     <div className="flex flex-col gap-[20px] px-[20px] py-[20px] ">
-                        <h1 className="text-btn-primary font-medium md:text-[20px] text-[10px] ">N {property.price}</h1>
+                        <h1 className="text-btn-primary font-medium md:text-[20px] text-[15px] ">N {property.price}</h1>
                         <h1 className="font-bold text-textTitle text-[20px] md:text-[30px] ">{property.name}</h1>
                         <div className=" gap-2 grid grid-cols-2 md:grid-col-3">
-                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{property?.bedroom}</h1>< MdBedroomParent className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bedroom</p></div>
-                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{property?.bathroom}</h1>< MdBathtub className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bathroom</p></div>
-                            <div className="flex items-center text-textColor  gap-1 "><h1 className="font-bold md:text-[20px] text-[10px] ">{property.garadge}</h1>< GiHomeGarage className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Carpark</p></div>
+                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[15px] ">{property?.bedroom}</h1>< MdBedroomParent className="md:text-[20px] text-[15px] "/> <p className="text-[10px] md:text-[15px]">Bedroom</p></div>
+                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[15px] ">{property?.bathroom}</h1>< MdBathtub className="md:text-[20px] text-[15px] "/> <p className="text-[10px] md:text-[15px]">Bathroom</p></div>
+                            <div className="flex items-center text-textColor  gap-1 "><h1 className="font-bold md:text-[20px] text-[15px] ">{property.garadge}</h1>< GiHomeGarage className="md:text-[20px] text-[15px] "/> <p className="text-[10px] md:text-[15px]">Carpark</p></div>
                         </div>
                     </div>  
                 </Link>
@@ -274,12 +274,12 @@ fetchPoperties()
                         </div>
 </div>
                     <div className="flex flex-col gap-[20px] px-[20px] py-[20px] ">
-                        <h1 className="text-btn-primary font-medium md:text-[20px] text-[10px] ">N {property.price}</h1>
+                        <h1 className="text-btn-primary font-medium md:text-[20px] text-[15px] ">N {property.price}</h1>
                         <h1 className="font-bold text-textTitle text-[20px] md:text-[30px] ">{property.name}</h1>
                         <div className=" gap-2 grid grid-cols-2 md:grid-col-3">
-                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{property?.bedroom}</h1>< MdBedroomParent className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bedroom</p></div>
-                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[10px] ">{property?.bathroom}</h1>< MdBathtub className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Bathroom</p></div>
-                            <div className="flex items-center text-textColor  gap-1 "><h1 className="font-bold md:text-[20px] text-[10px] ">{property.garadge}</h1>< GiHomeGarage className="md:text-[20px] text-[10px] "/> <p className="text-[10px] md:text-[15px]">Carpark</p></div>
+                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[15px] ">{property?.bedroom}</h1>< MdBedroomParent className="md:text-[20px] text-[15px] "/> <p className="text-[10px] md:text-[15px]">Bedroom</p></div>
+                            <div className="flex items-center text-textColor gap-1"><h1 className="font-bold md:text-[20px] text-[15px] ">{property?.bathroom}</h1>< MdBathtub className="md:text-[20px] text-[15px] "/> <p className="text-[10px] md:text-[15px]">Bathroom</p></div>
+                            <div className="flex items-center text-textColor  gap-1 "><h1 className="font-bold md:text-[20px] text-[15px] ">{property.garadge}</h1>< GiHomeGarage className="md:text-[20px] text-[15px] "/> <p className="text-[10px] md:text-[15px]">Carpark</p></div>
                         </div>
                     </div>  
                 </Link>

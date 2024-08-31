@@ -43,21 +43,21 @@ useEffect(() => {
     return (
         <>
              <div
-                className={`background-image  pt-[100px] pb-[100px] md:py-[100px]  lg:py-[130px] after:absolute after:h-full after:bg-tpr after:w-full after:left-0 after:right-0 after:top-0`}
+                className={`background-image  pt-[100px] pb-[100px] md:py-[100px]  lg:py-[130px] min-h-[100vh] md:min-h-[50vh] lg:min-h-[100vh] after:absolute after:h-full after:bg-tpr after:w-full after:left-0 after:right-0 after:top-0`}
                 style={{
                     backgroundSize : "cover",
                     backgroundImage: `url(${HeroArray[currentImage].src})`,
                 }}
             />
             <div
-                className={`background-image after:absolute after:h-full pt-[100px] pb-[100px] md:py-[100px]  lg:py-[130px] after:bg-tpr after:w-full after:left-0 after:right-0 after:top-0 r min-h-[100vh] relative flex items-center px-[30px] bg-cover z-[1] ${transitionClass === 'slide-in' ? 'slide-in' : ''}`}
+                className={`background-image after:absolute after:h-full pt-[100px] pb-[100px] md:py-[100px]  lg:py-[130px] after:bg-tpr after:w-full after:left-0 after:right-0 after:top-0 r min-h-[100vh] md:min-h-[50vh] lg:min-h-[100vh] relative flex items-center px-[30px] bg-cover z-[1] ${transitionClass === 'slide-in' ? 'slide-in' : ''}`}
                 style={{
                     backgroundSize : "cover",
                     backgroundImage: `url(${HeroArray[nextImage].src})`,
                 }}
             />
           
-            <div className="relative max-w-[700px] text-light text-justify z-[100] px-[30px] pt-[100px] pb-[100px] md:py-[100px]  lg:py-[130px] flex flex-col gap-[30px] justify-center items-center min-h-[100vh] md:min-h-[50vh] lg:min-h-[100vh]">
+            <div className="relative max-w-[700px] text-light text-justify md:text-center z-[100] px-[30px] pt-[100px] pb-[100px] md:py-[100px]  lg:py-[130px] flex flex-col gap-[30px] justify-center items-center min-h-[100vh] md:min-h-[50vh] lg:min-h-[100vh]">
                 
 
                 <h1 className="font-bold text-light text-center  text-[20px] md:text-[25px] lg:text-[30px] uppercase ">Real estate agency</h1>

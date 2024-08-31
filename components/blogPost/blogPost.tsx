@@ -54,13 +54,16 @@ export const BlogPost = () => {
        {  !loading && succeeded &&   <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
                 {
                     blog.slice(0, 3).map((blog: blogType) => {
-                        return  <Link href={`/blog/${blog._id}`} className="border ">
-                        <Image width={500} height={500} src={blog?.images} className="md:h-[350px] " alt="" />
-                        
+                        return  <Link href={`/blog/${blog._id}`} className="border group ">
+                        <div className="relative overflow-hidden">
+                        <Image height={500} width={500} src={blog.images} 
+           className="md:h-[350px] w-full transition-transform duration-500 group-hover:scale-105" 
+           alt="" /> 
+                     </div>
                     <div className="flex flex-col py-[20px] px-[30px]  gap-5 ">
                         <div className="flex flex-row gap-5 items-center">
                              <span className="flex items-center gap-1"><FaUserAlt className="text-btn-primary text-[10px] md:text-[20px] lg:text-[25px]" /> <p className="font-medium capitalize text-textColor text-[12px] md:text-[15px]">by admin</p></span>
-                            <span className="flex items-center gap-1"><FaTags  className="text-btn-primary text-[10px] md:text-[20px] lg:text-[25px]"/> <p className="font-medium uppercase text-[12px] md:text-[15px] text-textColor">{blog.status}</p></span>
+                            <span className="flex items-center gap-1"><FaTags  className="text-btn-primary text-[10px] md:text-[20px] lg:text-[25px]"/> <p className="font-medium uppercase text-[12px] md:text-[15px] text-textColor">Real estate</p></span>
     </div>
                     
                     <h1 className="font-bold text-textTitle text-[15px] md:text-[20px]  ">{blog.title}</h1>  
