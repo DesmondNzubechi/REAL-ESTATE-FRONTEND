@@ -87,7 +87,9 @@ console.log("my activities", myActivities)
           { !loading &&  succeeded && <div className="col-span-9 lg:col-span-2 flex flex-col pt-[70px] px-[20px] gap-5 h-fit py-[30px] ">
             <h1 className="bg-titleBg w-fit px-[20px] py-[10px] text-btn-primary text-[15px] md:text-[20px] uppercase font-semibold ">My Order</h1>
                     <div className="grid grid-cols-1 mt-[30px] gap-5">
-                        
+                        {
+                            myActivities.length === 0 && <h1 className="text-[20px] uppercase font-bold">You have not performed any activities</h1>
+                        }
                         {
                             myActivities?.map((activity: activitiesType) => {
                                 return <Link

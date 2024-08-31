@@ -86,7 +86,10 @@ setSucceeded(true)
                     {!loading && succeeded && <div className="col-span-9 lg:col-span-2 flex flex-col px-[20px] gap-5 h-fit py-[30px]">
                     <h1 className="bg-titleBg w-fit px-[20px] py-[10px] text-btn-primary text-[15px] md:text-[20px] uppercase font-semibold ">My Order</h1>
                         <div className="overflow-x-auto">
-                            <table className="w-fit overflow-x-auto  bg-white border border-gray-200">
+                            {
+                                myOrder.length === 0 && <h1 className="text-[20px] uppercase font-bold">You have not ordered for any property</h1>
+                            }
+                            {myOrder.length !== 0 && <table className="w-fit overflow-x-auto  bg-white border border-gray-200">
                                 <thead>
                                     <tr className="bg-gray-200 text-gray-700">
                                         <th className="py-2 px-4 text-[10px] md:text-[15px] text-left">Image</th>
@@ -141,7 +144,7 @@ setSucceeded(true)
                                     </tr> */}
                                 
                                 </tbody>
-                            </table>
+                            </table>} 
                         </div>
                     </div>}
                 </div>

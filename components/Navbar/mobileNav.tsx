@@ -125,7 +125,7 @@ const {user, isAuthenticated} = useUserStore()
                         {/* <button onClick={() => setNavState('left-[-2000px]')}>
                         <HiXMark className="bg-black-bg text-[40px]  hover:bg-slate-700 p-1 text-light"/>
                         </button> */}
-                    </div>
+                    </div>  
                     <hr />
                     <ul className="bg-primaryBg flex flex-col gap-2">
                         {navItems.map((nav: navType, index: number) => (
