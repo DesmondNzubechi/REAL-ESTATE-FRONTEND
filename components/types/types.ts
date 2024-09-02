@@ -114,7 +114,7 @@ export interface reviewType{
     property: ObjectId | string,
     user: ObjectId | string,
     createdAt: string,
-    _id : ObjectId | string
+    _id : string
 }
 
 export interface orderType{
@@ -124,9 +124,9 @@ export interface orderType{
     orderDate: string,
     _id: ObjectId | string,
 };
-
-export interface activitiesType {
-    property: propertyType | landType | blogType,
+ 
+export interface propertyActivitiesType {
+    property: propertyType,
     activityType: string
     timestamp: string
     user: string | ObjectId

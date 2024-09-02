@@ -9,7 +9,7 @@ import { api } from "@/components/lib/api";
 import { useUserStore } from "@/components/store/store";
 import { useRouter } from "next/router";
 import MyActivitiesSkeleton from "@/components/skeletonloader/myActivitySkeleton";
-import { activitiesType } from "@/components/types/types";
+import { propertyActivitiesType } from "@/components/types/types";
 import { ReloadPage } from "@/components/Reload/Reload";
 
 export default function MyActivities() {
@@ -18,7 +18,7 @@ export default function MyActivities() {
     const router = useRouter();
     const [loading, setLoading] = useState<boolean>(false);
     const [succeeded, setSucceeded] = useState<boolean>(false);
-    const [myActivities, setMyActivities] = useState<activitiesType[]>([]);
+    const [myActivities, setMyActivities] = useState<propertyActivitiesType[]>([]);
     const { user, setUser } = useUserStore();
     console.log('the user id', user?._id)
 
@@ -91,16 +91,16 @@ console.log("my activities", myActivities)
                             myActivities.length === 0 && <h1 className="text-[20px] uppercase font-bold">You have not performed any activities</h1>
                         }
                         {
-                            myActivities?.map((activity: activitiesType) => {
+                            myActivities?.map((activity: propertyActivitiesType) => {
                                 return <Link
                                     href={
                                         activity.activityType.includes("order")?
                                             `/my-account/my-order` :
                                             activity.activityType.includes("comment") ?
-                                                `/blog` :
+                                                `/blog/${activity.property._id}` :
                                                 activity.activityType.includes("review") ?
-                                                    `/properties/${activity.property._id}` :
-                                                '/'}
+                                                    `/properties/#${activity.property._id}` :
+                                                 '/'}
                                     className="bg-secondaryBg shadow hover:bg-primaryBg px-[20px] py-[20px] flex flex-col lg:flex-row w-full md:w-fit  gap-2  rounded">
                             
                                 <div className="flex justify-between gap-2 items-center">

@@ -79,7 +79,7 @@ export default function PropertyDetails() {
         } finally {
             setLoading(false)
         }
-    }
+    } 
 
     const fetchPropertyReviews = async () => {
 
@@ -110,7 +110,7 @@ export default function PropertyDetails() {
                 user: user ? user._id : null,
                 property : fullProperty._id
 
-            });
+            }, {withCredentials : true});
             const Thereview = response.data.data.theReview;
             setPropertyReviews((prevState) => [...prevState, Thereview])
             toast.success("added review successfully.")
@@ -138,7 +138,6 @@ export default function PropertyDetails() {
 setOrdering(true)
         try {
           await api.post('/order/createOrder', {
-                user: user?._id,
                 property : id
             }, {withCredentials : true})
             toast.success("you have successfully ordered for this property");
@@ -238,7 +237,7 @@ setOrdering(true)
                                 </div>}
                                 {
                                         propertyReviews.map(review => {
-                                            return   <div className="flex flex-col border-b  p-[15px]  gap-5">
+                                            return   <div id={review._id} className="flex flex-col border-b  p-[15px]  gap-5">
                                                 <div className="flex flex-row items-start justify-between  gap-[5px]">
                                                     <div className="flex flex-col gap-1">
                                                     <FaUserAlt className="text-textTitle bg-secondaryBg p-2 rounded-full text-[50px]" /> 
