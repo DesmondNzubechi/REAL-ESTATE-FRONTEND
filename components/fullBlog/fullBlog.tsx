@@ -25,7 +25,8 @@ export const FullBlog = ({ fullBlogArticle, setFullBlogArticle }: { fullBlogArti
         createdAt: 'Just now',
     _id : '' 
         })
-const [loading, setLoading] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
+    
     const addComment = async (e: any) => {
         
         e.preventDefault()
@@ -53,9 +54,9 @@ const [loading, setLoading] = useState<boolean>(false)
                 {
                     username: commentInput.username,
                     blog: fullBlogArticle._id,
-                    user: commentInput.user,
                     comment : commentInput.comment
-               }
+                },
+                {withCredentials : true}
             );
 
             const newComment = response.data.data.comment;

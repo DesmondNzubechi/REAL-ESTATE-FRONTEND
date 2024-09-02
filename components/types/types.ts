@@ -132,6 +132,13 @@ export interface propertyActivitiesType {
     user: string | ObjectId
 }
 
+export interface blogActivitiesType {
+    blog: blogType,
+    activityType: string
+    timestamp: string
+    user: string | ObjectId
+}
+
 export interface filteringPropsType {
     location: string
     type: string

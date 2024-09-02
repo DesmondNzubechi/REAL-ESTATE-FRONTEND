@@ -9,7 +9,7 @@ import { api } from "@/components/lib/api";
 import { useUserStore } from "@/components/store/store";
 import { useRouter } from "next/router";
 import MyActivitiesSkeleton from "@/components/skeletonloader/myActivitySkeleton";
-import { propertyActivitiesType } from "@/components/types/types";
+import { blogActivitiesType, propertyActivitiesType } from "@/components/types/types";
 import { ReloadPage } from "@/components/Reload/Reload";
 
 export default function MyActivities() {
@@ -19,6 +19,7 @@ export default function MyActivities() {
     const [loading, setLoading] = useState<boolean>(false);
     const [succeeded, setSucceeded] = useState<boolean>(false);
     const [myActivities, setMyActivities] = useState<propertyActivitiesType[]>([]);
+    const [blogActivities, setBlogActivities] = useState<blogActivitiesType[]>([]);
     const { user, setUser } = useUserStore();
     console.log('the user id', user?._id)
 
@@ -52,7 +53,7 @@ console.log("my activities", myActivities)
     const getMyActivities = async () => {
         setLoading(true);
         try {
-            const response = await api.get(`/activities/getUserActivities/${user?._id}`, { withCredentials: true });
+            const response = await api.get(`/activities/getUserPropertyActivities/${user?._id}`, { withCredentials: true });
             
             const activities = response.data.data.activities;
             const sortedActivities = activities.sort((a : any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
@@ -69,7 +70,29 @@ console.log("my activities", myActivities)
         }
     }
 
+    const getBlogActivities = async () => {
+        setLoading(true);
+        try {
+            const response = await api.get(`/activities/getUserBlogActivities/${user?._id}`, { withCredentials: true });
+            
+            const activities = response.data.data.activities;
+            const sortedActivities = activities.sort((a : any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+
+            console.log("This activity", activities)
+         setBlogActivities(sortedActivities);
+
+            setSucceeded(true)
+        } catch (error) {
+            console.log(error, "error fetching activities");
+            setSucceeded(false);
+        } finally {
+            setLoading(false)
+        }
+    }
+
+
     useEffect(() => {
+        getBlogActivities();
         getMyActivities();
     }, [])
 
@@ -88,7 +111,27 @@ console.log("my activities", myActivities)
             <h1 className="bg-titleBg w-fit px-[20px] py-[10px] text-btn-primary text-[15px] md:text-[20px] uppercase font-semibold ">My Order</h1>
                     <div className="grid grid-cols-1 mt-[30px] gap-5">
                         {
-                            myActivities.length === 0 && <h1 className="text-[20px] uppercase font-bold">You have not performed any activities</h1>
+                            myActivities.length === 0 && blogActivities.length === 0 && <h1 className="text-[20px] uppercase font-bold">You have not performed any activities</h1>
+                        }
+                         {
+                            blogActivities?.map((activity: blogActivitiesType) => {
+                                return <Link
+                                    href={`/blog/${activity.blog._id}`} 
+                                    className="bg-secondaryBg shadow hover:bg-primaryBg px-[20px] py-[20px] flex flex-col lg:flex-row w-full md:w-fit  gap-2  rounded">
+                            
+                                <div className="flex justify-between gap-2 items-center">
+                                <span className="flex items-center">
+                                    <IoIosNotifications className="md:text-[20px] text-[15px] text-btn-primary"/>
+                                    <h1 className="font-bold uppercase md:text-[20px] text-[15px] text-textTitle">{activity.activityType.replace("_", ' ')}</h1>
+                                    </span>
+                                    <p className="md:text-[10px] text-[8px] font-bold text-textColor">{activity.timestamp.split("T").splice(0, 1)}</p>
+                                </div> 
+                                    <p className="text-textColor text-[12px] md:text-[15px]">
+                                    You commented on a blog post
+                                    </p>
+                             
+                        </Link>  
+                            })
                         }
                         {
                             myActivities?.map((activity: propertyActivitiesType) => {
@@ -99,8 +142,8 @@ console.log("my activities", myActivities)
                                             activity.activityType.includes("comment") ?
                                                 `/blog/${activity.property._id}` :
                                                 activity.activityType.includes("review") ?
-                                                    `/properties/#${activity.property._id}` :
-                                                 '/'}
+                                                    `/properties/${activity.property._id}` :
+                                                 '/'} 
                                     className="bg-secondaryBg shadow hover:bg-primaryBg px-[20px] py-[20px] flex flex-col lg:flex-row w-full md:w-fit  gap-2  rounded">
                             
                                 <div className="flex justify-between gap-2 items-center">
