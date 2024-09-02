@@ -119,7 +119,7 @@ export interface reviewType{
 
 export interface orderType{
     user: ObjectId | string,
-    property: propertyType | landType,
+    property: propertyType,
     status: string,
     orderDate: string,
     _id: ObjectId | string,

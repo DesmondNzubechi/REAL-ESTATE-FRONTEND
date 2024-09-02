@@ -115,10 +115,10 @@ setSucceeded(true)
                                             <td className="md:pt-5  pt-2 w-full md:gap-2 px-4  self-center justify-center  text-textColor font-semibold text-[5px] md:text-[13px] flex flex-col md:flex-row items-center">
                                                <span className="flex text-[7px] items-center md:text-[13px]"> <GoDotFill className="text-btn-primary mr-1" />  {order.status}</span>
                                                 
-                                                <Link href='/my-account/my-order/:id' className="bg-green-500 text-light min-w-[40px] p-1 text-[5px] md:text-[13px] self-center rounded font-semibold">
+                                                <Link href={`/my-account/my-order/${order._id}`} className="bg-green-500 text-light min-w-[40px] p-1 text-[5px] md:text-[13px] self-center rounded font-semibold">
                                                     View Order
                                                 </Link>
-                                           
+                                            
                                             </td>
                                         </tr>
                                         })
