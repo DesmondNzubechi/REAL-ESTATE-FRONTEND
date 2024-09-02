@@ -56,7 +56,7 @@ export default function PropertyDetails() {
     const [propertyReviews, setPropertyReviews] = useState<reviewType[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [succeeded, setSucceeded] = useState<boolean>(false)
-    const [reviewerName, setReviewerName] = useState<string>('');
+    const [reviewerName, setReviewerName] = useState<string>(user?._id? `${user.firstName} ${user.lastName}` :'');
     const [theReview, setTheReview] = useState<string>("")
     const [submit, setSubmit] = useState<boolean>(false);
     const [ordering, setOrdering] = useState<boolean>(false);
@@ -107,7 +107,6 @@ export default function PropertyDetails() {
             const response = await api.post('/reviews/addReview', {
                 reviewerName : reviewerName,
                 review: theReview,
-                user: user ? user._id : null,
                 property : fullProperty._id
 
             }, {withCredentials : true});
@@ -261,7 +260,7 @@ setOrdering(true)
                 <h1 className="font-semibold px-[10px] text-textTitle w-fit py-[5px] px-[10px] text-[15px] ">Post A Review</h1>
                 <div className=' flex justify-between bg-light px-[20px] py-[20px] '>
 
-<input type="text" value={reviewerName} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setReviewerName(e.target.value)} placeholder='Your Name...' className='text-btn2 w-full  outline-0 text-[15px] ' /> 
+<input type="text"  value={reviewerName} disabled={user?._id? true :false} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setReviewerName(e.target.value)} placeholder='Your Name...' className='text-btn2 w-full bg-transparent  outline-0 text-[15px] ' /> 
 <FaPencil className='text-[10px] text-btn-primary'/>
 </div>
 <div className=' md:col-span-3 flex justify-between bg-light px-[20px] py-[20px] '>
