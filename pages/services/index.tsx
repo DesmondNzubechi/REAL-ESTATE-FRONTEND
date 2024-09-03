@@ -8,6 +8,8 @@ import { ourServiceType } from "@/components/types/types";
 import { PageBgOverview } from "@/components/pageOverview/pageOverview";
 import { Footer } from "@/components/Footer/footer";
 import { FeaturedProperty } from "@/components/featuredProperties/featuredProperties";
+import { DesktopNav } from "@/components/Navbar/desktopNav";
+import { MobileNav } from "@/components/Navbar/mobileNav";
 
 
 
@@ -57,6 +59,8 @@ export default function Services() {
     ]
 
     return <>
+         <MobileNav/>
+         <DesktopNav />
          <PageBgOverview HomeLink='Home' page="What we do" CurrentPage="Services" BgImgLink="https://img.freepik.com/free-photo/elevated-view-headphone-paper-keyboard-blue-background_23-2147889936.jpg?t=st=1717449452~exp=1717453052~hmac=3ccf1d5383cc9a67a5f965c1eeaf10ff0fc6ab6c41542d80877f4eb76e41bd4f&w=740" />
         <div className="bg-transparent gap-[50px] py-[100px] px-[30px] flex flex-col items-center text-center">
               

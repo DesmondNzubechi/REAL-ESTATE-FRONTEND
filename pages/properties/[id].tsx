@@ -25,6 +25,7 @@ import { PropertyDetailsSkeleton } from "@/components/skeletonloader/propertyFul
 import { ReloadPage } from "@/components/Reload/Reload";
 import { toast } from "react-toastify";
 import { usePropertiesStore, useUserStore } from "@/components/store/store";
+import { Footer } from "@/components/Footer/footer";
 
 export default function PropertyDetails() {
 
@@ -133,7 +134,7 @@ export default function PropertyDetails() {
         if (!id) {
             toast.error("Try ordering again. Something went wrong");
             return;
-        }
+        } 
 setOrdering(true)
         try {
           await api.post('/order/createOrder', {
@@ -274,7 +275,8 @@ setOrdering(true)
                 </div>
                 
             </div>
-    </div>}
+        </div>}
+        <Footer/>
     </>
 }
 

@@ -34,7 +34,7 @@ export default function PropertyDetails() {
     const [orderFullDetail, setOrderFullDetail] = useState<orderType>();
     const { id } = router.query;
     
-    const fetchOrder = async () => {
+    const fetchOrder = async () => { 
         setLoading(true)
 
         try {
