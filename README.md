@@ -68,7 +68,7 @@ This is the frontend repository for the Real Estate Platform, providing a user-f
 
 4. Start the development server:
    ```bash
-   npm run dev
+   npx next dev
    ```
 
 ## Environment Variables
@@ -116,15 +116,3 @@ The frontend interacts with the backend API to perform various actions:
 ### Styling
 
 - **Tailwind CSS**: Provides a utility-first approach to styling, making the frontend design highly customizable and responsive.
-
-## Contributing
-
-Contributions are welcome! Please fork the repository and create a pull request with your changes. Ensure that your code adheres to the project’s coding standards and includes appropriate documentation.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-This README provides a detailed overview of your Real Estate Platform frontend, highlighting its features, installation steps, and how it integrates with the backend API. This should serve as a solid foundation for anyone looking to contribute or understand the scope of the frontend application.
