@@ -40,6 +40,7 @@ export default function Properties() {
         type: '',
         status : ''
     })
+    const [filterPropertyState, setFilterPropertyState] = useState<boolean>(false);
      
     console.log("filtering props", filteringProps)
     console.log("Our properties", properties)
@@ -90,15 +91,13 @@ fetchPoperties()
         setSearchedProperties(filterProperty)
     }
 
-    //console.log("the filtered properties", filteredProperty)
-    
     const filterPropertiesHandle = () => {
-    
 
-    // if (!filteringProps.location && !filteringProps.status && !filteringProps.type) {
-    //     toast.info("Please select what you need to filter");
-    //     return;
-    //     }
+        if (filteringProps.location || filteringProps.status || filteringProps.type) {
+            setFilterPropertyState(true)
+        } else (
+            setFilterPropertyState(false)
+        )
         
 
     const theProperty = properties?.filter((props: propertyType) => {
@@ -128,7 +127,7 @@ fetchPoperties()
     
 };
 
- 
+  
    
 
     useEffect(() => {
@@ -137,6 +136,10 @@ fetchPoperties()
  router.push(`/properties/${queryParams}`, undefined, {shallow : true})
     }, [searchText])
  
+    useEffect(() => {
+        filterPropertiesHandle();
+    }, [filteringProps.location, filteringProps.status, filteringProps.type])
+
     return <>
         <MobileNav/>
         <DesktopNav/>
@@ -182,7 +185,15 @@ fetchPoperties()
                             }
                 </select> 
 </div>
-                <button onClick={filterPropertiesHandle} className="bg-btn-primary ml-[20px] text-[20px] text-light hover:text-[#FFFFFF] hover:bg-textTitle px-[25px] text-center flex items-center gap-2 font-bold w-fit  w  py-[10px] "><BsFilterSquareFill />Filter</button>
+                { filterPropertyState && 
+                        <button onClick={() => {
+                            setFilterPropertyState(false)
+                    setFilteringProps({
+                        location: "",
+                        type: "",
+                        status : ""
+                    })
+            }} className="bg-btn-primary ml-[20px] text-[20px] text-light hover:text-[#FFFFFF] hover:bg-textTitle px-[25px] text-center flex items-center gap-2 font-bold w-fit  w  py-[10px] "><BsFilterSquareFill />Reset filtering</button>}
                 </div>
             </div>
              
@@ -198,13 +209,13 @@ fetchPoperties()
            {searchText && <div className="text-center">
                 <h1 className="font-medium capitalize">{searchedProperties.length} result for your search</h1>
             </div>}
-            {filteredProperty && <div className="text-center">
-                <h1 className="font-medium capitalize">{filteredProperty.length} result for your Filter</h1>
+            {filterPropertyState && <div className="text-center">
+                <h1 className="font-medium capitalize">{filteredProperty?.length} result for your Filter</h1>
             </div>}
             {!loading && succeeded && <div className="grid grid-cols-1 gap-[50px] md:grid-cols-2 lg:grid-cols-3">
                 
                 {
-                    filteringProps && !searchText &&
+                    filterPropertyState && !searchText &&
                 filteredProperty?.map((property: propertyType, index: number) => {
                     return <Link href={`/properties/${property._id}`} key={index} className="border">
                     <div className="relative">
@@ -272,7 +283,7 @@ fetchPoperties()
                                   <p className="flex items-center text-textTitle items-center font-bold bg-whiteTp p-2 px-[10px] rounded-full "><RiFolderVideoFill className="text-[10px] md:text-[20px]"/> <span className="'text-[10px] md:text-[15px] "></span></p>
                             </div>
                         </div>
-</div>
+</div> 
                     <div className="flex flex-col gap-[20px] px-[20px] py-[20px] ">
                         <h1 className="text-btn-primary font-medium md:text-[20px] text-[15px] ">N {property.price}</h1>
                         <h1 className="font-bold text-textTitle text-[20px] md:text-[30px] ">{property.name}</h1>

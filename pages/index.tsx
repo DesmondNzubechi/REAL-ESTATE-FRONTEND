@@ -24,14 +24,14 @@ export const poppins = Poppins({
 
 export default function Home() {
   
-
+ 
   return (
     <>
       <MobileNav />
       <DesktopNav/>
     <main
       className={`flex overflow-x-hidden flex-col items-center justify-between ${poppins.className}`}
-    >
+    > 
         <HeroSection /> 
         <Overview />
         <OurServices />

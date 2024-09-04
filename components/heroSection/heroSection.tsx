@@ -57,7 +57,7 @@ useEffect(() => {
                 }}
             />
           
-            <div className="relative max-w-[700px] text-light text-justify md:text-center z-[100] px-[30px] pt-[100px] pb-[100px] md:py-[100px]  lg:py-[130px] flex flex-col gap-[30px] justify-center items-center min-h-[100vh] md:min-h-[50vh] lg:min-h-[100vh]">
+            <div className="relative max-w-[700px] text-light text-justify md:text-center z-[100] px-[30px] pt-[100px] pb-[100px] md:py-[100px]  lg:py-[130px] flex flex-col gap-[30px] justify-center items-center min-h-[100vh] md:h-full lg:h-full">
                 
 
                 <h1 className="font-bold text-light text-center  text-[20px] md:text-[25px] lg:text-[30px] uppercase ">Real estate agency</h1>
