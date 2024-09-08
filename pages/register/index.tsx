@@ -5,7 +5,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 import Image from "next/image";
 import signImg from '../../public/images/login1.avif';
-// Assuming you have an api utility for axios instance.
+
 import { toast } from 'react-toastify';
 import { api } from "@/components/lib/api";
 

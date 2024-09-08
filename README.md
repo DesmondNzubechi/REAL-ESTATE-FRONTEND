@@ -12,8 +12,6 @@ This is the frontend repository for the Real Estate Platform, providing a user-f
 6. [Available Pages](#available-pages)
 7. [API Integration](#api-integration)
 8. [State Management](#state-management)
-9. [Contributing](#contributing)
-10. [License](#license)
 
 ## Features
 
