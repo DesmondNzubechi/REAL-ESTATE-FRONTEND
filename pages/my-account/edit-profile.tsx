@@ -28,8 +28,6 @@ export default function EditProfile() {
         const { name, value } = e.target;
         setTheUser({ ...theUser, [name]: value });
     };
-    console.log('the user id', user?._id)
-
 
     const updateUser = async (e: React.FormEvent) => {
         e.preventDefault(); // Prevent default form submission
@@ -51,23 +49,10 @@ export default function EditProfile() {
             setUser(resUser);
             setIsLoading(false);
             router.push('/my-account');
-            toast.success("Succesfully updated", {
-                position: 'top-center',
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-            })
+            toast.success("Succesfully updated")
         } catch (error) {
             setIsLoading(false);
-            toast.success("An error occured. Please try again", {
-                position: 'top-center',
-                autoClose: 5000,
-                hideProgressBar: true,
-                closeOnClick: true,
-                pauseOnHover: true,
-            })
-            console.error("Error updating user:", error);
+            toast.success("An error occured. Please try again")
         }
     };
 
@@ -80,16 +65,11 @@ export default function EditProfile() {
                 withCredentials: true, // Important to send cookies
             });
             const user = response.data.data.user;
-            console.log("User fetched:", response.data.data.user);
             setUser(user) 
             setLoading(false)
         } catch (error) {
-            toast.error("An error occured. Try login again", {
-                hideProgressBar: true,
-                position: "top-center"
-            })
+            toast.error("An error occured. Try login again")
             router.push('/signin')
-            console.log("Error fetching user:", error);
         }
     };
     
@@ -139,8 +119,6 @@ export default function EditProfile() {
         toast.success("Profile picture updated successfully");
             } catch (error) {
                  
-                console.error("Error updating profile picture:", error);
-                
                 toast.error("An error occurred during profile picture update");
                 
     }

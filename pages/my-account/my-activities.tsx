@@ -21,7 +21,6 @@ export default function MyActivities() {
     const [myActivities, setMyActivities] = useState<propertyActivitiesType[]>([]);
     const [blogActivities, setBlogActivities] = useState<blogActivitiesType[]>([]);
     const { user, setUser } = useUserStore();
-    console.log('the user id', user?._id)
 
 console.log("my activities", myActivities)
      
@@ -32,16 +31,11 @@ console.log("my activities", myActivities)
                 withCredentials: true, // Important to send cookies
             });
             const user = response.data.data.user;
-            console.log("User fetched:", response.data.data.user);
             setUser(user) 
             //setLoading(false)
         } catch (error) {
-            toast.error("An error occured. Try login again", {
-                hideProgressBar: true,
-                position: "top-center"
-            })
+            toast.error("An error occured. Try login again")
             router.push('/signin')
-            console.log("Error fetching user:", error);
         }
     };
     
@@ -58,12 +52,10 @@ console.log("my activities", myActivities)
             const activities = response.data.data.activities;
             const sortedActivities = activities.sort((a : any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
 
-            console.log("This activity", activities)
             setMyActivities(sortedActivities);
 
             setSucceeded(true)
         } catch (error) {
-            console.log(error, "error fetching activities");
             setSucceeded(false);
         } finally {
             setLoading(false)
@@ -78,12 +70,10 @@ console.log("my activities", myActivities)
             const activities = response.data.data.activities;
             const sortedActivities = activities.sort((a : any, b: any) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
 
-            console.log("This activity", activities)
          setBlogActivities(sortedActivities);
 
             setSucceeded(true)
         } catch (error) {
-            console.log(error, "error fetching activities");
             setSucceeded(false);
         } finally {
             setLoading(false)

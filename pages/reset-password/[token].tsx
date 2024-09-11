@@ -24,32 +24,17 @@ export default function ResetPassword() {
         e.preventDefault();
 
         if (!password || !confirmPassword) {
-            toast.error("Please provide password and confirm password.", {
-                hideProgressBar: true,
-                autoClose: 5000,
-                pauseOnHover: true,
-                closeOnClick : true
-            })
+            toast.error("Please provide password and confirm password.")
             return;
         }
 
         if (password.length  < 10 || confirmPassword.length < 10) {
-            toast.error("Your password length must be greater than or equal to 10.", {
-                hideProgressBar: true,
-                autoClose: 5000,
-                pauseOnHover: true,
-                closeOnClick : true
-            })
+            toast.error("Your password length must be greater than or equal to 10.")
             return;
         }
 
         if (password !== confirmPassword) {
-            toast.error("Confirm password and password are not the same.", {
-                hideProgressBar: true,
-                autoClose: 5000,
-                pauseOnHover: true,
-                closeOnClick : true
-            })
+            toast.error("Confirm password and password are not the same.")
             return;
         }
 
@@ -61,26 +46,13 @@ export default function ResetPassword() {
                 confirmPassword
             });
             
-            toast.success("Reset password successful. Login with your new password.", {
-                position: "top-center",
-                hideProgressBar: true,
-                autoClose: 10000,
-                pauseOnHover: true,
-                closeOnClick: true
-            })
+            toast.success("Reset password successful. Login with your new password.")
             setLoading(false)
 
             router.push('/signin')
             
         } catch (error) {
-            toast.error("An error occured. Please try again", {
-                position: "top-center",
-                hideProgressBar: true,
-                autoClose: 2000,
-                pauseOnHover: true,
-                closeOnClick: true
-            })
-            console.log('error', error)
+            toast.error("An error occured. Please try again")
             setLoading(false)
         }
     }

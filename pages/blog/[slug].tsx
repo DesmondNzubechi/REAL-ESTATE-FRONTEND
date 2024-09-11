@@ -31,7 +31,6 @@ export default function TheFullBlog() {
 
     const { slug } = router.query;
 
-    console.log("slug", fullBlogArticle)
 
   const fetchFullBlogArticle = async () => {
     setLoading(true);
@@ -45,7 +44,6 @@ export default function TheFullBlog() {
           setSucceeded(true);
           setLoading(false)
         } catch (error) {
-          console.log(error)
           setLoading(false);
           setSucceeded(false);
         }

@@ -43,23 +43,11 @@ export default function ForgotPassword() {
          
             await api.post('/user/forgotPassword', { email })
             
-            toast.success("Rest password link has been sent to your. Kindly check", {
-                position: "top-center",
-                hideProgressBar: true,
-                autoClose: 10000,
-                pauseOnHover: true,
-                closeOnClick: true
-            })
+            toast.success("Rest password link has been sent to your. Kindly check")
             setLoading(false)
         } catch (error) {
             
-            toast.error("An error occured. Please try again", {
-                position: "top-center",
-                hideProgressBar: true,
-                delay: 10000,
-                pauseOnHover: true,
-                closeOnClick: true
-            })
+            toast.error("An error occured. Please try again")
             setLoading(false)
         }
 

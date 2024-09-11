@@ -22,7 +22,6 @@ export default function Blog() {
     const [succeeded, setSucceeded] = useState<boolean>(false)
     
     const [blog, setBlog] = useState<blogType[]>([]);
-    console.log("the blogs", blog);
 
     const fetchBlog = async () => {
         setLoading(true);
@@ -32,12 +31,10 @@ export default function Blog() {
 
             const blogs = response.data.data.blogPost;
 
-            console.log("the res", blogs)
             setBlog(blogs)
             setSucceeded(true);
             setLoading(false);
         } catch (error) {
-            console.log(error)
             setSucceeded(false);
             setLoading(false)
         }

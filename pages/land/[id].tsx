@@ -11,13 +11,9 @@ import house9 from '../../public/images/house9.png';
 import ImageSlider from "@/components/imageSlider/imageSlider";
 import { MobileNav } from "@/components/Navbar/mobileNav";
 import { DesktopNav } from "@/components/Navbar/desktopNav";
-import { PageBgOverview } from "@/components/pageOverview/pageOverview";
-import { MdReviews } from "react-icons/md";
+
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-import { FaCheckCircle } from "react-icons/fa";
-import { FaPencil } from "react-icons/fa6";
-import { FaUserAlt } from "react-icons/fa";
 import { LandDetailsSkeleton } from "@/components/skeletonloader/landFullSkeleton";
 import { ReloadPage } from "@/components/Reload/Reload";
 import { api } from "@/components/lib/api";
@@ -42,20 +38,7 @@ export default function LandDetails() {
 
     const router = useRouter(); 
     const { id } = router.query;
-    const propertyDetails: propertyOverview =  {
-        name: "New House here",
-        price: '9000',
-        location: "Enugu, Nigeria",
-        bedroom: "3",
-        bathroom: "2",
-        car: "2",
-        status: "for sale",
-        imageNo: "2",
-        video: "1",
-        images: [house1, house2,house3,house4,house5,house6,house7,house8,house9],
-        
-    }
-    
+
     const fetchLand = async () => {
         setLoading(true);
         
@@ -68,7 +51,6 @@ export default function LandDetails() {
             setSucceeded(true);
 
         } catch (error) {
-            console.log(error);
             setLoading(false);
             setSucceeded(false);
         }

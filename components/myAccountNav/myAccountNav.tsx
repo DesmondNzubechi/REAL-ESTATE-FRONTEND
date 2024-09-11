@@ -1,18 +1,13 @@
 import { RxActivityLog } from "react-icons/rx";
-import { FaBorderStyle } from "react-icons/fa";
-import { CgProfile } from "react-icons/cg";
 import { FaUserAlt } from "react-icons/fa";
 import { MdEdit } from "react-icons/md";
-import { FaEdit } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { accountNav } from "../types/types";
 import Link from "next/link";
-import { BiLogOut } from "react-icons/bi";
 import { FaHouseCircleCheck } from "react-icons/fa6";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { FaImagePortrait } from "react-icons/fa6";
 import { LogOut } from "../logOut/loagOut";
 
 export const MyAccountNav = () => {

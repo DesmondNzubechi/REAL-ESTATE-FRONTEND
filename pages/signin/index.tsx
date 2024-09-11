@@ -50,17 +50,8 @@ export default function SignIn() {
         try {
             const response = await api.post('/user/login', {email: userLoginDetail.email, password: userLoginDetail.password}, { withCredentials: true });
 
-            console.log(response.data);
-
-            //setLoading(false)
-
             router.push('/my-account');
-            toast.success("Login successful", {
-                hideProgressBar : true,
-              closeOnClick: true,
-              autoClose: 500,
-              pauseOnHover: true
-            })
+            toast.success("Login successful")
         } catch (error ) {
             if (error instanceof Error) {
                 setError(error.message);

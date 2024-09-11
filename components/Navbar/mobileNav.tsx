@@ -104,18 +104,18 @@ const {user, isAuthenticated} = useUserStore()
                        <Image src={logo} className=" w-[150px] md:w-[250px]" alt="home  features logo"/>
                     </Link> 
 
-                    <div className="flex bg-transparent  text-light p-2  hover:text-slate-200">
+                   
                         {navState !== "left-[-2000px]" ?
-                        <HiXMark onClick={() => setNavState('left-[-2000px]')} className="text-[30px]  "/> :
-                        <FaBarsStaggered onClick={() => setNavState('left-0')} className="text-[30px]  "/>}
-                    </div>
+                        <HiXMark onClick={() => setNavState('left-[-2000px]')} className="text-[30px] bg-transparent  text-light p-2  hover:text-slate-200 "/> :
+                        <FaBarsStaggered onClick={() => setNavState('left-0')} className="text-[30px] bg-transparent  text-light p-2  hover:text-slate-200 "/>}
+                   
                 </div>
             </div>
             <span onClick={(e:any) => {
                 if (e.target.tagName !== 'DIV') {
                     setNavState('left-[-2000px]')
                 }
-            }} style={{ transition: "ease-in-out 1s" }} className={`fixed z-[10000] min-h-[100vh] text-priimaryText bg-tp ${navState} right-0 top-0 bottom-0 w-full`}>
+            }} style={{ transition: ".5s" }} className={`fixed z-[10000] min-h-[100vh] text-priimaryText bg-tp ${navState} right-0 top-0 bottom-0 w-full`}>
                 <div className="flex bg-primaryBg flex-col overflow-y-auto gap-[30px] absolute top-0 bottom-0 w-[70%] left-0 px-[30px] py-[30px]">
                     <div className="flex justify-between items-center">
                     <Link href='' className="flex items-center">
@@ -145,7 +145,7 @@ const {user, isAuthenticated} = useUserStore()
                             <TbHomeSearch className="text-[20px]" />
                             <span>Search</span>
                         </Link> */}
-                        <Link href='/register' className="bg-btn-primary text-primary text-light text-[15px] w-[150px] py-[5px] px-[20px]">
+                        <Link href='/register' className="bg-btn-primary text-primary text-light text-[15px] text-center w-[150px] py-[5px] px-[20px]">
                             Register
                         </Link>
                         <Link href='/signin' className="text-[15px] text-center border py-[5px] w-[150px] px-[20px]">

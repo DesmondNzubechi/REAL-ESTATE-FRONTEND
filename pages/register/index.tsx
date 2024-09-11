@@ -30,7 +30,7 @@ export default function Register() {
     const [error, setError] = useState("");
     const router = useRouter();
 
-    console.log("error here", error)
+    
 
     const validateInput = (name: string, value: string) => {
         switch (name) {
@@ -77,13 +77,14 @@ export default function Register() {
 
         setError("");
 
+
+        if (formData.password.length < 10 && formData.confirmPassword.length < 10) {
+            toast.error("Please fill in all fields correctly");
+            return;
+        }
+
         if (!validateForm()) {
-            toast.error("Please fill in all fields correctly", {
-                hideProgressBar: true,
-                closeOnClick: true,
-                autoClose: 5000,
-                pauseOnHover: true,
-            });
+            toast.error("Please fill in all fields correctly");
             return;
         }
 
@@ -91,7 +92,6 @@ export default function Register() {
         try {
             const response = await api.post('/user/signup', formData, { withCredentials: true });
 
-            console.log(response.data);
 
             router.push('/my-account');
             toast.success("Signup successful", {
@@ -114,11 +114,24 @@ export default function Register() {
                                 pauseOnHover: true,
                             });      
                 }
-                console.log("The error", error)
         } finally {
             setLoading(false);
         }
     };
+
+    // const handleGoogleSignIn = async () => {
+    //     try {
+    //         // Send a request to your backend to get the Google sign-in URL
+    //         const response = await api.get(`/user/googleAuth`);
+    //         const { url } = response.data;
+    
+    //         // Redirect user to Google for sign-in
+    //         window.location.href = url;
+    //     } catch (error) {
+    //         console.error('Error getting Google sign-in URL:', error);
+    //     }
+    // };
+    
 
     return (
         <div className="grid grid-cols-1 gap-0 md:grid-cols-2">
@@ -211,6 +224,14 @@ export default function Register() {
                     >
                         {loading ? "Registering..." : "Register"}
                     </button>
+                    {/* <button
+                    onClick={handleGoogleSignIn}
+                        type="button"
+                        className='text-light md:col-span-2 text-[12px] md:text-[20px] uppercase w-fit bg-btn-primary px-[30px] py-[15px] font-bold hover:bg-textTitle hover:text-light'
+                        disabled={loading}
+                    >
+                       siginin with google
+                    </button> */}
                 </form>
                 <div className="flex flex-col gap-5">
                     <h1 className="font-bold text-textTitle text-[15px] md:text-[25px] uppercase">

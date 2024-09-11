@@ -52,16 +52,10 @@ const router = useRouter()
             
             clearUser();
             setIsLoading(false);
-            toast.success("Password change successful", {
-                hideProgressBar : true,
-              closeOnClick: true,
-              autoClose: 500,
-              pauseOnHover: true
-            })
+            toast.success("Password change successful")
             router.push('/my-account')
             
         } catch (error) {
-            console.log("error here", error)
             setIsLoading(false);
         }
 
@@ -69,15 +63,12 @@ const router = useRouter()
     
 
 
-console.log("the user is here", user)
-
 const getUser = async () => {
 try {
     const response = await api.get('/user/me', { 
         withCredentials: true, // Important to send cookies
     });
     const user = response.data.data.user;
-    console.log("User fetched:", response.data.data.user);
     setUser(user) 
 } catch (error) {
     toast.error("An error occured. Try login again", {
@@ -85,7 +76,6 @@ try {
         position: "top-center"
     })
     router.push('/signin')
-    console.log("Error fetching user:", error);
 }
 };
 

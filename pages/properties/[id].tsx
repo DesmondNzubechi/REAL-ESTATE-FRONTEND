@@ -75,7 +75,6 @@ export default function PropertyDetails() {
             setSucceeded(true)
             fetchPropertyReviews()
         } catch (error) {
-            console.log(error);
             setSucceeded(false)
         } finally {
             setLoading(false)
@@ -92,7 +91,6 @@ export default function PropertyDetails() {
             setPropertyReviews(reviews);
 
         } catch (error) {
-           console.log("error fetching reviews", error) 
         } 
  
     }

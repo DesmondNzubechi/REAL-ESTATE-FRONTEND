@@ -22,8 +22,6 @@ export default function MyAccount() {
     const router = useRouter()
 
     const { user, setUser, isAuthenticated } = useUserStore();
-
-    console.log("the user is here", user)
     
     const getUser = async () => {
     setLoading(true)
@@ -32,16 +30,11 @@ export default function MyAccount() {
             withCredentials: true, // Important to send cookies
         });
         const user = response.data.data.user;
-        console.log("User fetched:", response.data.data.user);
         setUser(user) 
         setLoading(false)
     } catch (error) {
-        toast.error("An error occured. Try login again", {
-            hideProgressBar: true,
-            position: "top-center"
-        })
+        toast.error("An error occured. Try login again")
         router.push('/signin')
-        console.log("Error fetching user:", error);
     }
 }; 
  
