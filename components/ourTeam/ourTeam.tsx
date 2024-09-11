@@ -1,4 +1,6 @@
-import nzubechi from '../../public/images/nzubechi.png';
+import ceo1 from '../../public/images/ceo1.jpg';
+import ceo2 from '../../public/images/ceo2.avif';
+import ceo3 from '../../public/images/ceo3.avif';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaXTwitter } from "react-icons/fa6";
@@ -17,10 +19,10 @@ export const OurTeam = () => {
         </div>
         <div className="grid grid-cols-1 gap-[30px] md:grid-cols-2 lg:grid-cols-3">
             <div className="border ">
-                    <Image src={nzubechi} className="md:h-[350px] " alt="" />
+                    <Image src={ceo1} className="md:h-[350px] " alt="" />
                     
                 <div className="flex flex-col items-center justify-center py-[20px] px-[30px]  gap-5 ">
-                    <h1 className='font-bold text-[20px] text-center md:text-[25px] text-textTitle'>Desmond Nzubechukwu</h1>
+                    <h1 className='font-bold text-[20px] text-center md:text-[25px] text-textTitle'>Ezeilo Samuel</h1>
                     <h2 className='font-bold text-btn-primary text-[15px] md:text-[20px] uppercase'>founder & ceo</h2>
                     <div className="flex item-center gap-5">
                             <Link className="bg-secondaryBg p-2 rounded" href=''>
@@ -39,11 +41,11 @@ export const OurTeam = () => {
                         </div>
             </div>
             <div className="border ">
-                    <Image src={nzubechi} className="md:h-[350px] " alt="" />
+                    <Image src={ceo2} className="md:h-[350px] " alt="" />
                     
                 <div className="flex flex-col items-center justify-center py-[20px] px-[30px]  gap-5 ">
-                    <h1 className='font-bold text-[20px] text-center md:text-[25px] text-textTitle'>Desmond Nzubechukwu</h1>
-                    <h2 className='font-bold text-btn-primary text-[15px] md:text-[20px] uppercase'>founder & ceo</h2>
+                    <h1 className='font-bold text-[20px] text-center md:text-[25px] text-textTitle'>Okafor Emeka</h1>
+                    <h2 className='font-bold text-btn-primary text-[15px] md:text-[20px] uppercase'>Co-Founder</h2>
                     <div className="flex item-center gap-5">
                             <Link className="bg-secondaryBg p-2 rounded" href=''>
                                 <FaXTwitter className="text-[15px] md:text-[20px]" />
@@ -61,11 +63,11 @@ export const OurTeam = () => {
                         </div>
             </div>
              <div className="border ">
-                    <Image src={nzubechi} className="md:h-[350px] " alt="" />
+                    <Image src={ceo3} className="md:h-[350px] " alt="" />
                     
                 <div className="flex flex-col items-center justify-center py-[20px] px-[30px]  gap-5 ">
-                    <h1 className='font-bold text-[20px] text-center md:text-[25px] text-textTitle'>Desmond Nzubechukwu</h1>
-                    <h2 className='font-bold text-btn-primary text-[15px] md:text-[20px] uppercase'>founder & ceo</h2>
+                    <h1 className='font-bold text-[20px] text-center md:text-[25px] text-textTitle'>Richie Mike</h1>
+                    <h2 className='font-bold text-btn-primary text-[15px] md:text-[20px] uppercase'>Co-Founder</h2>
                     <div className="flex item-center gap-5">
                             <Link className="bg-secondaryBg p-2 rounded" href=''>
                                 <FaXTwitter className="text-[15px] md:text-[20px]" />

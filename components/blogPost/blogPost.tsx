@@ -17,7 +17,6 @@ export const BlogPost = () => {
     const [succeeded, setSucceeded] = useState<boolean>(false)
     
     const [blog, setBlog] = useState<blogType[]>([]);
-    console.log("the blogs", blog);
 
     const fetchBlog = async () => {
         setLoading(true);
@@ -26,13 +25,10 @@ export const BlogPost = () => {
             const response = await api.get('/blog/getAllBlogPost')
 
             const blogs = response.data.data.blogPost;
-
-            console.log("the res", blogs) 
             setBlog(blogs)
             setSucceeded(true);
             setLoading(false);
         } catch (error) {
-            console.log(error)
             setSucceeded(false);
             setLoading(false)
         }

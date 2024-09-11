@@ -5,8 +5,6 @@ import { MdBathtub } from "react-icons/md";
 import { GiHomeGarage } from "react-icons/gi";
 import { FaLocationDot } from "react-icons/fa6";
 import house1 from '../../public/images/house8.avif';
-import house2 from '../../public/images/house3.avif';
-import house3 from '../../public/images/house5.avif';
 import { propertyOverview, propertyType } from "../types/types";
 import Image from "next/image";
 import { usePropertiesStore } from "../store/store";
@@ -24,7 +22,6 @@ export const FeaturedProperty = () => {
     const [succeeded, setSucceeded] = useState<boolean>(false)
     const [featuredProp, setFeaturedProp] = useState<propertyType[]>()
     
-    console.log("Our properties", featuredProp)
 
     const fetchPoperties = async () => {
         setLoading(true)
@@ -32,11 +29,9 @@ export const FeaturedProperty = () => {
             const response = await api.get('/properties/');
             const props = response.data.data.properties;
            setFeaturedProp(props)
-            console.log("The properties", props);
             setLoading(false)
             setSucceeded(true);
         } catch (error) {
-            console.log("the errors", error)
             setLoading(false)
             setSucceeded(false);
         }
