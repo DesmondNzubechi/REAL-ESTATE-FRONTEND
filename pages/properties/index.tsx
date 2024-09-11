@@ -71,8 +71,7 @@ fetchPoperties()
     const [searchText, setSearchText] = useState<string | any>(router.query.search ||'')
     const [searchedProperties, setSearchedProperties] = useState<propertyType[] | any>()
     const [filteredProperty, setFilteredProperty] = useState<propertyType[]>();
-    console.log("The search properties", searchedProperties)
-
+  
     const searchgProperty = (e: string) => {
 
         const value = e.toLowerCase();
