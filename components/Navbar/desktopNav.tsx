@@ -106,11 +106,7 @@ export const DesktopNav = () => {
                     scrollBehavior : "smooth"
                   }}
                 className={`py-[10px]  px-[30px] flex flex-col gap-y-[10px] fixed left-0 right-0 top-0 w-full ${isScrolled? "bg-textTitle" : "bg-transparent"} `}>
-               {/* {!isScrolled && <> <div className="flex justify-around ">
-                    <div className="flex items-center"><IoMdCall className="text-btn-primary text-[20px] "/> <p className="text-light font-bold text-large">+23470000183611</p></div>
-                    <div className="flex items-center"><FaLocationDot className="text-btn-primary text-[20px] "/> <p className="text-light font-bold text-large">1A Denten Street, Ogui, Enugu.</p></div>
-                </div>
-                    <hr /> </>} */}
+               
                 <div className="flex justify-between px-[50px] ">
                 <div className="flex items-center justify-between ">
                 <Link href='/' className="flex  gap-1 items-center">
@@ -136,10 +132,10 @@ export const DesktopNav = () => {
                         {/* <Link href='' className="flex text-[25px] items-center">
                             <TbHomeSearch className="text-[20px]" />
                         </Link> */}
-                        <Link href='/register' className="bg-btn-primary text-primary text-center text-light text-[20px] min-w-[150px] py-[5px] px-[20px]">
+                        <Link href='/register' className="bg-btn-primary text-primary text-center text-light text-[15px] min-w-[150px] py-[5px] px-[20px]">
                             Register
                         </Link>
-                        <Link href='/signin' className="text-[20px] bg-primaryBg text-center border py-[5px] min-w-[150px] px-[20px]">
+                        <Link href='/signin' className="text-[15px] bg-primaryBg text-center border py-[5px] min-w-[150px] px-[20px]">
                             Login
                         </Link>
                     </div>}

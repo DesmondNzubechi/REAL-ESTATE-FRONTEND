@@ -1,8 +1,4 @@
 import { PageBgOverview } from "@/components/pageOverview/pageOverview"
-import house1 from '../../public/images/house7.avif'
-import house2 from '../../public/images/real estate news.jpg'
-import house3 from '../../public/images/house5.avif'
-import house4 from '../../public/images/house6.avif'
 import Image from "next/image"
 import Link from "next/link"
 import { FaCalendarAlt } from "react-icons/fa";
@@ -43,7 +39,7 @@ export default function Blog() {
     useEffect(() => { 
         fetchBlog();
     }, [])
-    
+     
     return <> 
         <MobileNav />
         <DesktopNav/>
@@ -55,12 +51,13 @@ export default function Blog() {
       
             {
                 blog.map((article: blogType, index: number) => {
-                    return <Link href={`/blog/${article._id}`} key={index} className="border relative hover:shadow-2xl group overflow-hidden">
-                        <div className="relative overflow-hidden">
-                        <Image height={500} width={500} src={article.images} 
-           className="md:h-[350px] w-full transition-transform duration-500 group-hover:scale-105" 
-           alt="" /> 
-                     </div>
+                    return <Link href={`/blog/${article._id}`} key={index} className="border relative  hover:shadow-2xl group overflow-hidden">
+                        <div style={{
+                            backgroundImage: `url(${article.images})`,
+                            backgroundSize: "cover"
+                        }} className="relative h-[300px] overflow-hidden">
+                       
+                     </div> 
     <div className="flex flex-col py-[20px] px-[30px] gap-5">
         <div className="flex flex-row gap-5 items-center">
             <span className="flex items-center gap-1">

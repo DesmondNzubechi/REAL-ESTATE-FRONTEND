@@ -25,7 +25,7 @@ export default function ForgotPassword() {
         return true;
     }
 
-    const ForgotPasswordFn = async (e: any) => {
+    const forgotPasswordFn = async (e: any) => {
         e.preventDefault()
         if (!validateForm) {
             return;
@@ -60,7 +60,7 @@ export default function ForgotPassword() {
                 <h1 className="text-textTitlte uppercase text-[30px] font-bold">forgot password</h1>
                <p className="text-textColor text-[15px]">Submit your email. a reset password link will be sent to the email provided</p>
             </div>
-            <form onSubmit={ForgotPasswordFn} className="flex flex-col gap-5">
+            <form onSubmit={forgotPasswordFn} className="flex flex-col gap-5">
             <div className='border-[2px] flex justify-between px-[20px] py-[20px] '>
                         <input value={email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} type="email" placeholder='nzubechukwu@gmail.com' className='text-btn2 w-full bg-transparent outline-0 text-[20px] ' /> 
                         <MdEmail className='text-[20px] text-btn-primary'/>

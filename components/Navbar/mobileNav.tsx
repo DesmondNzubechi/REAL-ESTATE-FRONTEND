@@ -103,11 +103,9 @@ const {user, isAuthenticated} = useUserStore()
                 <Link href='/' className="flex  gap-1 items-center">
                        <Image src={logo} className=" w-[150px] md:w-[250px]" alt="home  features logo"/>
                     </Link> 
-
-                   
                         {navState !== "left-[-2000px]" ?
-                        <HiXMark onClick={() => setNavState('left-[-2000px]')} className="text-[30px] bg-transparent  text-light p-2  hover:text-slate-200 "/> :
-                        <FaBarsStaggered onClick={() => setNavState('left-0')} className="text-[30px] bg-transparent  text-light p-2  hover:text-slate-200 "/>}
+                        <HiXMark onClick={() => setNavState('left-[-2000px]')} className=" text-[40px] bg-transparent  text-light p-2  hover:text-slate-200 "/> :
+                        <FaBarsStaggered onClick={() => setNavState('left-0')} className=" text-[40px] bg-transparent  text-light p-2  hover:text-slate-200 "/>}
                    
                 </div>
             </div>

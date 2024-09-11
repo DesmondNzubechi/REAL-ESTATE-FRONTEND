@@ -13,7 +13,7 @@ import { AboutCard } from "@/components/aboutCard/aboutCard";
 import { OurTeam } from "@/components/ourTeam/ourTeam";
 import { DesktopNav } from "@/components/Navbar/desktopNav";
 import { FullBlog } from "@/components/fullBlog/fullBlog";
-
+ 
 const inter = Inter({ subsets: ["latin"] });
 
 export const poppins = Poppins({
