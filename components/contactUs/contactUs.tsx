@@ -31,7 +31,7 @@ export const ContactUsComponent = () => {
         </div>
 
         <div>
-            <div className='md:px-[70px] px-[30px] mb-[-100px] relative z-1 '>
+            <div className='md:px-[70px] px-[30px] mb-[40px] relative z-1 '>
         <div className='shadow-xl px-[20px] border w-full py-[50px]  bg-primaryBg'>
             <form className='flex w-full flex-col gap-[20px] '>
                 <h1 className='capitalize text-textTitle font-bold text-[20px] md:text-[25px]'>Send Us a message</h1>

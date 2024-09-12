@@ -50,7 +50,7 @@ useEffect(() => {
                 }}
             />
             <div
-                className={`background-image after:absolute after:h-full pt-[100px] pb-[100px] md:py-[100px]  lg:py-[130px] after:bg-tpr after:w-full after:left-0 after:right-0 after:top-0 r min-h-[100vh] md:min-h-[50vh] lg:min-h-[100vh] relative flex items-center px-[30px] bg-cover z-[1] ${transitionClass === 'slide-in' ? 'slide-in' : ''}`}
+                className={`background-image after:absolute after:h-full pt-[100px] pb-[100px] md:py-[100px]  lg:py-[130px] after:bg-tpr after:w-full after:left-0 after:right-0 after:top-0 r min-h-[100vh] md:min-h-[50vh] lg:min-h-[100vh] relative flex items-center px-[30px] bg-cover z-[1] ${/*transitionClass === 'slide-in' ? 'slide-in' : ''*/ ''} `}
                 style={{
                     backgroundSize : "cover",
                     backgroundImage: `url(${HeroArray[nextImage].src})`,

@@ -35,7 +35,7 @@ export default function Blog() {
             setLoading(false)
         }
     } 
-
+ 
     useEffect(() => { 
         fetchBlog();
     }, [])
