@@ -14,7 +14,7 @@ export const LogOut = ({logOut, setLogOut} : {logOut: boolean, setLogOut: React.
         try {
     
            const response = await api.post('/user/logout', {}, { withCredentials: true }); 
-        console.log(response, "the log")
+
            clearUser()
             setLogOut(false)
           router.push('/signin');

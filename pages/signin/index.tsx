@@ -81,7 +81,7 @@ export default function SignIn() {
                 </div>
                 <div className='border-[2px] flex justify-between px-[20px] py-[20px] '>
                         <input value={userLoginDetail.password} type="password" required onChange={(e: ChangeEvent<HTMLInputElement>) => setUserLoginDetail({...userLoginDetail, password : e.target.value})} placeholder='password' className='text-btn2 w-full bg-transparent outline-0 text-[12px] md:text-[20px] ' /> 
-                         {/* <RiLockPasswordFill className='text-[20px] text-btn-primary'/> */}
+                         {/* <RiLockPasswordFill className='text-[20px] text-btn-primary'/> */} 
                 </div>
               {error &&  <p>{error}</p>}
                 <button type="submit" disabled={loading} className='text-light uppercase text-[12px] md:text-[20px] w-fit bg-btn-primary px-[30px] py-[15px] font-bold hover:bg-textTitle hover:text-light '>{loading ? "sign in progress" : "sign in"}</button>

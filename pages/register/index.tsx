@@ -90,7 +90,7 @@ export default function Register() {
 
         setLoading(true);
         try {
-            const response = await api.post('/user/signup', formData, { withCredentials: true });
+            const response = await api.post('/user/signup', formData);
 
 
             router.push('/my-account');
@@ -101,12 +101,14 @@ export default function Register() {
                 pauseOnHover: true,
             });
         } catch (error : any) {
+
+            console.log(error, "The error is here")
             if (error instanceof Error) {
                     setError(error.message);
             } else {
                 setError("An unexpected error occurred");
                 }
-                if (error.response.data.message === "user already exist with email") {
+                if (error?.response?.data?.message === "user already exist with email") {
                         toast.error("user already exist. Please login", {
                                 hideProgressBar: true,
                                 closeOnClick: true,
