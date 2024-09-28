@@ -2,7 +2,7 @@ import Link from "next/link";
 import { navType } from "../types/types"
 import { SiHomeassistantcommunitystore } from "react-icons/si";
 import { TbHomeSearch } from "react-icons/tb";
-import { FaCircleUser, FaXTwitter } from "react-icons/fa6";
+import { FaCircleUser, FaHouse, FaXTwitter } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -110,7 +110,10 @@ export const DesktopNav = () => {
                 <div className="flex justify-between px-[50px] ">
                 <div className="flex items-center justify-between ">
                 <Link href='/' className="flex  gap-1 items-center">
-                       <Image src={logo} className="w-[250px]" alt="home  features logo"/>
+                <div className='flex items-center relative z-[10] gap-2'>
+     <span className='bg-[#FF5733] rounded-[3.89px] p-2'><FaHouse className='text-[#FFFFFF]  text-[10px] '/></span>
+<h1 className='text-[19.05px] uppercase leading-[21.43px] font-[700] text-[#FFFFFF] '>Home Features</h1>
+    </div>
                     </Link>
 
                     </div>
@@ -132,10 +135,10 @@ export const DesktopNav = () => {
                         {/* <Link href='' className="flex text-[25px] items-center">
                             <TbHomeSearch className="text-[20px]" />
                         </Link> */}
-                        <Link href='/register' className="bg-btn-primary text-primary text-center text-light text-[15px] min-w-[150px] py-[5px] px-[20px]">
+                        <Link href='/register' className="bg-btn-primary rounded text-primary text-center text-light text-[15px] min-w-[150px] py-[5px] px-[20px]">
                             Register
                         </Link>
-                        <Link href='/signin' className="text-[15px] bg-primaryBg text-center border py-[5px] min-w-[150px] px-[20px]">
+                        <Link href='/signin' className="text-[15px] rounded bg-primaryBg text-center border py-[5px] min-w-[150px] px-[20px]">
                             Login
                         </Link>
                     </div>}

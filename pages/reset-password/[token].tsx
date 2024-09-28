@@ -7,6 +7,7 @@ import { ChangeEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { api } from "@/components/lib/api";
 import { useRouter } from "next/router";
+import { AuthPage } from "@/components/authPage/authPage";
 
 export default function ResetPassword() { 
 
@@ -57,27 +58,26 @@ export default function ResetPassword() {
         }
     }
     
-    return <div className="grid grid-cols-1 justify-center items-center gap-0 md:grid-cols-2">
-
+    return <div className='grid md:px-[50px] px-[20px] py-[20px] lg:px-[50px] grid-cols-1 gap-[100px]  md:grid-cols-2  '>
+<AuthPage/>
         <div className="flex flex-col gap-[50px] justify-center h-full by-primaryBg px-[50px] md:px-[100px] py-[50px] ">
-            <div className="flex flex-col gap-3 max-w-[500px] ">
-                <h1 className="text-textTitlte uppercase text-[30px] font-bold">reset password</h1>
-               <p className="text-textColor text-[15px]">Please make sure you provide a password that you would remember</p>
+        <div className='flex flex-col justify-center  text-center gap-2 mb-[20px] '>
+                <h1 className='font-[700] text-[32px] leading-[39.97px] text-[#111111] '>Reset password</h1>
+               <p className='font-[400] leading-[19.98px] text-[16px] text-[#333333] '>Please make sure you provide a password that you would remember</p>
             </div>
             <form onSubmit={passwordResetFn} className="flex flex-col gap-5">
-            <div className='border-[2px] flex justify-between px-[20px] py-[20px] '>
-                        <input type="password" placeholder='password' value={password} onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} className='text-btn2 w-full bg-transparent outline-0 text-[20px] ' /> 
-                        <RiLockPasswordFill className='text-[20px] text-btn-primary'/>
-                </div>
-                <div className='border-[2px] flex justify-between px-[20px] py-[20px] '>
-                        <input type="password" placeholder='Confirm password' value={confirmPassword} onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)} className='text-btn2 w-full bg-transparent outline-0 text-[20px] ' /> 
-                        <RiLockPasswordFill className='text-[20px] text-btn-primary'/>
-                </div>
-                <button type='submit' disabled={loading} className='text-light uppercase w-fit bg-btn-primary px-[30px] py-[15px] font-bold hover:bg-textTitle hover:text-light '>{loading? "Reseting password" : 'Reset Password'}</button>
+            <div className='flex flex-col gap-[4px]  w-full'>
+    <label htmlFor="password" className='text-[16px] font-[400] text-[#666666] leading-[19.98px] '>Password</label>
+    <input name='password'  value={password} onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} type="password" className='border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  ' />
+</div>
+<div className='flex flex-col gap-[4px]  w-full'>
+    <label htmlFor="password" className='text-[16px] font-[400] text-[#666666] leading-[19.98px] '>Password</label>
+    <input name='password'  value={confirmPassword} onChange={(e: ChangeEvent<HTMLInputElement>) => setConfirmPassword(e.target.value)} type="password" className='border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  ' />
+</div>
+               
+                <button type='submit' disabled={loading} className='bg-[#FF5733]  py-[12px] px-[10px] rounded-[10px] text-[#FFFFFF] font-[400] text-[16px] text-center '>{loading? "Reseting password" : 'Reset Password'}</button>
             </form>
         </div>
-        
-            <Image src={signImg} className=" w-full h-fit hidden md:flex" alt="sign"/>
        
     </div>
 }

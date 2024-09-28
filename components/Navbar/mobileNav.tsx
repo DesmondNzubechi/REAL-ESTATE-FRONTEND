@@ -2,7 +2,7 @@ import Link from "next/link";
 import { navType } from "../types/types"
 import { SiHomeassistantcommunitystore } from "react-icons/si";
 import { TbHomeSearch } from "react-icons/tb";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaHouse, FaXTwitter } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
@@ -101,7 +101,10 @@ const {user, isAuthenticated} = useUserStore()
                 <hr /> </>}  */}
                 <div className="flex items-center justify-between ">
                 <Link href='/' className="flex  gap-1 items-center">
-                       <Image src={logo} className=" w-[150px] md:w-[250px]" alt="home  features logo"/>
+                <div className='flex items-center relative z-[10] gap-2'>
+     <span className='bg-[#FF5733] rounded-[3.89px] p-2'><FaHouse className='text-[#FFFFFF]  text-[10px] '/></span>
+<h1 className='text-[19.05px] uppercase leading-[21.43px] font-[700] text-[#FFFFFF] '>Home Features</h1>
+    </div>
                     </Link> 
                         {navState !== "left-[-2000px]" ?
                         <HiXMark onClick={() => setNavState('left-[-2000px]')} className=" text-[40px] bg-transparent  text-light p-2  hover:text-slate-200 "/> :
@@ -116,10 +119,10 @@ const {user, isAuthenticated} = useUserStore()
             }} style={{ transition: ".5s" }} className={`fixed z-[10000] min-h-[100vh] text-priimaryText bg-tp ${navState} right-0 top-0 bottom-0 w-full`}>
                 <div className="flex bg-primaryBg flex-col overflow-y-auto gap-[30px] absolute top-0 bottom-0 w-[70%] left-0 px-[30px] py-[30px]">
                     <div className="flex justify-between items-center">
-                    <Link href='' className="flex items-center">
-                        <SiHomeassistantcommunitystore className="text-[20px] md:text-[30px] text-btn-primary" /> 
-                        <h1 className="font-bold uppercase text-[20px] md:text-[30px]">Home features</h1>
-                        </Link>
+                    <Link href='/' className='flex items-center relative z-[10] gap-2'>
+     <span className='bg-[#FF5733] rounded-[3.89px] p-2'><FaHouse className='text-[#FFFFFF]  text-[10px] '/></span>
+<h1 className='text-[19.05px] leading-[21.43px] font-[700] text-[#333333] '>Home Features</h1>
+    </Link>
                         {/* <button onClick={() => setNavState('left-[-2000px]')}>
                         <HiXMark className="bg-black-bg text-[40px]  hover:bg-slate-700 p-1 text-light"/>
                         </button> */}
@@ -143,10 +146,10 @@ const {user, isAuthenticated} = useUserStore()
                             <TbHomeSearch className="text-[20px]" />
                             <span>Search</span>
                         </Link> */}
-                        <Link href='/register' className="bg-btn-primary text-primary text-light text-[15px] text-center w-[150px] py-[5px] px-[20px]">
+                        <Link href='/register' className="bg-btn-primary text-primary text-light text-[15px] text-center w-[150px] py-[5px] px-[20px] rounded ">
                             Register
                         </Link>
-                        <Link href='/signin' className="text-[15px] text-center border py-[5px] w-[150px] px-[20px]">
+                        <Link href='/signin' className="text-[15px] text-center border py-[5px] w-[150px] rounded px-[20px]">
                             Login
                         </Link>
                     </div>}

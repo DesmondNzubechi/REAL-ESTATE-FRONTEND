@@ -133,7 +133,7 @@ export default function Register() {
     //         console.error('Error getting Google sign-in URL:', error);
     //     }
     // };
-    
+     
 
     return (
         <div className="grid grid-cols-1 gap-0 md:grid-cols-2">
@@ -218,7 +218,7 @@ export default function Register() {
                         ) : (
                             <RxCross2 className="text-red-500" />
                         )}
-                    </div>
+                    </div> 
                     <button
                         type="submit"
                         className='text-light md:col-span-2 text-[12px] md:text-[20px] uppercase w-fit bg-btn-primary px-[30px] py-[15px] font-bold hover:bg-textTitle hover:text-light'
@@ -245,6 +245,6 @@ export default function Register() {
                 </div>
             </div>
             <Image src={signImg} className="w-full h-full hidden md:flex" alt="sign" />
-        </div>
+        </div> 
     );
 }
