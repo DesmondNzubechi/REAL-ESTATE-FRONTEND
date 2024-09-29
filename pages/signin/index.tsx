@@ -93,9 +93,9 @@ export default function SignIn() {
                 <Link href="/forgot-password" className="text-textTitle hover:text-btn-primary">Forgotten your password?</Link>
             </form>
 
-            <div className="flex items-center  justify-center gap-2">
-                <h1 className="font-[400] text-[#666666] leading-[19.98px]  text-[15px] ">Don't have an account yet?</h1>
-                <Link href='/register' className=' text-[15px] w-fit text-btn-primary  py-[15px] font-[400]  hover:text-[#666666]'>create an account</Link>
+            <div className="flex items-center  justify-center ">
+                <h1 className="font-[400] text-[#666666] leading-[19.98px]  text-[12px] ">Don't have an account yet?</h1> 
+                <Link href='/register' className=' text-[12px] w-fit text-btn-primary  font-[400]  hover:text-[#666666]'>create an account</Link>
             </div>
         </div>
         

@@ -1,26 +1,10 @@
-import Image from 'next/image';
-import authImg1 from '../../public/images/authImg.png';
-import authImg2 from '../../public/images/authImg2.png';
-import userImg1 from '../../public/images/user1.png';
-import userImg2 from '../../public/images/user2.png';
-import userImg3 from '../../public/images/user3.png';
-import userImg4 from '../../public/images/user4.png';
-import userImg5 from '../../public/images/user5.jpeg';
-
-import { LiaBathSolid } from "react-icons/lia";
-import { MdOutlineGames } from "react-icons/md";
-import { FaStar } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa";
-import { MdBed } from "react-icons/md";
-import { FaRegFileAlt } from "react-icons/fa";
-import { GiFallingStar } from "react-icons/gi";
-import { FaHouse } from "react-icons/fa6";
 import Link from 'next/link';
 import { api } from '@/components/lib/api';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { AuthPage } from '@/components/authPage/authPage';
+import { BounceLoader } from 'react-spinners';
 
 const Signup2 = () => {
 
@@ -93,7 +77,12 @@ const Signup2 = () => {
 
 
         if (formData.password.length < 10 && formData.confirmPassword.length < 10) {
-            toast.error("Please fill in all fields correctly");
+            toast.error("Your password length must be longer than 10");
+            return;
+        }
+
+        if (formData.password !== formData.confirmPassword) {
+            toast.error("Password and confirm password are not the same!");
             return;
         }
 
@@ -104,7 +93,7 @@ const Signup2 = () => {
 
         setLoading(true);
         try {
-            const response = await api.post('/user/signup', formData);
+          await api.post('/user/signup', formData);
 
 
             router.push('/my-account');
@@ -116,7 +105,7 @@ const Signup2 = () => {
             });
         } catch (error : any) {
 
-            console.log(error, "The error is here")
+           
             if (error instanceof Error) {
                     setError(error.message);
             } else {
@@ -138,7 +127,9 @@ const Signup2 = () => {
 
     return <>
     <div className='grid md:px-[50px] px-[20px] py-[20px] lg:px-[50px] grid-cols-1 gap-[100px]  md:grid-cols-2  '>
-
+    {loading && <div className="fixed bg-tpr w-full z-[500] left-0 right-0 flex justify-center h-full top-0 bottom-0 items-center"><BounceLoader color="#FF5A3C"
+                    size={100}
+                /></div>}
 <AuthPage/>
 
 <div className='flex flex-col justify-center items-center bg-white  gap-5 px-[30px] py-[20px] '>
@@ -153,30 +144,30 @@ const Signup2 = () => {
     <input  name='firstName'
     value={formData.firstName}
                             onChange={handleChange}
-                             type="text" className='border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  '
+                             type="text" required className='border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  '
                               />
 </div>
 <div className='flex flex-col gap-[4px]  w-full'>
     <label htmlFor="LastName" className='text-[16px] font-[400] text-[#666666] leading-[19.98px] '>Lastname</label>
-    <input name='lastName' value={formData.lastName}
+    <input name='lastName' required value={formData.lastName}
                             onChange={handleChange} type="text" className='border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  ' />
 </div>
 <div className='flex flex-col gap-[4px]  w-full'>
     <label htmlFor="email" className='text-[16px] font-[400] text-[#666666] leading-[19.98px] '>Email</label>
-    <input name='email' value={formData.email}
+    <input name='email' required value={formData.email}
                             onChange={handleChange} type="text" className='border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  ' />
 </div>
 <div className='flex flex-col gap-[4px]  w-full'>
     <label htmlFor="password" className='text-[16px] font-[400] text-[#666666] leading-[19.98px] '>Password</label>
-    <input name='password' value={formData.password}
+    <input name='password' required value={formData.password}
                             onChange={handleChange} type="password" className='border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  ' />
 </div>
 <div className='flex flex-col gap-[4px]  w-full'>
-    <label htmlFor="confirmPassword" className='text-[16px] font-[400] text-[#666666] leading-[19.98px] '>Confirm Password</label>
-    <input name='confirmPaswword' value={formData.confirmPassword}
+    <label htmlFor="confirmPassword"  className='text-[16px] font-[400] text-[#666666] leading-[19.98px] '>Confirm Password</label>
+    <input name='confirmPassword' required value={formData.confirmPassword}
                             onChange={handleChange} type="password" className='border outline-0 px-[20px]  rounded-[8px] h-[50px] text-[#333333] bg-transparent  ' />
 </div>
-<button  type='submit' className='bg-[#FF5733]  py-[12px] px-[10px] rounded-[10px] text-[#FFFFFF] font-[400] text-[16px] text-center '>Create an account</button>
+<button   disabled={loading}  type='submit' className='bg-[#FF5733]  py-[12px] px-[10px] rounded-[10px] text-[#FFFFFF] font-[400] text-[16px] text-center '> {loading ? "Creating account..." : "Create an account"}</button>
 <div className="flex items-center  justify-center gap-2">
                     <h1 className="font-[400] text-[#666666] leading-[19.98px]  text-[15px] ">
                         Already have an Account?

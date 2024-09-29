@@ -15,6 +15,7 @@ import { MdBed } from "react-icons/md";
 import { FaRegFileAlt } from "react-icons/fa";
 import { GiFallingStar } from "react-icons/gi";
 import { FaHouse } from "react-icons/fa6";
+import Link from 'next/link';
 
 
 export const AuthPage = () => {
@@ -24,13 +25,13 @@ export const AuthPage = () => {
     backgroundSize : "cover",
     backgroundRepeat : "no-repeat"
 }}
-className='  bg-[#FFEDE9] rounded-[20px] after:rounded-[20px]  px-[30px] py-[10px] w-full relative after:absolute after:top-0 after:bottom-0 before:bg-transparent before:absolute after:left-0 flex flex-col gap-[40px] after:right-0 after:bg-tpr'
+className='  bg-[#FFEDE9] rounded-[20px] after:rounded-[20px]  px-[30px] py-[10px] w-full relative after:absolute after:top-0 after:bottom-0 before:bg-transparent before:absolute after:left-0 hidden md:flex flex-col gap-[40px] after:right-0 after:bg-tpr'
 >
     <div className='flex flex-col gap-[30px]'>
-    <div className='flex items-center relative z-[10] gap-2'>
+    <Link href='/' className='flex items-center relative z-[10] gap-2'>
      <span className='bg-[#FF5733] rounded-[3.89px] p-2'><FaHouse className='text-[#FFFFFF]  text-[10px] '/></span>
 <h1 className='text-[19.05px] leading-[21.43px] font-[700] text-[#FFFFFF] '>Home Features</h1>
-    </div>
+    </Link>
 <div className='w-[353px]  z-[10]  h-[49px] relative z-[10] '>
 <h1 className='text-[30px] leading-[42.45px] font-[700] text-[#FFFFFF] '>Find Your Dream Home
     </h1>
@@ -86,7 +87,7 @@ className='  bg-[#FFEDE9] rounded-[20px] after:rounded-[20px]  px-[30px] py-[10p
 <h1 className='leading-[15.85px] font-[500] text-[#111111] text-[13px] '>Rent Sale</h1>
 <div className='flex items-center'><h1 className='font-[#111111] text-[14.09px] leading-[17.17px] '>N1,000,000</h1>/ <p className='text-[14.09px] text-[#666666] leading-[17.17px] '> month </p></div>
 </div>
-<div className='flex gap-[8.22px] py-[9.84] px-[9.39px] items-center rounded-[5.87px] bg-[#FF5733] '>
+<div className='flex cursor-pointer gap-[8.22px] py-[9.84] px-[9.39px] items-center rounded-[5.87px] bg-[#FF5733] '>
     <FaRegFileAlt className='text-[11px] text-[#FFFFFF] '/>
     <p className='font-[500] text-[14.09px] leading-[17.17px] text-[#FFFFFF] '>Apply Now</p>
 </div>
