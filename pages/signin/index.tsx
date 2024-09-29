@@ -51,7 +51,7 @@ export default function SignIn() {
             toast.success("Login successful")
         } catch (error ) {
             if (error instanceof Error) {
-                setError(error.message);
+                setError('wrong email or password. Please try again.');
             } else {
                 setError("An unexpected error occurred");
             }

@@ -93,7 +93,7 @@ const Register = () => {
 
         setLoading(true);
         try {
-          await api.post('/user/signup', formData);
+         const response = await api.post('/user/signup', formData, {withCredentials: true});
 
 
             router.push('/my-account');
