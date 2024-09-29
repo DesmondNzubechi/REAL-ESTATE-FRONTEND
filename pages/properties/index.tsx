@@ -167,7 +167,7 @@ fetchPoperties()
                             <option value=''> Filter By Status</option>
                             {
                                 uniqueStatus.map((status: string | any, index:number) => {
-                                    return <option key={index} className="bg-btn-primary text-light text-[15px]" value={status}>{status}</option>
+                                     return <option key={index} className="bg-btn-primary text-light text-[15px]" value={status}>{status}</option>
                                 })
                             }
                  
