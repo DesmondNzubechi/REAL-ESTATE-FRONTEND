@@ -1,14 +1,10 @@
 import Link from "next/link";
-import { MdEmail } from "react-icons/md";
-import { RiLockPasswordFill } from "react-icons/ri";
-import signImg from '../../public/images/login1.avif'
-import Image from "next/image";
 import { api } from "@/components/lib/api";
 import { ChangeEvent, useState } from "react";
 import { loginDetail } from "@/components/types/types";
-import { Router, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { toast } from "react-toastify";
-import { BounceLoader, CircleLoader, ClipLoader} from "react-spinners";
+import { BounceLoader} from "react-spinners";
 import { AuthPage } from "@/components/authPage/authPage";
 
 export default function SignIn() {
