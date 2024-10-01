@@ -41,9 +41,11 @@ const ImageSlider = ({ housing }: { housing: { images: string[] } }) => {
               <Image
                 src={image || '/'}
                 alt={`Image ${index}`}
-               
-                width={1000} // Arbitrary width to maintain aspect ratio
-                height={500} // Arbitrary height to maintain aspect ratio
+               style={{
+                objectFit : "cover"
+               }}
+                width={700} // Arbitrary width to maintain aspect ratio
+                height={300} // Arbitrary height to maintain aspect ratio
                 objectFit="cover"
                 className="w-full  border shadow-xl  rounded h-full"
               />
