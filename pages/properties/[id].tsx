@@ -208,9 +208,9 @@ setOrdering(true)
                             }
                    </div>
                     </div>
-                    <div>
-                        <button onClick={createOrder} disabled={ordering} className="bg-btn-primary text-slate-50 hover:bg-slate-900 text-[15px] font-medium p-[10px] ">{ordering? "Ordering Property" : "Order Property"}</button>
-                        <Link href="tel:+234708418000" className="border-btn-primary border text-slate-900 hover:text-slate-900 hover:bg-slate-900 text-[15px] font-medium p-[10px] ">Contact agents</Link>
+                    <div className="flex gap-3 items-center">
+                        <button onClick={createOrder} disabled={ordering} className="bg-btn-primary text-slate-50 hover:bg-slate-900 rounded text-[15px] font-medium p-[10px] ">{ordering? "Ordering Property" : "Order Property"}</button>
+                        <Link href="tel:+234708418000" className="border-btn-primary border text-slate-900 hover:text-slate-50 rounded hover:bg-slate-900 text-[15px] font-medium p-[10px] ">Contact agents</Link>
                     </div>
                     <div className="flex flex-col gap-5">
                     <h1 className="font-semibold px-[10px] border text-textTitle w-fit py-[5px] px-[10px] text-[25px] ">Map</h1>
